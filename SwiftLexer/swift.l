@@ -6,11 +6,11 @@
 %x STRING_MULTILINE
 %x STRING
 
-FLOAT_HEX		([-+]?)0x([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)([pP][-+]?[0-9_]+)
-FLOAT_DEC		([0-9_]+\.[0-9_]+([eE][-+]?[0-9_]+)?)|([0-9_]+[eE][-+]?[0-9_]+)
+FLOAT_HEX		0x([0-9a-fA-F][0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)([pP][-+]?[0-9_]+)
+FLOAT_DEC		([0-9]+\.[0-9_]+([eE][-+]?[0-9_]+)?)|([0-9_]+[eE][-+]?[0-9_]+)
 INT_BINARY		0b[01][_01]*
 INT_OCTAL		0o[0-7][_0-7]*
-INT_DECIMAL	[0-9][_0-9]*
+INT_DECIMAL	    [0-9][_0-9]*
 INT_HEXADECIMAL	0x[0-9a-fA-F][_0-9a-fA-F]*
 
 ID_START		[a-zA-Z_]
@@ -37,9 +37,6 @@ using namespace std;
     #include <unistd.h>
 #endif
 
-static int lineNumber = 1;
-static string strBuf;
-static int commentDepth = 0;
 
 static string stripUnderscores(const char* txt) {
     string clean;
@@ -51,7 +48,11 @@ static string stripUnderscores(const char* txt) {
 %}
 
 %%
-
+%{
+    static int lineNumber = 1;
+    static string strBuf;
+    static int commentDepth = 0;
+%}
 \n { lineNumber++; }
 
 "class"			{ cout << "\"CLASS\" " << yytext << '\n'; }
@@ -94,13 +95,13 @@ static string stripUnderscores(const char* txt) {
 }
 
 {INT_BINARY} {
-    string clean = stripUnderscores(yytext + 2); // пропускаем 0b
+    string clean = stripUnderscores(yytext + 2); 
     unsigned long long val = strtoull(clean.c_str(), nullptr, 2);
     cout << "\"LITERAL_INT_BINARY\" " << val << '\n';
 }
 
 {INT_OCTAL} {
-    string clean = stripUnderscores(yytext + 2); // пропускаем 0o
+    string clean = stripUnderscores(yytext + 2);
     unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
     cout << "\"LITERAL_INT_OCTAL\" " << val << '\n';
 }
@@ -129,7 +130,18 @@ static string stripUnderscores(const char* txt) {
 <STRING>\\v        { strBuf += "\v"; }
 <STRING>\\\'       { strBuf += "'"; }
 <STRING>\\\"       { strBuf += "\""; }
-
+<STRING>\n {
+    cout << "ERROR: unterminated string at line " << lineNumber << '\n';
+    BEGIN(INITIAL);
+}
+<STRING>\" {
+    cout << "\"LITERAL_STRING\" " << strBuf << '\n';
+    BEGIN(INITIAL);
+}
+<STRING><<EOF>> {
+    cout << "ERROR: string isn't closed at end of file\n";
+    BEGIN(INITIAL);
+}
 
 "+=" { cout << "\"PLUS_ASSIGN\" " << yytext << '\n'; }
 "-=" { cout << "\"MINUS_ASSIGN\" " << yytext << '\n'; }
@@ -168,27 +180,13 @@ static string stripUnderscores(const char* txt) {
 "}" { cout << "\"RBRACE\" " << yytext << '\n'; }
 
 
-<STRING>\n {
-    cout << "ERROR: unterminated string at line " << lineNumber << '\n';
-    BEGIN(INITIAL);
-}
-<STRING>\" {
-    cout << "\"LITERAL_STRING\" " << strBuf << '\n';
-    BEGIN(INITIAL);
-}
-<STRING><<EOF>> {
-    cout << "ERROR: string not closed at end of file\n";
-    BEGIN(INITIAL);
-}
-
-
 \"\"\" { strBuf.clear(); BEGIN(STRING_MULTILINE); }
 <STRING_MULTILINE>\"\"\" {
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }
-<STRING_MULTILINE>\n { strBuf += "\n"; lineNumber++; }
-<STRING_MULTILINE>.  { strBuf += yytext; }
+<STRING_MULTILINE>[^\n]+   { strBuf += yytext; }
+<STRING_MULTILINE>\n       { strBuf += "\n"; lineNumber++; }
 <STRING_MULTILINE><<EOF>> {
     cout << "ERROR: unterminated multiline string\n";
     BEGIN(INITIAL);
@@ -205,8 +203,8 @@ static string stripUnderscores(const char* txt) {
         BEGIN(INITIAL);
     } else strBuf += yytext;
 }
-<COMMENT_MULTILINE>\n { strBuf += "\n"; lineNumber++; }
-<COMMENT_MULTILINE>.  { strBuf += yytext; }
+<COMMENT_MULTILINE>[^\n]+  { strBuf += yytext; }
+<COMMENT_MULTILINE>\n      { strBuf += "\n"; lineNumber++; }
 <COMMENT_MULTILINE><<EOF>> {
     cout << "ERROR: unterminated multiline comment\n";
     BEGIN(INITIAL);
@@ -219,6 +217,6 @@ static string stripUnderscores(const char* txt) {
 %%
 
 int main() {
-    yylex(); // this will read stdin and print tokens
+    yylex();
     return 0;
 }
