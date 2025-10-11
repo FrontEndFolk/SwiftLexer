@@ -124,13 +124,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="lex.yy.cpp" />
     <ClCompile Include="SwiftLexer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="swift.l" />
+    <CustomBuild Include="swift.l">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(ProjectDir)win_flex.exe" -o "$(ProjectDir)lex.yy.cpp" "$(ProjectDir)swift.l"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Генерация lex.yy.cpp из swift.l</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)lex.yy.cpp</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unistd.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="win_flex.exe" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

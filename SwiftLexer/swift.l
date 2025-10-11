@@ -79,7 +79,7 @@ static string stripUnderscores(const char* txt) {
 "Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; }
 
 
-{ID_START}{ID_CONT}* { cout << "\"IDENTIFIER\" " << yytext << '\n'; }
+{ID_START}{ID_CONT}* { cout << "\"IDENTIFIER!!!\" " << yytext << '\n'; }
 
 
 {FLOAT_HEX} {
@@ -215,8 +215,3 @@ static string stripUnderscores(const char* txt) {
 . { cout << "\"UNKNOWN\" " << yytext << '\n'; }
 
 %%
-
-int main() {
-    yylex();
-    return 0;
-}

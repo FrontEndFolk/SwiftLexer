@@ -18,15 +18,23 @@
     <ClCompile Include="SwiftLexer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="swift.l">
+    <ClCompile Include="lex.yy.cpp">
       <Filter>Исходные файлы</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unistd.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="swift.l">
+      <Filter>Исходные файлы</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="win_flex.exe">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
 </Project>
