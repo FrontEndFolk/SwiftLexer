@@ -1,6 +1,6 @@
-"LITERAL_STRING" string test
+ERROR: unterminated string at line 1
 "LET" let
-"IDENTIFIER!!!" a
+"IDENTIFIER" a
 "ASSIGN" =
-"LITERAL_INT_DEC" 1
+"LITERAL_INT_DEC" 123
 "SEMICOLON" ;

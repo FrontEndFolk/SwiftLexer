@@ -1,2 +1,3 @@
-"string test"
-let a = 1;
+"string test
+
+let a = 123;
