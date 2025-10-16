@@ -6,8 +6,8 @@
 %x STRING_MULTILINE
 %x STRING
 
-FLOAT_HEX		0x([0-9a-fA-F][0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)([pP][-+]?[0-9_]+)
-FLOAT_DEC		([0-9]+\.[0-9_]+([eE][-+]?[0-9_]+)?)|([0-9_]+[eE][-+]?[0-9_]+)
+FLOAT_HEX       0x[0-9a-fA-F][_0-9a-fA-F]*\.[0-9a-fA-F][_0-9a-fA-F]*([pP][-+]?[0-9a-fA-F][_0-9]*)|[0-9a-fA-F][_0-9a-fA-F]*[Pp][+-]?[0-9][_0-9]*
+FLOAT_DEC		[0-9][_0-9]*[Ee][+-]?[0-9][_0-9]*|[0-9][_0-9]*\.[0-9][_0-9]*([Ee][-+]?[0-9][_0-9]*)?
 INT_BINARY		0b[01][_01]*
 INT_OCTAL		0o[0-7][_0-7]*
 INT_DECIMAL	    [0-9][_0-9]*
@@ -212,6 +212,6 @@ static string stripUnderscores(const char* txt) {
 
 [ \t\v\f\r]+ { /* skip */ }
 
-. { cout << "\"UNKNOWN\" " << yytext << '\n'; }
+<*>. { cout << "\"UNKNOWN\" " << yytext << '\n'; }
 
 %%
