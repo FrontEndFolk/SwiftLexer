@@ -15,6 +15,8 @@ void yyerror(const char *s);
 %require "3.2"
 %define parse.error verbose
 
+%start program
+
 // ---- Tokens ----
 %token <sval> IDENTIFIER STRING_LITERAL
 %token <ival> INTEGER_LITERAL
