@@ -80,21 +80,18 @@ param_list:
     ;
 
 if_stmt:
-      IF '(' expression ')' block
-    | IF '(' expression ')' block ELSE block
+      IF '(' expression ')' statement
+    | IF '(' expression ')' statement ELSE statement
     ;
 
 while_stmt:
-      WHILE '(' expression ')' block
+      WHILE '(' expression ')' statement
     ;
 
 for_stmt:
-      FOR '(' var_decl ';' expression ';' expression ')' block
+      FOR '(' var_decl ';' expression ';' expression ')' statement
     ;
 
-block:
-      '{' program '}'
-    ;
 
 expression:
       INTEGER_LITERAL             { $$ = new string(to_string($1)); }
