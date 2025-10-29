@@ -4,47 +4,26 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include "nodes.h"
 using namespace std;
 
+void yyerror(const char* s);
 int yylex(void);
-void yyerror(const char *s);
 
 %}
 
-%language "c++"
-%require "3.2"
-%define parse.error verbose
-
 %start program
 
-// ---- Tokens ----
-%token <sval> IDENTIFIER STRING_LITERAL
-%token <ival> INTEGER_LITERAL
-%token <fval> FLOAT_LITERAL
-%token LET VAR FUNC RETURN IF ELSE WHILE FOR
-%token TRUE FALSE
-%token EQ NEQ LEQ GEQ AND OR
-%token ASSIGN '+' '-' '*' '/' '<' '>' '(' ')' '{' '}' ';' ','
+%token INT_DECIMAL FLOAT_HEX FLOAT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL STRING_C ID INT_KW LET_KW VAR_KW FUNC PUBLIC FILE_PRIVATE PRIVATE CLASS SWITCH CASE DEFAULT FOR IN WHILE IF ELSE_IF ELSE RETURN DEINIT STAIC VOID
 
-// ---- Union ----
-%union {
-    int ival;
-    double fval;
-    std::string* sval;
-}
-
-// ---- Types ----
-%type <sval> expression
-%type program statement var_decl func_decl if_stmt while_stmt for_stmt block param_list
-
-// ---- Operator precedence ----
-%left OR
-%left AND
-%left EQ NEQ
-%left '<' '>' LEQ GEQ
+/* Operators */
+%left ','              
+%left '='
+%left EQ NE '>' '<' GE LE                
 %left '+' '-'
 %left '*' '/'
-%right UMINUS
+%right UNMINUS
+%left '[' ']'
 
 %%
 
@@ -52,78 +31,175 @@ void yyerror(const char *s);
 
 program:
       /* empty */
-    | program statement
+    | stmt_list YYEOF
     ;
 
-statement:
-      var_decl ';'
-    | func_decl
-    | if_stmt
-    | while_stmt
-    | for_stmt
-    | RETURN expression ';' { cout << "return " << *$2 << endl; delete $2; }
+stmt_list:
+      /* empty */
+    | stmt_list stmt
     ;
 
-var_decl:
-      LET IDENTIFIER ASSIGN expression  { cout << "let " << *$2 << " = " << *$4 << endl; delete $2; delete $4; }
-    | VAR IDENTIFIER ASSIGN expression  { cout << "var " << *$2 << " = " << *$4 << endl; delete $2; delete $4; }
+stmt:
+      decl ';'
+    | expr ';'
+	| if_stmt
+	| switch_statement
+	| for_stmt
+	| while_stmt
+	| RETURN ';'
+	| RETURN expr ';'
     ;
 
-func_decl:
-      FUNC IDENTIFIER '(' ')' block  { cout << "func " << *$2 << "()" << endl; delete $2; }
-    | FUNC IDENTIFIER '(' param_list ')' block { cout << "func " << *$2 << "(...)" << endl; delete $2; }
+expr:
+      primary_expr
+    | expr '+' expr
+    | expr '-' expr
+    | expr '*' expr
+    | expr '/' expr
+    | expr EQ expr
+    | expr NE expr
+    | expr '>' expr
+    | expr '<' expr
+    | expr GE expr
+    | expr LE expr
+    | expr '=' expr
+    | '-' expr %prec UNMINUS
+    | expr '[' expr ']'
     ;
 
-param_list:
-      IDENTIFIER
-    | param_list ',' IDENTIFIER
+primary_expr:
+      INT_DECIMAL
+    | FLOAT_HEX
+    | FLOAT_DEC
+    | INT_BINARY
+    | INT_OCTAL
+    | INT_HEXADECIMAL
+    | STRING_C
+    | ID
+    | ID '(' func_arg_list ')'
+    | '(' expr ')'
     ;
 
-if_stmt:
-      IF '(' expression ')' statement
-    | IF '(' expression ')' statement ELSE statement
+expr_list:
+	  expr
+	| expr_list ',' expr
+	;
+	
+expr_list_e:
+	/*empty*/
+	| expr_list
+
+type: 
+	  INT_KW
+    | ID
+	;
+
+decl_items:
+      decl_item
+    | decl_items ',' decl_item
     ;
 
-while_stmt:
-      WHILE '(' expression ')' statement
+decl_item:
+      ID '=' expr
+    | ID ':' type
+    | ID ':' type '=' expr
+    | ID ':' '[' type ']' '=' '[' expr_list_e ']'
+    ;
+	
+decl: 
+      LET_KW decl_items 
+    | VAR_KW decl_items 
+	| func_id '(' func_param_list_e ')' '-' '>' ID '{' stmt '}'
+	| func_id '(' func_param_list_e ')' '-' '>' VOID '{' stmt '}'
+	| func_id '(' func_param_list_e ')' '{' stmt '}'
+    | CLASS ID ':' ID '{' class_decl_list_e '}' 
+	| CLASS ID ':' '{' class_decl_list_e '}' 
+	;
+
+
+func_id: FUNC ID;
+
+func_param: 
+	  ID ':' type
+	| ID ID ':' type 
+	| '_' ID ':' type
+	;
+
+func_param_list:
+	  func_param
+	| func_param_list ',' func_param
+	;
+
+func_param_list_e:
+	/*empty*/
+	| func_param_list
+	;
+	
+func_arg:
+	  ID ':' expr
+	| expr
+	;
+	
+func_arg_list:
+      /* empty */
+    | func_arg_list_nonempty
     ;
 
-for_stmt:
-      FOR '(' var_decl ';' expression ';' expression ')' statement
+func_arg_list_nonempty:
+      func_arg
+    | func_arg_list_nonempty ',' func_arg
     ;
 
+access_modifier:
+	/*empty*/
+	| PUBLIC
+	| FILE_PRIVATE
+	| PRIVATE
+	;
 
-expression:
-      INTEGER_LITERAL             { $$ = new string(to_string($1)); }
-    | FLOAT_LITERAL               { $$ = new string(to_string($1)); }
-    | STRING_LITERAL              { $$ = new string(*$1); delete $1; }
-    | TRUE                        { $$ = new string("true"); }
-    | FALSE                       { $$ = new string("false"); }
-    | IDENTIFIER                  { $$ = new string(*$1); delete $1; }
-    | expression '+' expression   { $$ = new string(*$1 + " + " + *$3); delete $1; delete $3; }
-    | expression '-' expression   { $$ = new string(*$1 + " - " + *$3); delete $1; delete $3; }
-    | expression '*' expression   { $$ = new string(*$1 + " * " + *$3); delete $1; delete $3; }
-    | expression '/' expression   { $$ = new string(*$1 + " / " + *$3); delete $1; delete $3; }
-    | expression EQ expression    { $$ = new string(*$1 + " == " + *$3); delete $1; delete $3; }
-    | expression NEQ expression   { $$ = new string(*$1 + " != " + *$3); delete $1; delete $3; }
-    | expression '<' expression   { $$ = new string(*$1 + " < " + *$3); delete $1; delete $3; }
-    | expression '>' expression   { $$ = new string(*$1 + " > " + *$3); delete $1; delete $3; }
-    | expression AND expression   { $$ = new string(*$1 + " && " + *$3); delete $1; delete $3; }
-    | expression OR expression    { $$ = new string(*$1 + " || " + *$3); delete $1; delete $3; }
-    | '(' expression ')'          { $$ = $2; }
-    | '-' expression %prec UMINUS { $$ = new string("-" + *$2); delete $2; }
+
+class_decl_list:
+      class_decl_list class_member
+    | class_member
     ;
+
+class_member:
+      access_modifier decl
+	| access_modifier STAIC decl
+    | DEINIT '{' stmt '}'
+    ;
+	
+class_decl_list_e:
+	/*empty*/
+	| class_decl_list 
+	;
+			
+if_stmt: 
+	  IF '(' expr ')' '{' stmt '}'
+	| ELSE_IF '(' expr ')' '{' stmt '}' 
+	| IF '(' expr ')' ELSE '{' stmt '}'
+	;
+
+switch_statement
+    : SWITCH expr '{' switch_case_list '}'
+    ;
+	
+switch_case_list:
+	  switch_case
+	| switch_case_list switch_case
+	;
+	
+switch_case:
+	  CASE expr_list ':' stmt
+	| DEFAULT ':' stmt
+	;
+	
+for_stmt: FOR expr IN expr '{' stmt '}' ;
+
+while_stmt: WHILE expr '{' stmt '}' ;
+
 
 %%
-
-// ---- Error handling ----
-
-void yyerror(const char *s) {
-    cerr << "Parse error: " << s << endl;
-}
-
-int main() {
-    cout << "Parsing Swift-like source code..." << endl;
-    yyparse();
-    return 0;
-}
+void yyerror(const char* s){
+ std::cerr << s << std::endl;
+} 
