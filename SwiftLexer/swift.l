@@ -118,7 +118,7 @@ static string stripUnderscores(const char* txt) {
     cout << "\"LITERAL_INT_DEC\" " << val << '\n';
 }
 
-\" { strBuf.clear(); BEGIN(STRING); }
+\" { strBuf = "\""; BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { strBuf += yytext; }
 <STRING>\\\\       { strBuf += "\\"; }
 <STRING>\\n        { strBuf += "\n"; }
@@ -135,6 +135,7 @@ static string stripUnderscores(const char* txt) {
     BEGIN(INITIAL);
 }
 <STRING>\" {
+    strBuf += "\"";
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }
@@ -180,8 +181,9 @@ static string stripUnderscores(const char* txt) {
 "}" { cout << "\"RBRACE\" " << yytext << '\n'; }
 
 
-\"\"\" { strBuf.clear(); BEGIN(STRING_MULTILINE); }
+\"\"\" { strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }
 <STRING_MULTILINE>\"\"\" {
+    strBuf += "\"\"\"";
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }
