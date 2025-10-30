@@ -4,16 +4,13 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include "nodes.h"
 using namespace std;
 
+void yyerror(const char* s);
 int yylex(void);
-void yyerror(const char *s);
 
 %}
-
-%language "c++"
-%require "3.2"
-%define parse.error verbose
 
 %start program
 
@@ -241,18 +238,23 @@ while_stmt:
 block: 
     '{' stmt_list '}' 
     ;
+	
+decl: 
+      LET_KW decl_items 
+    | VAR_KW decl_items 
+	| func_id '(' func_param_list_e ')' '-' '>' ID '{' stmt '}'
+	| func_id '(' func_param_list_e ')' '-' '>' VOID '{' stmt '}'
+	| func_id '(' func_param_list_e ')' '{' stmt '}'
+    | CLASS ID ':' ID '{' class_decl_list_e '}' 
+	| CLASS ID ':' '{' class_decl_list_e '}' 
+	;
 
 
 %%
 
 // ---- Error handling ----
 
-void yyerror(const char *s) {
-    cerr << "Parse error: " << s << endl;
-}
-
-int main() {
-    cout << "Parsing Swift-like source code..." << endl;
-    yyparse();
-    return 0;
-}
+%%
+void yyerror(const char* s){
+ std::cerr << s << std::endl;
+} 

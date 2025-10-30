@@ -1,12 +1,14 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>   // Для FILE, fopen(), perror()
-#include <stdlib.h>  // Для exit(), EXIT_FAILURE и т.п.
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 
 using namespace std;
 
-extern FILE* yyin;   // Определено в сгенерированном lex.yy.c
-int yylex(void);     // Главная функция лексера
+
+extern FILE* yyin;     // Определено в lex.yy.c
+int yyparse(void);     // Главная функция парсера
+int yylex(void);
 
 int main(int argc, char** argv)
 {
@@ -16,8 +18,9 @@ int main(int argc, char** argv)
             perror("Error opening file");
             return 1;
         }
-        yyin = fp; // для flex
+        yyin = fp;
     }
-    yylex();
+
+    yyparse();  // <-- теперь вызываем парсер, а не лексер
     return 0;
 }

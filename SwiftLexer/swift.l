@@ -18,6 +18,7 @@ ID_CONT		[a-zA-Z0-9_]
 
 %{
 #define YY_NO_UNISTD_H 1
+#include "swift.tab.hh"
 
 #include <cstdio>
 #include <cstdlib>
@@ -25,6 +26,7 @@ ID_CONT		[a-zA-Z0-9_]
 #include <iostream>
 #include <string>
 using namespace std;
+
 
 #ifdef _WIN32
     #include "unistd.h"

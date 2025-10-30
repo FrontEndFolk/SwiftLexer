@@ -18,12 +18,24 @@
     <ClCompile Include="SwiftLexer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="lex.yy.cpp">
+    <ClCompile Include="nodes.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="swift.tab.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="lex.yy.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unistd.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="swift.tab.hh">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="win_flex.exe">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="parser.y">
       <Filter>Исходные файлы</Filter>
     </None>
   </ItemGroup>

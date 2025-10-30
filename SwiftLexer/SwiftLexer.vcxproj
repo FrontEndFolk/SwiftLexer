@@ -124,21 +124,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lex.yy.cpp" />
+    <ClCompile Include="lex.yy.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="nodes.cpp" />
+    <ClCompile Include="swift.tab.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
     <ClCompile Include="SwiftLexer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="swift.l">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(ProjectDir)win_flex.exe" -o "$(ProjectDir)lex.yy.cpp" "$(ProjectDir)swift.l"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(ProjectDir)win_flex.exe" -o "$(ProjectDir)lex.yy.c" "$(ProjectDir)swift.l"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Генерация lex.yy.cpp из swift.l</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)lex.yy.cpp</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nodes.h" />
+    <ClInclude Include="swift.tab.hh" />
     <ClInclude Include="unistd.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="parser.y" />
     <None Include="win_flex.exe" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
