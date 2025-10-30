@@ -239,17 +239,6 @@ block:
     '{' stmt_list '}' 
     ;
 	
-decl: 
-      LET_KW decl_items 
-    | VAR_KW decl_items 
-	| func_id '(' func_param_list_e ')' '-' '>' ID '{' stmt '}'
-	| func_id '(' func_param_list_e ')' '-' '>' VOID '{' stmt '}'
-	| func_id '(' func_param_list_e ')' '{' stmt '}'
-    | CLASS ID ':' ID '{' class_decl_list_e '}' 
-	| CLASS ID ':' '{' class_decl_list_e '}' 
-	;
-
-
 %%
 
 // ---- Error handling ----
