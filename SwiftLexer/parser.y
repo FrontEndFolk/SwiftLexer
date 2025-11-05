@@ -1,3 +1,7 @@
+%code requires {
+    #include <string>
+}
+
 %{
 #include <iostream>
 #include <string>
@@ -10,12 +14,21 @@ using namespace std;
 void yyerror(const char* s);
 int yylex(void);
 
+
 %}
+
+%union 
+{
+    int Int;
+    std::string* Id;
+} 
+
 
 %start program
 
-%token FLOAT_HEX FLOAT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL INT_DECIMAL ELSE_IF
-%token STRING_C ID INT_KW LET_KW VAR_KW BOOL_KW CHARACTER_KW UINT_KW FLOAT_KW DOUBLE_KW CHAR_LITERAL STRING_KW
+
+%token FLOAT_HEX FLOAT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL ELSE_IF
+%token STRING_C INT_KW VAR_KW BOOL_KW CHARACTER_KW UINT_KW FLOAT_KW DOUBLE_KW CHAR_LITERAL STRING_KW
 %token FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT
 %token INIT DEINIT  
 %token TRUE FALSE NIL
@@ -23,6 +36,9 @@ int yylex(void);
 %token BREAK CONTINUE
 %token AND OR NOT
 %token EQ NE GE LE
+
+%token <Int> INT_DECIMAL
+%token <Id> ID LET_KW
 
 
 /* Operators */
@@ -41,7 +57,7 @@ int yylex(void);
 
 // ---- Grammar rules ----
 
-program: stmt_list ;
+program: stmt_list {Mytest();};
 
 stmt_list:
       /* empty */
@@ -86,7 +102,7 @@ expr:
     ;
 
 primary_expr:
-      INT_DECIMAL
+      INT_DECIMAL { std::cerr << "INT " << $1 << '\n' << std::endl; }
     | FLOAT_HEX
     | FLOAT_DEC
     | INT_BINARY
@@ -97,7 +113,7 @@ primary_expr:
     | TRUE
     | FALSE
     | NIL
-    | ID
+    | ID { std::cerr << "ID " << *$1 << '\n' << std::endl; }
     | ID '(' func_arg_list ')'
     | '(' expr ')'
     ;
@@ -144,7 +160,7 @@ decl_item:
     ;
 
 decl: 
-    LET_KW decl_items 
+      LET_KW decl_items { std::cerr << "SIMPLE DECL WORKING" << std::endl;}
     | VAR_KW decl_items 
     | FUNC ID '(' func_param_list_e ')' '-' '>' type block
     | FUNC ID '(' func_param_list_e ')' block
@@ -241,9 +257,6 @@ block:
 	
 %%
 
-// ---- Error handling ----
-
-%%
 void yyerror(const char* s){
  std::cerr << s << std::endl;
 } 

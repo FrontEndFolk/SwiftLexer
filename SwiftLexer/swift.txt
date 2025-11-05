@@ -1,3 +1,1 @@
-﻿"string test"
-
 let a = 123;

@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
 
-extern FILE* yyin;     // Определено в lex.yy.c
-int yyparse(void);     // Главная функция парсера
-int yylex(void);
+extern FILE* yyin;     
+int yyparse(void);   
 
 int main(int argc, char** argv)
 {
@@ -21,6 +21,7 @@ int main(int argc, char** argv)
         yyin = fp;
     }
 
-    yyparse();  // <-- теперь вызываем парсер, а не лексер
+    yyparse();  
+    _getch();
     return 0;
 }

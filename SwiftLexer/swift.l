@@ -18,7 +18,7 @@ ID_CONT		[a-zA-Z0-9_]
 
 %{
 #define YY_NO_UNISTD_H 1
-#include "swift.tab.hh"
+#include "swift.tab.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -60,7 +60,10 @@ static string stripUnderscores(const char* txt) {
 "class"			{ cout << "\"CLASS\" " << yytext << '\n'; }
 "func"			{ cout << "\"FUNC\" " << yytext << '\n'; }
 "var"			{ cout << "\"VAR\" "  << yytext << '\n'; }
-"let"			{ cout << "\"LET\" "  << yytext << '\n'; }
+"let"			{ 
+                    cout << "\"LET\" "  << yytext << '\n';
+                    return LET_KW;
+                }
 "if"			{ cout << "\"IF\" "   << yytext << '\n'; }
 "else"			{ cout << "\"ELSE\" " << yytext << '\n'; }
 "for"			{ cout << "\"FOR\" "  << yytext << '\n'; }
@@ -81,7 +84,11 @@ static string stripUnderscores(const char* txt) {
 "Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; }
 
 
-{ID_START}{ID_CONT}* { cout << "\"IDENTIFIER\" " << yytext << '\n'; }
+{ID_START}{ID_CONT}* { 
+    yylval.Id = new std::string(yytext);
+    cout << "\"IDENTIFIER\" " << yytext << '\n';
+    return ID;
+}
 
 
 {FLOAT_HEX} {
@@ -117,7 +124,9 @@ static string stripUnderscores(const char* txt) {
 {INT_DECIMAL} {
     string clean = stripUnderscores(yytext);
     long long val = strtoll(clean.c_str(), nullptr, 10);
+    yylval.Int = val;
     cout << "\"LITERAL_INT_DEC\" " << val << '\n';
+    return INT_DECIMAL;
 }
 
 \" { strBuf = "\""; BEGIN(STRING); }
@@ -159,12 +168,18 @@ static string stripUnderscores(const char* txt) {
 "||" { cout << "\"OR\" " << yytext << '\n'; }
 "&&" { cout << "\"AND\" " << yytext << '\n'; }
 
-"="  { cout << "\"ASSIGN\" " << yytext << '\n'; }
+"="  { 
+        cout << "\"ASSIGN\" " << yytext << '\n';
+        return '='; 
+     }
 "<"  { cout << "\"LT\" " << yytext << '\n'; }
 ">"  { cout << "\"GT\" " << yytext << '\n'; }
 "\." { cout << "\"DOT\" " << yytext << '\n'; }
 ","  { cout << "\"COMMA\" " << yytext << '\n'; }
-";"  { cout << "\"SEMICOLON\" " << yytext << '\n'; }
+";"  { 
+    cout << "\"SEMICOLON\" " << yytext << '\n';
+    return ';';
+}
 ":"  { cout << "\"COLON\" " << yytext << '\n'; }
 "->" { cout << "\"ARROW\" " << yytext << '\n'; }
 
