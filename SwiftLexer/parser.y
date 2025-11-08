@@ -14,6 +14,7 @@ using namespace std;
 void yyerror(const char* s);
 int yylex(void);
 
+std::vector<StmtNode*>* root = nullprt;
 
 %}
 
@@ -21,6 +22,8 @@ int yylex(void);
 {
     int Int;
     std::string* Id;
+    StmtNode* stmtNode;
+    ExprNode* exprNode; 
 } 
 
 
@@ -34,8 +37,6 @@ int yylex(void);
 %token TRUE FALSE NIL
 %token PUBLIC PRIVATE FILE_PRIVATE STATIC
 %token BREAK CONTINUE
-%token AND OR NOT
-%token EQ NE GE LE
 
 %token <Int> INT_DECIMAL
 %token <Id> ID LET_KW
@@ -57,16 +58,28 @@ int yylex(void);
 
 // ---- Grammar rules ----
 
-program: stmt_list {Mytest();};
+program : top_stmt_list {root = $1; $$ = $1;}
+;
+
+top_stmt_list:
+      top_stmt { $$ = new std::vector<StmtNode*>*({$1}); }
+    | stmt_list top_stmt { $$ = $1; $$->push_back($2); }
+       
+    ;
+
+top_stmt:
+    stmt { $$ = $1; }
+    | func_decl ';' { $$ = $1; }
+    | class_decl ';' { $$ = $1; }
 
 stmt_list:
-      /* empty */
-    | stmt_list stmt
+      stmt { $$ = new std::vector<StmtNode*>*({$1}); }
+    | stmt_list stmt { $$ = $1; $$->push_back($2); }
     ;
 
 stmt: 
-      decl ';'
-    | expr ';'
+      expr ';'
+    | var_decl ';'
     | if_stmt
     | switch_statement
     | for_stmt
@@ -75,11 +88,20 @@ stmt:
     | RETURN expr ';'
     | BREAK ';'
     | CONTINUE ';'
-    | block 
     ;
 
 expr:
-      primary_expr
+      INT_DECIMAL
+    | FLOAT_HEX
+    | FLOAT_DEC
+    | INT_BINARY
+    | INT_OCTAL
+    | INT_HEXADECIMAL
+    | STRING_C
+    | CHAR_LITERAL
+    | TRUE
+    | FALSE
+    | NIL
     | expr '+' expr
     | expr '-' expr
     | expr '*' expr
@@ -99,24 +121,11 @@ expr:
     | expr '.' ID
     | expr '.' ID '(' func_arg_list ')'
     | '[' expr_list_e ']'
-    ;
-
-primary_expr:
-      INT_DECIMAL { std::cerr << "INT " << $1 << '\n' << std::endl; }
-    | FLOAT_HEX
-    | FLOAT_DEC
-    | INT_BINARY
-    | INT_OCTAL
-    | INT_HEXADECIMAL
-    | STRING_C
-    | CHAR_LITERAL
-    | TRUE
-    | FALSE
-    | NIL
-    | ID { std::cerr << "ID " << *$1 << '\n' << std::endl; }
+    | ID
     | ID '(' func_arg_list ')'
     | '(' expr ')'
     ;
+
 
 expr_list:
     expr
@@ -129,16 +138,7 @@ expr_list_e:
     ;
 
 type:
-    base_type
-    | array_type
-    ;
-
-array_type:
-    '[' type ']'
-    ;
-
-base_type:
-    INT_KW
+      INT_KW
     | BOOL_KW
     | CHARACTER_KW
     | UINT_KW
@@ -146,6 +146,7 @@ base_type:
     | DOUBLE_KW
     | STRING_KW
     | ID
+    | '[' type ']'
     ;
 
 decl_items:
@@ -159,12 +160,16 @@ decl_item:
     | ID ':' type '=' expr
     ;
 
-decl: 
-      LET_KW decl_items { std::cerr << "SIMPLE DECL WORKING" << std::endl;}
-    | VAR_KW decl_items 
-    | FUNC ID '(' func_param_list_e ')' '-' '>' type block
+var_decl: 
+    LET_KW decl_items 
+    | VAR_KW decl_items
+    ;
+func_decl:
+    FUNC ID '(' func_param_list_e ')' '-' '>' type block
     | FUNC ID '(' func_param_list_e ')' block
-    | CLASS ID ':' ID '{' class_decl_list_e '}' 
+    ;
+class_decl:
+    CLASS ID ':' ID '{' class_decl_list_e '}' 
     | CLASS ID '{' class_decl_list_e '}' 
     ;
 
@@ -212,8 +217,10 @@ class_decl_list:
     ;
 
 class_member:
-    access_modifier decl
-    | access_modifier STATIC decl
+    access_modifier var_decl
+    | access_modifier func_decl
+    | access_modifier STATIC var_decl
+    | access_modifier STATIC func_decl
     | INIT '(' func_param_list_e ')' block
     | DEINIT block
     ;
@@ -224,9 +231,9 @@ class_decl_list_e:
     ;
 			
 if_stmt:
-    IF '(' expr ')' block
-    | ELSE_IF '(' expr ')' block
-    | IF '(' expr ')' block ELSE block
+    IF expr block
+    | IF expr block ELSE if_stmt
+    | IF expr block ELSE block
     ;
 
 switch_statement:
@@ -248,7 +255,7 @@ for_stmt:
     ;
 
 while_stmt:
-    WHILE '(' expr ')' block 
+    WHILE expr block 
     ;
 
 block: 
