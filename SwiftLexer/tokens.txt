@@ -2,4 +2,7 @@
 "IDENTIFIER" a
 "ASSIGN" =
 "LITERAL_INT_DEC" 123
+Called ExprNode::createInt(123)
 "SEMICOLON" ;
+Called ExprNode::createDeclExpr(a, type=0000000000000000)
+Called StmtNode::createDeclStmt()

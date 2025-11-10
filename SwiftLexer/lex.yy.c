@@ -374,8 +374,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 85
-#define YY_END_OF_BUFFER 86
+#define YY_NUM_RULES 84
+#define YY_END_OF_BUFFER 85
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -383,31 +383,30 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[208] =
+static const flex_int16_t yy_accept[199] =
     {   0,
-        0,    0,    0,    0,    0,    0,    0,    0,   86,   84,
-       83,    1,   66,   28,   65,   84,   67,   68,   63,   61,
-       57,   62,   56,   64,   27,   27,   59,   58,   54,   53,
-       55,   21,   21,   21,   21,   21,   21,   21,   21,   21,
-       69,   70,   21,   21,   21,   21,   21,   21,   21,   21,
-       21,   21,   71,   84,   72,   81,   82,   81,   81,   75,
-       76,   75,   29,   40,   41,   84,   83,   48,    0,   46,
-       52,   45,   42,   43,   60,   78,   77,   44,    0,   27,
-        0,    0,    0,    0,    0,    0,   49,   47,   50,   21,
-       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+        0,    0,    0,    0,    0,    0,    0,    0,   85,   83,
+       82,    1,   65,   27,   64,   83,   66,   67,   62,   60,
+       56,   61,   55,   63,   26,   26,   58,   57,   53,   52,
+       54,   20,   20,   20,   20,   20,   20,   20,   20,   68,
+       69,   20,   20,   20,   20,   20,   20,   20,   20,   20,
+       20,   70,   83,   71,   80,   81,   80,   80,   74,   75,
+       74,   28,   39,   40,   83,   82,   47,    0,   45,   51,
+       44,   41,   42,   59,   77,   76,   43,    0,   26,    0,
+        0,    0,    0,    0,    0,   48,   46,   49,   20,   20,
+       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
 
-       21,   21,   21,   21,    6,   21,   21,   21,   21,   21,
-       21,   51,   81,   80,   79,   75,   75,   29,   39,   38,
-       33,   30,   32,   34,   31,   35,   36,   37,   73,   77,
-       23,    0,   23,    0,   22,   24,   25,   26,   21,   21,
-       21,   21,   21,   17,   21,   21,   21,   21,   21,    8,
-       21,    5,   13,   21,   21,    4,   21,   74,   23,    0,
-       23,   23,   22,   24,   25,    0,   26,   21,   14,   21,
-       21,   21,   21,   18,   21,    7,   21,    3,   21,   11,
-       21,    0,   23,   23,    0,   21,   21,   19,   21,    2,
-       12,   21,    9,   23,    0,    0,   21,   20,   15,   10,
+       20,   20,    6,   20,   20,   20,   20,   20,   20,   50,
+       80,   79,   78,   74,   74,   28,   38,   37,   32,   29,
+       31,   33,   30,   34,   35,   36,   72,   76,   22,    0,
+       22,    0,   21,   23,   24,   25,   20,   20,   20,   20,
+       16,   20,   20,   20,   20,   20,    8,   20,    5,   13,
+       20,   20,    4,   20,   73,   22,    0,   22,   22,   21,
+       23,   24,    0,   25,   20,   14,   20,   20,   20,   17,
+       20,    7,   20,    3,   20,   11,   20,    0,   22,   22,
+        0,   20,   18,   20,    2,   12,   20,    9,   22,    0,
+        0,   19,   15,   10,    0,   21,   21,    0
 
-        0,   22,   21,   22,   21,   16,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -418,14 +417,14 @@ static const YY_CHAR yy_ec[256] =
         1,    2,    4,    5,    1,    1,    6,    7,    8,    9,
        10,   11,   12,   13,   14,   15,   16,   17,   18,   19,
        19,   19,   19,   19,   19,   20,   20,   21,   22,   23,
-       24,   25,    1,    1,   26,   27,   28,   29,   30,   31,
-       32,   32,   33,   32,   32,   32,   32,   32,   32,   34,
-       32,   32,   35,   32,   36,   32,   32,   32,   32,   32,
-       37,   38,   39,    1,   40,    1,   41,   42,   43,   26,
+       24,   25,    1,    1,   26,   27,   26,   28,   29,   30,
+       31,   31,   32,   31,   31,   31,   31,   31,   31,   33,
+       31,   31,   34,   31,   35,   31,   31,   31,   31,   31,
+       36,   37,   38,    1,   39,    1,   40,   41,   42,   26,
 
-       44,   45,   46,   47,   48,   32,   32,   49,   32,   50,
-       51,   34,   32,   52,   53,   54,   55,   56,   57,   58,
-       32,   32,   59,   60,   61,    1,    1,    1,    1,    1,
+       43,   44,   45,   46,   47,   31,   31,   48,   31,   49,
+       50,   33,   31,   51,   52,   53,   54,   55,   56,   57,
+       31,   31,   58,   59,   60,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -442,135 +441,134 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[62] =
+static const YY_CHAR yy_meta[61] =
     {   0,
         1,    1,    2,    1,    3,    1,    1,    1,    1,    1,
         1,    4,    1,    4,    5,    1,    6,    6,    6,    6,
         1,    1,    1,    1,    1,    6,    6,    6,    6,    6,
-        6,    1,    1,    7,    1,    1,    1,    3,    1,    8,
-        6,    6,    6,    6,    6,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1
+        1,    1,    7,    1,    1,    1,    3,    1,    8,    6,
+        6,    6,    6,    6,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[221] =
+static const flex_int16_t yy_base[212] =
     {   0,
-        0,    0,   59,   60,   61,   62,   69,   74,  454,  455,
-      450,  455,  422,  429,  403,  419,  455,  455,  394,  386,
-      455,   44,  455,   62,   98,   38,  455,  455,  359,  358,
-      357,  140,  328,  331,  326,  327,  182,  325,  320,  340,
-      455,  455,  323,  322,   40,  325,  325,  319,  322,  313,
-      314,  307,  455,  293,  455,    0,  455,  335,  339,    0,
-      455,  344,    0,  455,  455,  223,  341,  455,  337,  455,
-      455,  455,  455,  455,  455,  455,    0,  455,   65,   46,
-      307,  218,   91,  102,   75,    0,  455,  455,  455,    0,
-        0,  133,  288,  297,  282,  276,  272,  273,  265,  273,
+        0,    0,   58,   59,   60,   61,   68,   73,  379,  455,
+      376,  455,  353,  371,  351,  367,  455,  455,  349,  347,
+      455,   43,  455,   61,   96,   38,  455,  455,  346,  345,
+      343,  137,  311,  310,  311,  178,  308,  303,  323,  455,
+      455,  296,  282,   40,  285,  285,  271,  272,  250,  260,
+      253,  455,  239,  455,    0,  455,  279,  279,    0,  455,
+      267,    0,  455,  455,  218,  266,  455,  256,  455,  455,
+      455,  455,  455,  455,  455,    0,  455,   64,   46,  225,
+      213,  130,   74,   80,    0,  455,  455,  455,    0,    0,
+      222,  207,  202,  204,  200,  201,  198,  205,  192,  195,
 
-      260,  262,  258,  259,    0,  249,  248,  242,  232,  234,
-      237,  455,    0,    0,    0,    0,  273,    0,  455,  455,
-      455,  455,  455,  455,  455,  455,  455,  455,  455,    0,
-      226,   81,  240,  144,  201,  254,  104,  254,  264,  218,
-      212,  221,  221,    0,  203,  196,  196,  204,  194,    0,
-      199,    0,    0,  184,  190,    0,  184,    0,  272,  281,
-      288,    0,  300,    0,  236,    0,  214,  304,    0,  176,
-      166,  160,  157,    0,  126,    0,  134,    0,  125,    0,
-      121,  186,  312,  316,  121,  111,  104,    0,  100,    0,
-        0,   84,    0,  328,   96,  119,   60,    0,    0,    0,
+      187,  188,    0,  176,  180,  171,  162,  164,  167,  455,
+        0,    0,    0,    0,  208,    0,  455,  455,  455,  455,
+      455,  455,  455,  455,  455,  455,  455,    0,  231,  100,
+      246,  113,  258,  263,  265,  197,  269,  162,  168,  163,
+        0,  155,  148,  148,  156,  123,    0,  132,    0,    0,
+      119,  119,    0,  104,    0,  274,  302,  292,    0,  306,
+        0,  288,    0,  136,  315,    0,   97,   90,   92,    0,
+       82,    0,   85,    0,   76,    0,   78,  141,  319,  323,
+       79,   66,    0,   63,    0,    0,   52,    0,  329,   60,
+       88,    0,    0,    0,   92,  333,  346,  455,  385,  393,
 
-      123,  340,   62,  344,   50,    0,  455,  384,  392,  400,
-      408,  416,  424,  432,  435,   84,  439,   81,  442,  447
+      401,  409,  417,  425,  433,  436,   83,  440,   80,  443,
+      448
     } ;
 
-static const flex_int16_t yy_def[221] =
+static const flex_int16_t yy_def[212] =
     {   0,
-      207,    1,  208,  208,  209,  209,  210,  210,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,   25,  207,  207,  207,  207,
-      207,  207,   32,   32,   32,   32,   32,   37,   37,   37,
-      207,  207,   32,   32,   32,   37,   37,   37,   37,   37,
-       37,   37,  207,  207,  207,  211,  207,  211,  211,  212,
-      207,  212,  213,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  214,  207,  207,   25,
-      215,  215,  207,  215,  207,  216,  207,  207,  207,   32,
-       37,   37,   37,   37,   37,   37,   37,   37,   37,   37,
+      198,    1,  199,  199,  200,  200,  201,  201,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,   25,  198,  198,  198,  198,
+      198,  198,   32,   32,   32,   32,   36,   36,   36,  198,
+      198,   32,   32,   32,   36,   36,   36,   36,   36,   36,
+       36,  198,  198,  198,  202,  198,  202,  202,  203,  198,
+      203,  204,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  205,  198,  198,   25,  206,
+      206,  198,  206,  198,  207,  198,  198,  198,   32,   36,
+       36,   36,   36,   36,   36,   36,   36,   36,   36,   32,
 
-       37,   32,   37,   37,   37,   37,   37,   37,   37,   37,
-       37,  207,  211,  211,  211,  212,  212,  213,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  214,
-      207,  207,  215,  207,  207,  215,  207,  217,   37,   37,
-       37,   37,   37,   37,   37,   37,   37,   37,   37,   37,
-       37,   37,   37,   37,   37,   37,   37,  212,  207,  207,
-      207,  133,  207,  136,  207,  218,  217,   37,   37,   37,
-       37,   37,   37,   37,   37,   37,   37,   37,   37,   37,
-       37,  207,  207,  207,  219,   37,   37,   37,   37,   37,
-       37,   37,   37,  207,  219,  220,   37,   37,   37,   37,
+       36,   36,   36,   36,   36,   36,   36,   36,   36,  198,
+      202,  202,  202,  203,  203,  204,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  205,  198,  198,
+      206,  198,  198,  206,  198,  208,   36,   36,   36,   36,
+       36,   36,   36,   36,   36,   36,   36,   36,   36,   36,
+       36,   36,   36,   36,  203,  198,  198,  198,  131,  198,
+      134,  198,  209,  208,   36,   36,   36,   36,   36,   36,
+       36,   36,   36,   36,   36,   36,   36,  198,  198,  198,
+      210,   36,   36,   36,   36,   36,   36,   36,  198,  210,
+      211,   36,   36,   36,  211,  198,  198,    0,  198,  198,
 
-      220,  207,   37,  207,   37,   37,    0,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198
     } ;
 
-static const flex_int16_t yy_nxt[517] =
+static const flex_int16_t yy_nxt[516] =
     {   0,
        10,   11,   12,   13,   14,   15,   16,   10,   17,   18,
        19,   20,   21,   22,   23,   24,   25,   26,   26,   26,
-       27,   28,   29,   30,   31,   32,   33,   34,   35,   32,
-       36,   37,   38,   37,   39,   40,   41,   10,   42,   37,
-       32,   32,   43,   44,   45,   37,   37,   46,   47,   48,
-       37,   49,   37,   50,   37,   51,   52,   37,   53,   54,
-       55,   57,   57,   61,   61,   62,   62,   74,   75,   58,
-       58,   64,   76,   65,   59,   59,   64,   77,   65,   81,
-      102,  131,  131,  131,  131,   78,  185,   81,  207,  138,
-      103,  137,  137,  137,  104,  207,  207,  161,  161,  161,
+       27,   28,   29,   30,   31,   32,   33,   34,   32,   35,
+       36,   37,   36,   38,   39,   40,   10,   41,   36,   32,
+       32,   42,   43,   44,   36,   36,   45,   46,   47,   36,
+       48,   36,   49,   36,   50,   51,   36,   52,   53,   54,
+       56,   56,   60,   60,   61,   61,   73,   74,   57,   57,
+       63,   75,   64,   58,   58,   63,   76,   64,   80,  100,
+      129,  129,  129,  129,   77,  181,   80,  198,  136,  101,
+      134,  134,  191,  102,  198,  198,  135,  135,  135,  195,
 
-      161,  206,  134,  207,  134,  205,   66,  135,  135,  135,
-      135,   66,   79,  203,   80,   80,   80,   80,  136,  136,
-      165,  165,  165,   81,   81,   81,   81,   82,   81,  196,
-      201,   83,  201,  200,  207,   83,  207,   80,   81,   84,
-       81,   82,   81,  165,  134,  199,  134,  198,   85,  139,
-      139,  139,  139,  197,  196,   86,   90,   90,   90,   90,
-      135,  135,  135,  135,  193,   90,   90,   90,   90,   90,
-       90,   91,   91,   92,   91,   91,  192,  191,  190,   90,
-       90,   90,   90,   90,   90,   91,   91,   91,   91,   91,
-       91,   91,   91,   91,   91,   91,   91,   91,   91,   91,
+      194,  195,  198,  198,   65,  198,   82,  193,  192,   65,
+       78,  191,   79,   79,   79,   79,  158,  158,  158,  158,
+      188,   80,   80,   80,   81,   80,  187,  186,   82,  133,
+      133,  133,  133,  185,   79,   80,   83,   80,   81,   80,
+      184,  132,  183,  132,  182,   84,  133,  133,  133,  133,
+      163,  177,   85,   89,   89,   89,   89,  179,  179,  179,
+      179,  176,   89,   89,   89,   89,   89,   90,   90,   91,
+       90,   90,  175,  174,  173,   89,   89,   89,   89,   89,
+       89,   90,   90,   90,   90,   90,   90,   90,   90,   90,
+       90,   90,   90,   90,   90,   90,   90,   90,  172,  171,
 
-       91,   91,  183,  183,  183,  183,  189,   91,   91,   91,
-       91,   91,   91,  188,  187,   91,  186,  163,  163,  163,
-      163,   91,   91,   91,   91,   91,   91,  119,  166,  132,
-      120,  132,  181,  180,  133,  133,  133,  133,  179,  121,
-      163,  178,  159,  159,  159,  159,  177,  176,  175,  174,
-      173,   83,  165,  165,  165,  160,  162,  162,  162,  162,
-      122,  172,  171,  170,  123,  159,  169,  124,  166,  160,
-      164,  164,  125,   83,  126,  165,  127,  158,  128,  162,
-      168,  168,  168,  168,  157,  156,  155,   83,  159,  159,
-      159,  159,  182,  164,  182,  154,  153,  183,  183,  183,
+      170,  169,  168,   90,   90,   90,   90,   90,  167,  166,
+       90,  163,  155,  154,  153,  152,   90,   90,   90,   90,
+       90,   90,  117,  151,  130,  118,  130,  150,  149,  131,
+      131,  131,  131,  132,  119,  132,  148,  147,  137,  137,
+      137,  137,  146,  145,  144,   82,  143,  156,  156,  156,
+      156,  142,  141,  140,  120,  139,  138,   82,  121,  157,
+      127,  122,  159,  159,  159,  159,  123,   66,  124,  156,
+      125,  115,  126,  157,  160,  160,  160,  160,   82,  161,
+      161,  162,  162,  162,  159,  165,  165,  165,  165,  113,
+      156,  156,  156,  156,  112,   82,  160,  110,  109,  108,
 
-      183,  160,  152,  168,  184,  184,  184,  184,  151,  150,
-      149,  159,  148,  147,  146,  160,  163,  163,  163,  163,
-      168,  168,  168,  168,  145,  144,  143,  184,  194,  194,
-      194,  194,  184,  184,  184,  184,  142,  141,  140,  163,
-       83,  129,   67,  168,  194,  194,  194,  194,  117,  115,
-      114,  194,  112,  111,  110,  184,  204,  204,  204,  204,
-      204,  204,  204,  204,  109,  108,  107,  194,  106,  105,
-      101,  100,   99,   98,   97,   96,   95,   94,   93,  204,
-       89,   88,   87,  204,   56,   56,   56,   56,   56,   56,
-       56,   56,   60,   60,   60,   60,   60,   60,   60,   60,
+      107,  161,  157,  162,  162,  162,  162,  165,  180,  180,
+      180,  180,  156,  178,  106,  178,  157,  105,  179,  179,
+      179,  179,  160,  160,  160,  160,  162,  104,  103,   99,
+      180,  165,  165,  165,  165,  189,  189,  189,  189,  180,
+      180,  180,  180,   98,  160,  189,  189,  189,  189,  197,
+      197,  197,  197,  165,   97,   96,   95,  189,   94,   93,
+       92,  180,  197,  197,  197,  197,   88,  189,   87,   86,
+       72,  197,   71,   70,   69,   68,   67,   66,  198,  198,
+      198,  198,  198,  198,  197,   55,   55,   55,   55,   55,
+       55,   55,   55,   59,   59,   59,   59,   59,   59,   59,
 
-       63,   63,   63,   63,   63,   63,   63,   63,  113,   73,
-      113,  113,  113,  113,  113,  113,  116,   72,  116,  116,
-      116,  116,  116,  116,  118,   71,   70,  118,  118,  118,
-      118,  118,  130,   69,  130,  130,  130,  130,  130,  130,
-       81,   81,   81,  167,  167,   68,  167,  195,  195,  195,
-      202,   67,  202,  207,    9,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
+       59,   62,   62,   62,   62,   62,   62,   62,   62,  111,
+      198,  111,  111,  111,  111,  111,  111,  114,  198,  114,
+      114,  114,  114,  114,  114,  116,  198,  198,  116,  116,
+      116,  116,  116,  128,  198,  128,  128,  128,  128,  128,
+      128,   80,   80,   80,  164,  164,  198,  164,  190,  190,
+      190,  196,  198,  196,    9,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
 
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198
     } ;
 
-static const flex_int16_t yy_chk[517] =
+static const flex_int16_t yy_chk[516] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -578,67 +576,67 @@ static const flex_int16_t yy_chk[517] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    4,    5,    6,    5,    6,   22,   22,    3,
-        4,    7,   24,    7,    3,    4,    8,   24,    8,   26,
-       45,   79,   79,   79,   79,   24,  218,   80,   26,  216,
-       45,   85,   85,   85,   45,   26,   80,  132,  132,  132,
+        3,    4,    5,    6,    5,    6,   22,   22,    3,    4,
+        7,   24,    7,    3,    4,    8,   24,    8,   26,   44,
+       78,   78,   78,   78,   24,  209,   79,   26,  207,   44,
+       83,   83,  190,   44,   26,   79,   84,   84,   84,  191,
 
-      132,  205,   83,   80,   83,  203,    7,   83,   83,   83,
-       83,    8,   25,  197,   25,   25,   25,   25,   84,   84,
-      137,  137,  137,   25,   25,   25,   25,   25,   25,  195,
-      196,   25,  196,  192,  201,   84,  201,   25,   25,   25,
-       25,   25,   25,  137,   92,  189,   92,  187,   25,   92,
-       92,   92,   92,  186,  185,   25,   32,   32,   32,   32,
-      134,  134,  134,  134,  181,   32,   32,   32,   32,   32,
-       32,   32,   32,   32,   32,   32,  179,  177,  175,   32,
+      187,  191,   79,  195,    7,  195,   83,  184,  182,    8,
+       25,  181,   25,   25,   25,   25,  130,  130,  130,  130,
+      177,   25,   25,   25,   25,   25,  175,  173,   25,  132,
+      132,  132,  132,  171,   25,   25,   25,   25,   25,   25,
+      169,   82,  168,   82,  167,   25,   82,   82,   82,   82,
+      164,  154,   25,   32,   32,   32,   32,  178,  178,  178,
+      178,  152,   32,   32,   32,   32,   32,   32,   32,   32,
+       32,   32,  151,  148,  146,   32,   32,   32,   32,   32,
        32,   32,   32,   32,   32,   32,   32,   32,   32,   32,
-       32,   32,   32,   32,   32,   32,   32,   32,   37,   37,
+       32,   32,   32,   32,   36,   36,   36,   36,  145,  144,
 
-       37,   37,  182,  182,  182,  182,  173,   37,   37,   37,
-       37,   37,   37,  172,  171,   37,  170,  135,  135,  135,
-      135,   37,   37,   37,   37,   37,   37,   66,  167,   82,
-       66,   82,  157,  155,   82,   82,   82,   82,  154,   66,
-      135,  151,  131,  131,  131,  131,  149,  148,  147,  146,
-      145,   82,  165,  165,  165,  131,  133,  133,  133,  133,
-       66,  143,  142,  141,   66,  131,  140,   66,  138,  131,
-      136,  136,   66,  133,   66,  165,   66,  117,   66,  133,
-      139,  139,  139,  139,  111,  110,  109,  136,  159,  159,
-      159,  159,  160,  136,  160,  108,  107,  160,  160,  160,
+      143,  142,  140,   36,   36,   36,   36,   36,  139,  138,
+       36,  136,  115,  109,  108,  107,   36,   36,   36,   36,
+       36,   36,   65,  106,   81,   65,   81,  105,  104,   81,
+       81,   81,   81,   91,   65,   91,  102,  101,   91,   91,
+       91,   91,  100,   99,   98,   81,   97,  129,  129,  129,
+      129,   96,   95,   94,   65,   93,   92,   80,   65,  129,
+       68,   65,  131,  131,  131,  131,   65,   66,   65,  129,
+       65,   61,   65,  129,  133,  133,  133,  133,  131,  134,
+      134,  135,  135,  135,  131,  137,  137,  137,  137,   58,
+      156,  156,  156,  156,   57,  134,  133,   53,   51,   50,
 
-      160,  159,  106,  139,  161,  161,  161,  161,  104,  103,
-      102,  159,  101,  100,   99,  159,  163,  163,  163,  163,
-      168,  168,  168,  168,   98,   97,   96,  161,  183,  183,
-      183,  183,  184,  184,  184,  184,   95,   94,   93,  163,
-       81,   69,   67,  168,  194,  194,  194,  194,   62,   59,
-       58,  183,   54,   52,   51,  184,  202,  202,  202,  202,
-      204,  204,  204,  204,   50,   49,   48,  194,   47,   46,
-       44,   43,   40,   39,   38,   36,   35,   34,   33,  202,
-       31,   30,   29,  204,  208,  208,  208,  208,  208,  208,
-      208,  208,  209,  209,  209,  209,  209,  209,  209,  209,
+       49,  134,  156,  135,  162,  162,  162,  137,  158,  158,
+      158,  158,  156,  157,   48,  157,  156,   47,  157,  157,
+      157,  157,  160,  160,  160,  160,  162,   46,   45,   43,
+      158,  165,  165,  165,  165,  179,  179,  179,  179,  180,
+      180,  180,  180,   42,  160,  189,  189,  189,  189,  196,
+      196,  196,  196,  165,   39,   38,   37,  179,   35,   34,
+       33,  180,  197,  197,  197,  197,   31,  189,   30,   29,
+       20,  196,   19,   16,   15,   14,   13,   11,    9,    0,
+        0,    0,    0,    0,  197,  199,  199,  199,  199,  199,
+      199,  199,  199,  200,  200,  200,  200,  200,  200,  200,
 
-      210,  210,  210,  210,  210,  210,  210,  210,  211,   20,
-      211,  211,  211,  211,  211,  211,  212,   19,  212,  212,
-      212,  212,  212,  212,  213,   16,   15,  213,  213,  213,
-      213,  213,  214,   14,  214,  214,  214,  214,  214,  214,
-      215,  215,  215,  217,  217,   13,  217,  219,  219,  219,
-      220,   11,  220,    9,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
+      200,  201,  201,  201,  201,  201,  201,  201,  201,  202,
+        0,  202,  202,  202,  202,  202,  202,  203,    0,  203,
+      203,  203,  203,  203,  203,  204,    0,    0,  204,  204,
+      204,  204,  204,  205,    0,  205,  205,  205,  205,  205,
+      205,  206,  206,  206,  208,  208,    0,  208,  210,  210,
+      210,  211,    0,  211,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
 
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207
+      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
+      198,  198,  198,  198,  198
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[86] =
+static const flex_int32_t yy_rule_can_match_eol[85] =
     {   0,
 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 
-    0, 0, 1, 0, 0, 0,     };
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
+    0, 1, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -689,8 +687,8 @@ static string stripUnderscores(const char* txt) {
     }
     return clean;
 }
-#line 692 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
-#line 693 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 690 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 691 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT_MULTILINE 1
@@ -918,7 +916,7 @@ YY_DECL
     static string strBuf;
     static int commentDepth = 0;
 
-#line 921 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 919 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -945,13 +943,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 208 )
+				if ( yy_current_state >= 199 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_current_state != 207 );
+		while ( yy_current_state != 198 );
 		yy_cp = (yy_last_accepting_cpos);
 		yy_current_state = (yy_last_accepting_state);
 
@@ -990,238 +988,244 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 61 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"CLASS\" " << yytext << '\n'; }
+{ cout << "\"CLASS\" " << yytext << '\n'; return CLASS; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 62 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"FUNC\" " << yytext << '\n'; }
+{ cout << "\"FUNC\" " << yytext << '\n'; return FUNC;   }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 63 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"VAR\" "  << yytext << '\n'; }
+{ cout << "\"VAR\" "  << yytext << '\n'; return VAR_KW; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 64 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ 
-                    cout << "\"LET\" "  << yytext << '\n';
-                    return LET_KW;
-                }
+{ cout << "\"LET\" "  << yytext << '\n'; return LET_KW; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 68 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"IF\" "   << yytext << '\n'; }
+#line 65 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"IF\" "   << yytext << '\n'; return IF;     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 69 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"ELSE\" " << yytext << '\n'; }
+#line 66 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"ELSE\" " << yytext << '\n'; return ELSE;   }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 70 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"FOR\" "  << yytext << '\n'; }
+#line 67 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 71 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"WHILE\" "<< yytext << '\n'; }
+#line 68 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 72 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"RETURN\" "<< yytext << '\n'; }
+#line 69 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 73 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TRUE\" " << yytext << '\n'; }
+#line 70 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 74 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"FALSE\" "<< yytext << '\n'; }
+#line 71 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 75 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"NIL\" "  << yytext << '\n'; }
+#line 72 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 79 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; }
+#line 76 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 80 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; }
+#line 77 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 81 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_CHARACTER\" " << yytext << '\n'; }
+#line 78 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_INT\" "       << yytext << '\n'; return INT_KW; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 82 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_INT\" "       << yytext << '\n'; }
+#line 79 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_UINT\" "      << yytext << '\n'; return UINT_KW; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 83 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_UINT\" "      << yytext << '\n'; }
+#line 80 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; return FLOAT_KW; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 84 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; }
+#line 81 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; return DOUBLE_KW; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 85 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; }
-	YY_BREAK
-case 21:
-YY_RULE_SETUP
-#line 88 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 84 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { 
     yylval.Id = new std::string(yytext);
     cout << "\"IDENTIFIER\" " << yytext << '\n';
     return ID;
 }
 	YY_BREAK
-case 22:
+case 21:
 YY_RULE_SETUP
-#line 95 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 91 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     double val = strtod(clean.c_str(), nullptr);
+    yylval.Float = val;
     cout << "\"LITERAL_FLOAT_HEX\" " << val << '\n';
+    return FLOAT_DEC;
+}
+	YY_BREAK
+case 22:
+YY_RULE_SETUP
+#line 99 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{
+    string clean = stripUnderscores(yytext);
+    double val = strtod(clean.c_str(), nullptr);
+    yylval.Float = val;
+    cout << "\"LITERAL_FLOAT_DEC\" " << val << '\n';
+    return FLOAT_DEC;
 }
 	YY_BREAK
 case 23:
-YY_RULE_SETUP
-#line 101 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{
-    string clean = stripUnderscores(yytext);
-    double val = strtod(clean.c_str(), nullptr);
-    cout << "\"LITERAL_FLOAT_DEC\" " << val << '\n';
-}
-	YY_BREAK
-case 24:
 YY_RULE_SETUP
 #line 107 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext + 2); 
     unsigned long long val = strtoull(clean.c_str(), nullptr, 2);
+    yylval.Int = val;
     cout << "\"LITERAL_INT_BINARY\" " << val << '\n';
+    return INT_DEC;
+}
+	YY_BREAK
+case 24:
+YY_RULE_SETUP
+#line 115 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{
+    string clean = stripUnderscores(yytext + 2);
+    unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
+    yylval.Int = val;
+    cout << "\"LITERAL_INT_OCTAL\" " << val << '\n';
+    return INT_DEC;
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 113 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 123 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
-    string clean = stripUnderscores(yytext + 2);
-    unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
-    cout << "\"LITERAL_INT_OCTAL\" " << val << '\n';
+    string clean = stripUnderscores(yytext);
+    unsigned long long val = strtoull(clean.c_str(), nullptr, 16);
+    yylval.Int = val;
+    cout << "\"LITERAL_INT_HEX\" " << val << '\n';
+    return INT_DEC;
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 119 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{
-    string clean = stripUnderscores(yytext);
-    unsigned long long val = strtoull(clean.c_str(), nullptr, 16);
-    cout << "\"LITERAL_INT_HEX\" " << val << '\n';
-}
-	YY_BREAK
-case 27:
-YY_RULE_SETUP
-#line 125 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 131 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     long long val = strtoll(clean.c_str(), nullptr, 10);
     yylval.Int = val;
     cout << "\"LITERAL_INT_DEC\" " << val << '\n';
-    return INT_DECIMAL;
+    return INT_DEC;
 }
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 139 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf = "\""; BEGIN(STRING); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 133 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf = "\""; BEGIN(STRING); }
+#line 140 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ 
+                     strBuf += yytext;
+                     yylval.Id = new std::string(strBuf);
+                     return STRING_C;
+                   }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 134 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += yytext; }
+#line 145 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\\"; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 135 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\\"; }
+#line 146 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\n"; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 136 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\n"; }
+#line 147 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\b"; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 137 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\b"; }
+#line 148 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\0"; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 138 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\0"; }
+#line 149 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\f"; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 139 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\f"; }
+#line 150 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\r"; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 140 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\r"; }
+#line 151 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\t"; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 141 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\t"; }
+#line 152 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "\v"; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 142 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "\v"; }
+#line 153 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf += "'"; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 143 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf += "'"; }
-	YY_BREAK
-case 39:
-YY_RULE_SETUP
-#line 144 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 154 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\""; }
 	YY_BREAK
-case 40:
-/* rule 40 can match eol */
+case 39:
+/* rule 39 can match eol */
 YY_RULE_SETUP
-#line 145 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 155 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated string at line " << lineNumber << '\n';
     BEGIN(INITIAL);
 }
 	YY_BREAK
-case 41:
+case 40:
 YY_RULE_SETUP
-#line 149 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 159 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     strBuf += "\"";
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
@@ -1229,223 +1233,220 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case YY_STATE_EOF(STRING):
-#line 154 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 164 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: string isn't closed at end of file\n";
     BEGIN(INITIAL);
 }
 	YY_BREAK
+case 41:
+YY_RULE_SETUP
+#line 169 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"PLUS_ASSIGN\" " << yytext << '\n'; }
+	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 159 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"PLUS_ASSIGN\" " << yytext << '\n'; }
+#line 170 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MINUS_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 160 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MINUS_ASSIGN\" " << yytext << '\n'; }
+#line 171 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"DIV_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 161 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"DIV_ASSIGN\" " << yytext << '\n'; }
+#line 172 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MUL_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 162 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MUL_ASSIGN\" " << yytext << '\n'; }
+#line 173 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MOD_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 163 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MOD_ASSIGN\" " << yytext << '\n'; }
+#line 175 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"EQ\" " << yytext << '\n';  return EQ;  }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 165 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"EQ\" " << yytext << '\n'; }
+#line 176 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"NEQ\" " << yytext << '\n'; return NE;  }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 166 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"NEQ\" " << yytext << '\n'; }
+#line 177 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"LTE\" " << yytext << '\n'; return LE;  }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 167 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"LTE\" " << yytext << '\n'; }
+#line 178 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"GTE\" " << yytext << '\n'; return GE;  }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 168 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"GTE\" " << yytext << '\n'; }
+#line 179 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"OR\" " << yytext << '\n';  return OR;  }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 169 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"OR\" " << yytext << '\n'; }
+#line 180 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"AND\" " << yytext << '\n'; return AND; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 170 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"AND\" " << yytext << '\n'; }
-	YY_BREAK
-case 53:
-YY_RULE_SETUP
-#line 172 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 182 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { 
         cout << "\"ASSIGN\" " << yytext << '\n';
         return '='; 
      }
 	YY_BREAK
+case 53:
+YY_RULE_SETUP
+#line 186 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"LT\" " << yytext << '\n';        return '<';   }
+	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 176 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"LT\" " << yytext << '\n'; }
+#line 187 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"GT\" " << yytext << '\n';        return '>';   }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 177 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"GT\" " << yytext << '\n'; }
+#line 188 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"DOT\" " << yytext << '\n';       return '.';   }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 178 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"DOT\" " << yytext << '\n'; }
+#line 189 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"COMMA\" " << yytext << '\n';     return ',';   }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 179 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"COMMA\" " << yytext << '\n'; }
+#line 190 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"SEMICOLON\" " << yytext << '\n'; return ';';   }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 180 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ 
-    cout << "\"SEMICOLON\" " << yytext << '\n';
-    return ';';
-}
+#line 191 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"COLON\" " << yytext << '\n';     return ':';   }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 184 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"COLON\" " << yytext << '\n'; }
+#line 192 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"ARROW\" " << yytext << '\n';     return ARROW; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 185 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"ARROW\" " << yytext << '\n'; }
+#line 194 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"PLUS\" " << yytext << '\n';  return '+'; }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 187 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"PLUS\" " << yytext << '\n'; }
+#line 195 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MINUS\" " << yytext << '\n'; return '-'; }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 188 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MINUS\" " << yytext << '\n'; }
+#line 196 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MUL\" " << yytext << '\n';   return '*'; }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 189 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MUL\" " << yytext << '\n'; }
+#line 197 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"DIV\" " << yytext << '\n';   return '/'; }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 190 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"DIV\" " << yytext << '\n'; }
+#line 198 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"MOD\" " << yytext << '\n';   return '%'; }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 191 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"MOD\" " << yytext << '\n'; }
+#line 199 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"NOT\" " << yytext << '\n';  return NOT; }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 192 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"NOT\" " << yytext << '\n'; }
+#line 201 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"LPAREN\" " << yytext << '\n';   return '('; }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 194 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"LPAREN\" " << yytext << '\n'; }
+#line 202 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"RPAREN\" " << yytext << '\n';   return ')'; }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 195 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"RPAREN\" " << yytext << '\n'; }
+#line 203 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"LBRACKET\" " << yytext << '\n'; return '['; }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 196 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"LBRACKET\" " << yytext << '\n'; }
+#line 204 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"RBRACKET\" " << yytext << '\n'; return ']'; }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 197 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"RBRACKET\" " << yytext << '\n'; }
+#line 205 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"LBRACE\" " << yytext << '\n';   return '{'; }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 198 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"LBRACE\" " << yytext << '\n'; }
+#line 206 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"RBRACE\" " << yytext << '\n';   return '}'; }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 199 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"RBRACE\" " << yytext << '\n'; }
+#line 209 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 202 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }
-	YY_BREAK
-case 74:
-YY_RULE_SETUP
-#line 203 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 210 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     strBuf += "\"\"\"";
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }
 	YY_BREAK
-case 75:
+case 74:
 YY_RULE_SETUP
-#line 208 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 215 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += yytext; }
 	YY_BREAK
-case 76:
-/* rule 76 can match eol */
+case 75:
+/* rule 75 can match eol */
 YY_RULE_SETUP
-#line 209 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 216 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\n"; lineNumber++; }
 	YY_BREAK
 case YY_STATE_EOF(STRING_MULTILINE):
-#line 210 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 217 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated multiline string\n";
     BEGIN(INITIAL);
 }
 	YY_BREAK
+case 76:
+YY_RULE_SETUP
+#line 222 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"INLINE_COMMENT\" " << yytext << '\n'; }
+	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 215 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"INLINE_COMMENT\" " << yytext << '\n'; }
+#line 224 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ commentDepth = 1; strBuf.clear(); BEGIN(COMMENT_MULTILINE); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 217 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ commentDepth = 1; strBuf.clear(); BEGIN(COMMENT_MULTILINE); }
+#line 225 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ commentDepth++; strBuf += yytext; }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 218 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ commentDepth++; strBuf += yytext; }
-	YY_BREAK
-case 80:
-YY_RULE_SETUP
-#line 219 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 226 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     commentDepth--;
     if (commentDepth == 0) {
@@ -1454,40 +1455,40 @@ YY_RULE_SETUP
     } else strBuf += yytext;
 }
 	YY_BREAK
-case 81:
+case 80:
 YY_RULE_SETUP
-#line 226 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 233 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += yytext; }
 	YY_BREAK
-case 82:
-/* rule 82 can match eol */
+case 81:
+/* rule 81 can match eol */
 YY_RULE_SETUP
-#line 227 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 234 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\n"; lineNumber++; }
 	YY_BREAK
 case YY_STATE_EOF(COMMENT_MULTILINE):
-#line 228 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 235 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated multiline comment\n";
     BEGIN(INITIAL);
 }
 	YY_BREAK
+case 82:
+YY_RULE_SETUP
+#line 240 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ /* skip */ }
+	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 233 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ /* skip */ }
+#line 242 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+{ cout << "\"UNKNOWN\" " << yytext << '\n'; }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 235 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ cout << "\"UNKNOWN\" " << yytext << '\n'; }
-	YY_BREAK
-case 85:
-YY_RULE_SETUP
-#line 237 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 244 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 ECHO;
 	YY_BREAK
-#line 1490 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 1491 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1785,7 +1786,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 208 )
+			if ( yy_current_state >= 199 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1813,11 +1814,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 208 )
+		if ( yy_current_state >= 199 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 207);
+	yy_is_jam = (yy_current_state == 198);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2505,5 +2506,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 237 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 244 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
 

@@ -57,31 +57,27 @@ static string stripUnderscores(const char* txt) {
 %}
 \n { lineNumber++; }
 
-"class"			{ cout << "\"CLASS\" " << yytext << '\n'; }
-"func"			{ cout << "\"FUNC\" " << yytext << '\n'; }
-"var"			{ cout << "\"VAR\" "  << yytext << '\n'; }
-"let"			{ 
-                    cout << "\"LET\" "  << yytext << '\n';
-                    return LET_KW;
-                }
-"if"			{ cout << "\"IF\" "   << yytext << '\n'; }
-"else"			{ cout << "\"ELSE\" " << yytext << '\n'; }
-"for"			{ cout << "\"FOR\" "  << yytext << '\n'; }
-"while"			{ cout << "\"WHILE\" "<< yytext << '\n'; }
-"return"		{ cout << "\"RETURN\" "<< yytext << '\n'; }
-"true"			{ cout << "\"TRUE\" " << yytext << '\n'; }
-"false"			{ cout << "\"FALSE\" "<< yytext << '\n'; }
-"nil"			{ cout << "\"NIL\" "  << yytext << '\n'; }
+"class"			{ cout << "\"CLASS\" " << yytext << '\n'; return CLASS; }
+"func"			{ cout << "\"FUNC\" " << yytext << '\n'; return FUNC;   }
+"var"			{ cout << "\"VAR\" "  << yytext << '\n'; return VAR_KW; }
+"let"			{ cout << "\"LET\" "  << yytext << '\n'; return LET_KW; }
+"if"			{ cout << "\"IF\" "   << yytext << '\n'; return IF;     }
+"else"			{ cout << "\"ELSE\" " << yytext << '\n'; return ELSE;   }
+"for"			{ cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
+"while"			{ cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
+"return"		{ cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
+"true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
+"false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
+"nil"			{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
 
 
 
-"Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; }
-"String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; }
-"Character"		{ cout << "\"TYPE_CHARACTER\" " << yytext << '\n'; }
-"Int"			{ cout << "\"TYPE_INT\" "       << yytext << '\n'; }
-"UInt"			{ cout << "\"TYPE_UINT\" "      << yytext << '\n'; }
-"Float"			{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; }
-"Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; }
+"Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
+"String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }
+"Int"			{ cout << "\"TYPE_INT\" "       << yytext << '\n'; return INT_KW; }
+"UInt"			{ cout << "\"TYPE_UINT\" "      << yytext << '\n'; return UINT_KW; }
+"Float"			{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; return FLOAT_KW; }
+"Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; return DOUBLE_KW; }
 
 
 {ID_START}{ID_CONT}* { 
@@ -94,31 +90,41 @@ static string stripUnderscores(const char* txt) {
 {FLOAT_HEX} {
     string clean = stripUnderscores(yytext);
     double val = strtod(clean.c_str(), nullptr);
+    yylval.Float = val;
     cout << "\"LITERAL_FLOAT_HEX\" " << val << '\n';
+    return FLOAT_DEC;
 }
 
 {FLOAT_DEC} {
     string clean = stripUnderscores(yytext);
     double val = strtod(clean.c_str(), nullptr);
+    yylval.Float = val;
     cout << "\"LITERAL_FLOAT_DEC\" " << val << '\n';
+    return FLOAT_DEC;
 }
 
 {INT_BINARY} {
     string clean = stripUnderscores(yytext + 2); 
     unsigned long long val = strtoull(clean.c_str(), nullptr, 2);
+    yylval.Int = val;
     cout << "\"LITERAL_INT_BINARY\" " << val << '\n';
+    return INT_DEC;
 }
 
 {INT_OCTAL} {
     string clean = stripUnderscores(yytext + 2);
     unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
+    yylval.Int = val;
     cout << "\"LITERAL_INT_OCTAL\" " << val << '\n';
+    return INT_DEC;
 }
 
 {INT_HEXADECIMAL} {
     string clean = stripUnderscores(yytext);
     unsigned long long val = strtoull(clean.c_str(), nullptr, 16);
+    yylval.Int = val;
     cout << "\"LITERAL_INT_HEX\" " << val << '\n';
+    return INT_DEC;
 }
 
 {INT_DECIMAL} {
@@ -126,11 +132,15 @@ static string stripUnderscores(const char* txt) {
     long long val = strtoll(clean.c_str(), nullptr, 10);
     yylval.Int = val;
     cout << "\"LITERAL_INT_DEC\" " << val << '\n';
-    return INT_DECIMAL;
+    return INT_DEC;
 }
 
 \" { strBuf = "\""; BEGIN(STRING); }
-<STRING>[^\\\"\n]+ { strBuf += yytext; }
+<STRING>[^\\\"\n]+ { 
+                     strBuf += yytext;
+                     yylval.Id = new std::string(strBuf);
+                     return STRING_C;
+                   }
 <STRING>\\\\       { strBuf += "\\"; }
 <STRING>\\n        { strBuf += "\n"; }
 <STRING>\\b        { strBuf += "\b"; }
@@ -161,41 +171,38 @@ static string stripUnderscores(const char* txt) {
 "*=" { cout << "\"MUL_ASSIGN\" " << yytext << '\n'; }
 "%=" { cout << "\"MOD_ASSIGN\" " << yytext << '\n'; }
 
-"==" { cout << "\"EQ\" " << yytext << '\n'; }
-"!=" { cout << "\"NEQ\" " << yytext << '\n'; }
-"<=" { cout << "\"LTE\" " << yytext << '\n'; }
-">=" { cout << "\"GTE\" " << yytext << '\n'; }
-"||" { cout << "\"OR\" " << yytext << '\n'; }
-"&&" { cout << "\"AND\" " << yytext << '\n'; }
+"==" { cout << "\"EQ\" " << yytext << '\n';  return EQ;  }
+"!=" { cout << "\"NEQ\" " << yytext << '\n'; return NE;  }
+"<=" { cout << "\"LTE\" " << yytext << '\n'; return LE;  }
+">=" { cout << "\"GTE\" " << yytext << '\n'; return GE;  }
+"||" { cout << "\"OR\" " << yytext << '\n';  return OR;  }
+"&&" { cout << "\"AND\" " << yytext << '\n'; return AND; }
 
 "="  { 
         cout << "\"ASSIGN\" " << yytext << '\n';
         return '='; 
      }
-"<"  { cout << "\"LT\" " << yytext << '\n'; }
-">"  { cout << "\"GT\" " << yytext << '\n'; }
-"\." { cout << "\"DOT\" " << yytext << '\n'; }
-","  { cout << "\"COMMA\" " << yytext << '\n'; }
-";"  { 
-    cout << "\"SEMICOLON\" " << yytext << '\n';
-    return ';';
-}
-":"  { cout << "\"COLON\" " << yytext << '\n'; }
-"->" { cout << "\"ARROW\" " << yytext << '\n'; }
+"<"  { cout << "\"LT\" " << yytext << '\n';        return '<';   }
+">"  { cout << "\"GT\" " << yytext << '\n';        return '>';   }
+"\." { cout << "\"DOT\" " << yytext << '\n';       return '.';   }
+","  { cout << "\"COMMA\" " << yytext << '\n';     return ',';   }
+";"  { cout << "\"SEMICOLON\" " << yytext << '\n'; return ';';   }
+":"  { cout << "\"COLON\" " << yytext << '\n';     return ':';   }
+"->" { cout << "\"ARROW\" " << yytext << '\n';     return ARROW; }
 
-"+" { cout << "\"PLUS\" " << yytext << '\n'; }
-"-" { cout << "\"MINUS\" " << yytext << '\n'; }
-"*" { cout << "\"MUL\" " << yytext << '\n'; }
-"/" { cout << "\"DIV\" " << yytext << '\n'; }
-"%" { cout << "\"MOD\" " << yytext << '\n'; }
-"!"  { cout << "\"NOT\" " << yytext << '\n'; }
+"+" { cout << "\"PLUS\" " << yytext << '\n';  return '+'; }
+"-" { cout << "\"MINUS\" " << yytext << '\n'; return '-'; }
+"*" { cout << "\"MUL\" " << yytext << '\n';   return '*'; }
+"/" { cout << "\"DIV\" " << yytext << '\n';   return '/'; }
+"%" { cout << "\"MOD\" " << yytext << '\n';   return '%'; }
+"!"  { cout << "\"NOT\" " << yytext << '\n';  return NOT; }
 
-"(" { cout << "\"LPAREN\" " << yytext << '\n'; }
-")" { cout << "\"RPAREN\" " << yytext << '\n'; }
-"[" { cout << "\"LBRACKET\" " << yytext << '\n'; }
-"]" { cout << "\"RBRACKET\" " << yytext << '\n'; }
-"{" { cout << "\"LBRACE\" " << yytext << '\n'; }
-"}" { cout << "\"RBRACE\" " << yytext << '\n'; }
+"(" { cout << "\"LPAREN\" " << yytext << '\n';   return '('; }
+")" { cout << "\"RPAREN\" " << yytext << '\n';   return ')'; }
+"[" { cout << "\"LBRACKET\" " << yytext << '\n'; return '['; }
+"]" { cout << "\"RBRACKET\" " << yytext << '\n'; return ']'; }
+"{" { cout << "\"LBRACE\" " << yytext << '\n';   return '{'; }
+"}" { cout << "\"RBRACE\" " << yytext << '\n';   return '}'; }
 
 
 \"\"\" { strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }

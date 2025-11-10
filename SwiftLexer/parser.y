@@ -1,5 +1,7 @@
 %code requires {
     #include <string>
+    #include <vector>
+    #include "nodes.h"
 }
 
 %{
@@ -14,32 +16,38 @@ using namespace std;
 void yyerror(const char* s);
 int yylex(void);
 
-std::vector<StmtNode*>* root = nullprt;
+std::vector<StmtNode*>* root = nullptr;
 
 %}
 
 %union 
 {
-    int Int;
+    long long Int;
+    double Float;
+    bool boolVal;
     std::string* Id;
     StmtNode* stmtNode;
     ExprNode* exprNode; 
+    std::vector<StmtNode*>* SL;
+    std::vector<ExprNode*>* EL;
 } 
 
 
 %start program
 
+ 
+%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW
 
-%token FLOAT_HEX FLOAT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL ELSE_IF
-%token STRING_C INT_KW VAR_KW BOOL_KW CHARACTER_KW UINT_KW FLOAT_KW DOUBLE_KW CHAR_LITERAL STRING_KW
-%token FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT
-%token INIT DEINIT  
-%token TRUE FALSE NIL
-%token PUBLIC PRIVATE FILE_PRIVATE STATIC
-%token BREAK CONTINUE
+%token <boolVal> TRUE FALSE
+%token <Int> INT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL
+%token <Id> ID STRING_C INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW '_'  PUBLIC PRIVATE FILE_PRIVATE STATIC INIT DEINIT 
+%token <Float> FLOAT_HEX FLOAT_DEC
 
-%token <Int> INT_DECIMAL
-%token <Id> ID LET_KW
+%type <SL> program stmt_list top_stmt_list class_decl_list switch_case_list block class_decl_list_e
+%type <EL> expr_list decl_items func_param_list func_param_list_e func_arg_list func_arg_list_nonempty expr_list_e
+%type <stmtNode> stmt top_stmt func_decl class_decl var_decl if_stmt switch_stmt for_stmt while_stmt class_member  switch_case
+%type <exprNode> expr decl_item func_param func_arg  
+%type <Id> type access_modifier
 
 
 /* Operators */
@@ -62,204 +70,202 @@ program : top_stmt_list {root = $1; $$ = $1;}
 ;
 
 top_stmt_list:
-      top_stmt { $$ = new std::vector<StmtNode*>*({$1}); }
+      top_stmt           { $$ = new std::vector<StmtNode*>({$1}); }
     | stmt_list top_stmt { $$ = $1; $$->push_back($2); }
        
     ;
 
 top_stmt:
-    stmt { $$ = $1; }
-    | func_decl ';' { $$ = $1; }
+    stmt             { $$ = $1; }
+    | func_decl ';'  { $$ = $1; }
     | class_decl ';' { $$ = $1; }
 
 stmt_list:
-      stmt { $$ = new std::vector<StmtNode*>*({$1}); }
+      stmt           { $$ = new std::vector<StmtNode*>({$1}); }
     | stmt_list stmt { $$ = $1; $$->push_back($2); }
     ;
 
 stmt: 
-      expr ';'
-    | var_decl ';'
-    | if_stmt
-    | switch_statement
-    | for_stmt
-    | while_stmt
-    | RETURN ';'
-    | RETURN expr ';'
-    | BREAK ';'
-    | CONTINUE ';'
+      expr ';'         { $$ = StmtNode::createExprAsStmt($1); }
+    | var_decl ';'     { $$ = $1;}
+    | if_stmt          { $$ = $1; }
+    | switch_stmt      { $$ = $1; }
+    | for_stmt         { $$ = $1; }
+    | while_stmt       { $$ = $1; }
+    | RETURN ';'       { $$ = StmtNode::createReturnStmt(nullptr); }
+    | RETURN expr ';'  { $$ = StmtNode::createReturnStmt($2); }
+    | BREAK ';'        { $$ = StmtNode::createBreakStmt(); }
+    | CONTINUE ';'     { $$ = StmtNode::createContinueStmt(); }
     ;
 
 expr:
-      INT_DECIMAL
-    | FLOAT_HEX
-    | FLOAT_DEC
-    | INT_BINARY
-    | INT_OCTAL
-    | INT_HEXADECIMAL
-    | STRING_C
-    | CHAR_LITERAL
-    | TRUE
-    | FALSE
-    | NIL
-    | expr '+' expr
-    | expr '-' expr
-    | expr '*' expr
-    | expr '/' expr
-    | expr EQ expr
-    | expr NE expr
-    | expr '>' expr
-    | expr '<' expr
-    | expr GE expr
-    | expr LE expr
-    | expr '=' expr
-    | expr AND expr
-    | expr OR expr
-    | '-' expr %prec UNMINUS
-    | NOT expr
-    | expr '[' expr ']'
-    | expr '.' ID
-    | expr '.' ID '(' func_arg_list ')'
-    | '[' expr_list_e ']'
-    | ID
-    | ID '(' func_arg_list ')'
-    | '(' expr ')'
+      INT_DEC                           { $$ = ExprNode::createInt($1); }
+    | FLOAT_DEC                         { $$ = ExprNode::createFloat($1); }
+    | STRING_C                          { $$ = ExprNode::createId($1); }
+    | TRUE                              { $$ = ExprNode::createBool($1); }
+    | FALSE                             { $$ = ExprNode::createBool($1); }
+    | expr '+' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Add); }
+    | expr '-' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Sub); }
+    | expr '*' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Mul); }
+    | expr '/' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Div); }
+    | expr EQ expr                      { $$ = ExprNode::createBinOperation($1,$3,ExprType::Eq); }
+    | expr NE expr                      { $$ = ExprNode::createBinOperation($1,$3,ExprType::Ne); }
+    | expr '>' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Gt); }
+    | expr '<' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Lt); }
+    | expr GE expr                      { $$ = ExprNode::createBinOperation($1,$3,ExprType::Ge); }
+    | expr LE expr                      { $$ = ExprNode::createBinOperation($1,$3,ExprType::Le); }
+    | expr '=' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Eq); }
+    | expr AND expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::And); }
+    | expr OR expr                      { $$ = ExprNode::createBinOperation($1,$3,ExprType::Or); }
+    | '-' expr %prec UNMINUS            { $$ = ExprNode::createUnOperation($2,ExprType::UMinus); }
+    | NOT expr                          { $$ = ExprNode::createUnOperation($2,ExprType::Not); }      
+    | expr '[' expr ']'                 { $$ = ExprNode::createSubscriptNode($1,$3); }
+    | expr '.' ID                       { $$ = ExprNode::createFiledAccessNode($1,$3); }
+    | expr '.' ID '(' func_arg_list ')' { ExprNode* a = ExprNode::createFiledAccessNode($1,$3); $$ = ExprNode::createFuncCall($5,$3,a);} 
+    | '[' expr_list_e ']'               { $$ = ExprNode::createArray($2);}
+    | ID                                { $$ = ExprNode::createId($1);}
+    | ID '(' func_arg_list ')'          { $$ = ExprNode::createFuncCall($3,$1,nullptr);}
+    | '(' expr ')'                      { $$ = $2;}
     ;
 
 
 expr_list:
-    expr
-    | expr_list ',' expr
+    expr                  { $$ = new std::vector<ExprNode*>({$1}); }
+    | expr_list ',' expr  { $$ = $1; $$->push_back($3); }
     ;
 	
 expr_list_e:
-    /*empty*/
-    | expr_list
+    /*empty*/   { $$ = nullptr; }
+    | expr_list { $$ = $1; }
     ;
 
 type:
-      INT_KW
-    | BOOL_KW
-    | CHARACTER_KW
-    | UINT_KW
-    | FLOAT_KW
-    | DOUBLE_KW
-    | STRING_KW
-    | ID
-    | '[' type ']'
+      INT_KW        {$$ = $1; }
+    | BOOL_KW       {$$ = $1; }
+    | UINT_KW       {$$ = $1; }
+    | FLOAT_KW      {$$ = $1; }
+    | STRING_KW     {$$ = $1; }
+    | ID            {$$ = $1; }
+    | '[' type ']'  {$$ = $2; }
     ;
 
 decl_items:
-    decl_item
-    | decl_items ',' decl_item
+    decl_item                   { $$ = new std::vector<ExprNode*>({$1}); }
+    | decl_items ',' decl_item  { $$ = $1; $$->push_back($3); }
     ;
 
 decl_item:
-    ID '=' expr
-    | ID ':' type
-    | ID ':' type '=' expr
+    ID '=' expr            { $$ = ExprNode::createDeclExpr($1,$3,nullptr); }
+    | ID ':' type          { $$ = ExprNode::createDeclExpr($1,nullptr,$3); }
+    | ID ':' type '=' expr { $$ = ExprNode::createDeclExpr($1,$5,$3);   }
     ;
 
 var_decl: 
-    LET_KW decl_items 
-    | VAR_KW decl_items
+    LET_KW decl_items   { $$ = StmtNode::createDeclStmt($2, StmtType::letDecl); }
+    | VAR_KW decl_items { $$ = StmtNode::createDeclStmt($2, StmtType::varDecl); }
     ;
+
 func_decl:
-    FUNC ID '(' func_param_list_e ')' '-' '>' type block
-    | FUNC ID '(' func_param_list_e ')' block
+    FUNC ID '(' func_param_list_e ')' ARROW type block { $$ = StmtNode::createFuncDecl($2,$4,$7,$8); }
+    | FUNC ID '(' func_param_list_e ')' block            { $$ = StmtNode::createFuncDecl($2,$4,nullptr,$6); }
     ;
+
 class_decl:
-    CLASS ID ':' ID '{' class_decl_list_e '}' 
-    | CLASS ID '{' class_decl_list_e '}' 
+    CLASS ID ':' ID '{' class_decl_list_e '}' { $$ = StmtNode::createClassDecl($2,$4,$6);} 
+    | CLASS ID '{' class_decl_list_e '}'      { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
     ;
 
 func_param: 
-    ID ':' type
-    | ID ID ':' type 
-    | '_' ID ':' type
+    ID ':' type       { $$ = ExprNode::createFuncParamExpr($1,nullptr,$3); }
+    | ID ID ':' type  { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
+    | '_' ID ':' type { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
     ;
 
 func_param_list:
-    func_param
-    | func_param_list ',' func_param
+    func_param                       { $$ = new std::vector<ExprNode*>({$1}); }
+    | func_param_list ',' func_param { $$ = $1; $$->push_back($3); }
     ;
 
 func_param_list_e:
-    /*empty*/
-    | func_param_list
+    /*empty*/         { $$ = nullptr; }
+    | func_param_list { $$ = $1; }
     ;
 	
 func_arg:
-    ID ':' expr
-    | expr
+    ID ':' expr { $$ = ExprNode::createFuncArgExpr($1,$3); }
+    | expr      { $$ = ExprNode::createFuncArgExpr(nullptr,$1); }
     ;
 	
 func_arg_list:
-      /* empty */
-    | func_arg_list_nonempty
+      /* empty */            { $$ = nullptr; }
+    | func_arg_list_nonempty { $$ = $1; }
     ;
 
 func_arg_list_nonempty:
-      func_arg
-    | func_arg_list_nonempty ',' func_arg
+      func_arg                             { $$ = new std::vector<ExprNode*>({$1}); }
+    | func_arg_list_nonempty ',' func_arg  { $$ = $1; $$->push_back($3); }
     ;
 
 access_modifier:
-    /*empty*/
-    | PUBLIC
-    | FILE_PRIVATE
-    | PRIVATE
+    /*empty*/      { $$ = nullptr; }
+    | PUBLIC       { $$ = $1; }
+    | FILE_PRIVATE { $$ = $1; }
+    | PRIVATE      { $$ = $1; }
     ;
 
 class_decl_list:
-    class_decl_list class_member
-    | class_member
+    class_decl_list class_member { $$ = $1; $$->push_back($2); }
+    | class_member { $$ = new std::vector<StmtNode*>({$1}); }
     ;
 
 class_member:
-    access_modifier var_decl
-    | access_modifier func_decl
-    | access_modifier STATIC var_decl
-    | access_modifier STATIC func_decl
-    | INIT '(' func_param_list_e ')' block
-    | DEINIT block
+    access_modifier var_decl                               { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberVar);}
+    | access_modifier func_decl                            { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberFunc);}
+    | access_modifier STATIC var_decl                      { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberVar);}
+    | access_modifier STATIC func_decl                     { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberFunc);}
+    | access_modifier INIT '(' func_param_list_e ')' block { StmtNode* f = StmtNode::createFuncDecl($2,$4,nullptr,$6);
+                                                             $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberInit);  
+                                                           }
+    | DEINIT block                                         { StmtNode* f = StmtNode::createFuncDecl($1,nullptr,nullptr,$2); 
+                                                             $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberDeinit);
+                                                           }
     ;
 	
 class_decl_list_e:
-    /*empty*/
-    | class_decl_list 
+    /*empty*/ { $$ = nullptr;}
+    | class_decl_list { $$ = $1;}
     ;
 			
 if_stmt:
-    IF expr block
-    | IF expr block ELSE if_stmt
-    | IF expr block ELSE block
+    IF expr block { $$ = StmtNode::createIfStmt($2,$3,nullptr); }
+    | IF expr block ELSE if_stmt { $$ = StmtNode::createElseIfStmt($2,$3,$5);}
+    | IF expr block ELSE block { $$ = StmtNode::createIfStmt($2,$3,$5);  }
     ;
 
-switch_statement:
-    SWITCH expr '{' switch_case_list '}'
+switch_stmt:
+    SWITCH expr '{' switch_case_list '}' { $$ = StmtNode::createSwitchStmt($2,$4);}
     ;
 	
 switch_case_list:
-    switch_case
-    | switch_case_list switch_case
+    switch_case                     { $$ = new std::vector<StmtNode*>({$1}); }
+    | switch_case_list switch_case  { $$ = $1; $$->push_back($2); }
     ;
 	
 switch_case:
-    CASE expr_list ':' block
-    | DEFAULT ':' block
+    CASE expr_list ':' block { $$ = StmtNode::createCaseStmt($2,$4);}
+    | DEFAULT ':' block      { $$ = StmtNode::createCaseStmt(nullptr,$3);}
     ;
 	
 for_stmt: 
-    FOR ID IN expr block
+    FOR ID IN expr block { $$ = StmtNode::createLoopStmt($4,$2,$5,StmtType::For); }
     ;
 
 while_stmt:
-    WHILE expr block 
+    WHILE expr block { $$ = StmtNode::createLoopStmt($2,nullptr,$3,StmtType::While); }
     ;
 
 block: 
-    '{' stmt_list '}' 
+    '{' stmt_list '}' { $$ = $2;}
     ;
 	
 %%
