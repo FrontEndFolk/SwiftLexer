@@ -23,8 +23,12 @@ ExprNode* ExprNode::createUnOperation(ExprNode* expr, ExprType type) {
 }
 
 ExprNode* ExprNode::createInt(long long val) {
+    ExprNode* intNode = new ExprNode();
+    intNode->Num = val;
+    intNode->exprType = ExprType::Int;
+
     std::cout << "Called ExprNode::createInt(" << val << ")" << std::endl;
-    return nullptr;
+    return intNode;
 }
 
 ExprNode* ExprNode::createId(std::string* id) {
@@ -58,14 +62,25 @@ ExprNode* ExprNode::createFuncCall(std::vector<ExprNode*>* exprList, std::string
 }
 
 ExprNode* ExprNode::createArray(std::vector<ExprNode*>* exprList) {
+    ExprNode* arrayNode = new ExprNode();
+    arrayNode->exprList = exprList;
+    arrayNode->exprType = ExprType::array;
+
     std::cout << "Called ExprNode::createArray()" << std::endl;
-    return nullptr;
+    
+    return arrayNode;
 }
 
 ExprNode* ExprNode::createDeclExpr(std::string* id, ExprNode* expr, std::string* type) {
+    ExprNode* declExprNode = new ExprNode();
+    declExprNode->Name = id;
+    declExprNode->expr = expr;
+    declExprNode->exprType = ExprType::decl;
+    declExprNode->declType = type;
+
     std::cout << "Called ExprNode::createDeclExpr("
         << (id ? *id : "null") << ", type=" << *type << ")" << std::endl;
-    return nullptr;
+    return declExprNode;
 }
 
 ExprNode* ExprNode::createFuncParamExpr(std::string* paramName, std::string* label, std::string* type) {
@@ -153,6 +168,10 @@ StmtNode* StmtNode::createCaseStmt(std::vector<ExprNode*>*, std::vector<StmtNode
 }
 
 StmtNode* StmtNode::createDeclStmt(std::vector<ExprNode*>* items, StmtType type) {
+    StmtNode* declStmtNode = new StmtNode();
+    declStmtNode->stmtType = type;
+    declStmtNode->declItems = items;
+
     std::cout << "Called StmtNode::createDeclStmt()" << std::endl;
-    return nullptr;
+    return declStmtNode;
 }

@@ -23,7 +23,8 @@ enum ExprType {
 	UMinus,
 	Not,
 	decl,
-	funcParam
+	funcParam,
+	array
 };
 
 enum StmtType { 
@@ -49,12 +50,21 @@ protected:
 
 struct ExprNode : Node {
 public:
-	ExprType Type;
 	bool IsParen;
-	int Num;
-	std::string Name;
+	long long Num;
+	std::string* Name;
+	ExprNode* expr;
+
+
+	// bin operation
 	ExprNode* LeftExpr;
 	ExprNode* RightExpr;
+
+	// array
+	std::vector<ExprNode*>* exprList;
+
+	//decl
+	std::string* declType;
 
 	static ExprNode* createBinOperation(ExprNode* leftExpr, ExprNode* rightExpr, ExprType type);
 	static ExprNode* createUnOperation(ExprNode* expr, ExprType type);
@@ -76,6 +86,9 @@ struct StmtNode : Node {
 protected:
 	ExprNode* Expr;
 	std::vector<StmtNode*>* Block;
+
+	std::vector<ExprNode*>* declItems;
+
 public:
 	static StmtNode* createExprAsStmt(ExprNode* expr);
 	static StmtNode* createIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_true, std::vector<StmtNode*>* p_false);
