@@ -64,7 +64,7 @@ ExprNode* ExprNode::createArray(std::vector<ExprNode*>* exprList) {
 
 ExprNode* ExprNode::createDeclExpr(std::string* id, ExprNode* expr, std::string* type) {
     std::cout << "Called ExprNode::createDeclExpr("
-        << (id ? *id : "null") << ", type=" << type << ")" << std::endl;
+        << (id ? *id : "null") << ", type=" << *type << ")" << std::endl;
     return nullptr;
 }
 

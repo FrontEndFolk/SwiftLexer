@@ -32,15 +32,16 @@ std::vector<StmtNode*>* root = nullptr;
     std::vector<ExprNode*>* EL;
 } 
 
+%debug
 
 %start program
 
  
-%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW
+%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE STATIC
 
 %token <boolVal> TRUE FALSE
 %token <Int> INT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL
-%token <Id> ID STRING_C INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW '_'  PUBLIC PRIVATE FILE_PRIVATE STATIC INIT DEINIT 
+%token <Id> ID STRING_C  '_' INIT DEINIT   
 %token <Float> FLOAT_HEX FLOAT_DEC
 
 %type <SL> program stmt_list top_stmt_list class_decl_list switch_case_list block class_decl_list_e
@@ -140,13 +141,13 @@ expr_list_e:
     ;
 
 type:
-      INT_KW        {$$ = $1; }
-    | BOOL_KW       {$$ = $1; }
-    | UINT_KW       {$$ = $1; }
-    | FLOAT_KW      {$$ = $1; }
-    | STRING_KW     {$$ = $1; }
-    | ID            {$$ = $1; }
-    | '[' type ']'  {$$ = $2; }
+      INT_KW        { $$ = new std::string("Int"); }
+    | BOOL_KW       { $$ = new std::string("Bool"); }
+    | UINT_KW       { $$ = new std::string("UInt"); }
+    | FLOAT_KW      { $$ = new std::string("Float"); }
+    | STRING_KW     { $$ = new std::string("String"); }
+    | '[' type ']'  { $$ = new std::string("[" + *$2 + "]"); delete $2; }
+    | ID            { $$ = new std::string(*$1); delete $1; }
     ;
 
 decl_items:
@@ -208,9 +209,9 @@ func_arg_list_nonempty:
 
 access_modifier:
     /*empty*/      { $$ = nullptr; }
-    | PUBLIC       { $$ = $1; }
-    | FILE_PRIVATE { $$ = $1; }
-    | PRIVATE      { $$ = $1; }
+    | PUBLIC       { $$ = new std::string("PUBLIC"); }
+    | FILE_PRIVATE { $$ = new std::string("FILE_PRIVATE"); }
+    | PRIVATE      { $$ = new std::string("PRIVATE"); }
     ;
 
 class_decl_list:

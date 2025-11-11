@@ -79,6 +79,8 @@ static string stripUnderscores(const char* txt) {
 "Float"			{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; return FLOAT_KW; }
 "Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; return DOUBLE_KW; }
 
+"INIT"          {cout << "\"INIT\" "   << yytext << '\n'; yylval.Id = new std::string(yytext); return INIT;}
+"DEINIT"        {cout << "\"DEINIT\" " << yytext << '\n'; yylval.Id = new std::string(yytext); return DEINIT;}
 
 {ID_START}{ID_CONT}* { 
     yylval.Id = new std::string(yytext);

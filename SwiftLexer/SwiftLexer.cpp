@@ -7,7 +7,8 @@
 using namespace std;
 
 
-extern FILE* yyin;     
+extern FILE* yyin;   
+extern int yydebug;
 int yyparse(void);   
 
 int main(int argc, char** argv)
@@ -20,7 +21,8 @@ int main(int argc, char** argv)
         }
         yyin = fp;
     }
-
+    
+    yydebug = 0;
     yyparse();  
     _getch();
     return 0;

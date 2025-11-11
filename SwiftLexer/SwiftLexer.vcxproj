@@ -153,6 +153,10 @@
     <None Include="parser.y" />
     <None Include="win_flex.exe" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="swift.txt" />
+    <Text Include="tokens.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

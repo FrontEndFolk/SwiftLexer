@@ -52,4 +52,12 @@
       <Filter>Исходные файлы</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="swift.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="tokens.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
