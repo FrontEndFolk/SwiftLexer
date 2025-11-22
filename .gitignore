@@ -407,3 +407,6 @@ SwiftLexer/swift.tab.h
 
 SwiftLexer/swift.png
 SwiftLexer/swift.dot
+
+SwiftLexer/swift.txt
+SwiftLexer/tokens.txt
