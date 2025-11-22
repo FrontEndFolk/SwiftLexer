@@ -80,7 +80,7 @@ using namespace std;
 void yyerror(const char* s);
 int yylex(void);
 
-std::vector<StmtNode*>* root = nullptr;
+Program* root = nullptr;
 
 
 #line 87 "swift.tab.c"
@@ -602,17 +602,17 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    70,    70,    74,    75,    80,    81,    82,    85,    86,
-      90,    91,    92,    93,    94,    95,    96,    97,    98,    99,
-     103,   104,   105,   106,   107,   108,   109,   110,   111,   112,
-     113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
-     123,   124,   125,   126,   127,   128,   129,   134,   135,   139,
-     140,   144,   145,   146,   147,   148,   149,   150,   154,   155,
-     159,   160,   161,   165,   166,   170,   171,   175,   176,   180,
-     181,   182,   186,   187,   191,   192,   196,   197,   201,   202,
-     206,   207,   211,   212,   213,   214,   218,   219,   223,   224,
-     225,   226,   227,   230,   236,   237,   241,   242,   243,   247,
-     251,   252,   256,   257,   261,   265,   269
+       0,    75,    75,    79,    80,    84,    85,    86,    89,    90,
+      94,    95,    96,    97,    98,    99,   100,   101,   102,   103,
+     107,   108,   109,   110,   111,   112,   113,   114,   115,   116,
+     117,   118,   119,   120,   121,   122,   123,   124,   125,   126,
+     127,   128,   129,   130,   131,   132,   133,   138,   139,   143,
+     144,   148,   149,   150,   151,   152,   153,   154,   158,   159,
+     163,   164,   165,   169,   170,   174,   175,   179,   180,   184,
+     185,   186,   190,   191,   195,   196,   200,   201,   205,   206,
+     210,   211,   215,   216,   217,   218,   222,   223,   227,   228,
+     229,   230,   231,   234,   240,   241,   245,   246,   247,   251,
+     255,   256,   260,   261,   265,   269,   273
 };
 #endif
 
@@ -1365,547 +1365,547 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: top_stmt_list  */
-#line 70 "parser.y"
-                        {root = (yyvsp[0].SL); (yyval.SL) = (yyvsp[0].SL);}
+#line 75 "parser.y"
+                        {root = new Program((yyvsp[0].SL)); (yyval.program) = root; root->print();}
 #line 1371 "swift.tab.c"
     break;
 
   case 3: /* top_stmt_list: top_stmt  */
-#line 74 "parser.y"
+#line 79 "parser.y"
                          { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
 #line 1377 "swift.tab.c"
     break;
 
   case 4: /* top_stmt_list: stmt_list top_stmt  */
-#line 75 "parser.y"
+#line 80 "parser.y"
                          { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
 #line 1383 "swift.tab.c"
     break;
 
   case 5: /* top_stmt: stmt  */
-#line 80 "parser.y"
+#line 84 "parser.y"
                      { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
 #line 1389 "swift.tab.c"
     break;
 
   case 6: /* top_stmt: func_decl ';'  */
-#line 81 "parser.y"
+#line 85 "parser.y"
                      { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
 #line 1395 "swift.tab.c"
     break;
 
   case 7: /* top_stmt: class_decl ';'  */
-#line 82 "parser.y"
+#line 86 "parser.y"
                      { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
 #line 1401 "swift.tab.c"
     break;
 
   case 8: /* stmt_list: stmt  */
-#line 85 "parser.y"
+#line 89 "parser.y"
                      { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
 #line 1407 "swift.tab.c"
     break;
 
   case 9: /* stmt_list: stmt_list stmt  */
-#line 86 "parser.y"
+#line 90 "parser.y"
                      { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
 #line 1413 "swift.tab.c"
     break;
 
   case 10: /* stmt: expr ';'  */
-#line 90 "parser.y"
+#line 94 "parser.y"
                        { (yyval.stmtNode) = StmtNode::createExprAsStmt((yyvsp[-1].exprNode)); }
 #line 1419 "swift.tab.c"
     break;
 
   case 11: /* stmt: var_decl ';'  */
-#line 91 "parser.y"
+#line 95 "parser.y"
                        { (yyval.stmtNode) = (yyvsp[-1].stmtNode);}
 #line 1425 "swift.tab.c"
     break;
 
   case 12: /* stmt: if_stmt  */
-#line 92 "parser.y"
+#line 96 "parser.y"
                        { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
 #line 1431 "swift.tab.c"
     break;
 
   case 13: /* stmt: switch_stmt  */
-#line 93 "parser.y"
+#line 97 "parser.y"
                        { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
 #line 1437 "swift.tab.c"
     break;
 
   case 14: /* stmt: for_stmt  */
-#line 94 "parser.y"
+#line 98 "parser.y"
                        { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
 #line 1443 "swift.tab.c"
     break;
 
   case 15: /* stmt: while_stmt  */
-#line 95 "parser.y"
+#line 99 "parser.y"
                        { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
 #line 1449 "swift.tab.c"
     break;
 
   case 16: /* stmt: RETURN ';'  */
-#line 96 "parser.y"
+#line 100 "parser.y"
                        { (yyval.stmtNode) = StmtNode::createReturnStmt(nullptr); }
 #line 1455 "swift.tab.c"
     break;
 
   case 17: /* stmt: RETURN expr ';'  */
-#line 97 "parser.y"
+#line 101 "parser.y"
                        { (yyval.stmtNode) = StmtNode::createReturnStmt((yyvsp[-1].exprNode)); }
 #line 1461 "swift.tab.c"
     break;
 
   case 18: /* stmt: BREAK ';'  */
-#line 98 "parser.y"
+#line 102 "parser.y"
                        { (yyval.stmtNode) = StmtNode::createBreakStmt(); }
 #line 1467 "swift.tab.c"
     break;
 
   case 19: /* stmt: CONTINUE ';'  */
-#line 99 "parser.y"
+#line 103 "parser.y"
                        { (yyval.stmtNode) = StmtNode::createContinueStmt(); }
 #line 1473 "swift.tab.c"
     break;
 
   case 20: /* expr: INT_DEC  */
-#line 103 "parser.y"
+#line 107 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createInt((yyvsp[0].Int)); }
 #line 1479 "swift.tab.c"
     break;
 
   case 21: /* expr: FLOAT_DEC  */
-#line 104 "parser.y"
+#line 108 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createFloat((yyvsp[0].Float)); }
 #line 1485 "swift.tab.c"
     break;
 
   case 22: /* expr: STRING_C  */
-#line 105 "parser.y"
+#line 109 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createId((yyvsp[0].Id)); }
 #line 1491 "swift.tab.c"
     break;
 
   case 23: /* expr: TRUE  */
-#line 106 "parser.y"
+#line 110 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBool((yyvsp[0].boolVal)); }
 #line 1497 "swift.tab.c"
     break;
 
   case 24: /* expr: FALSE  */
-#line 107 "parser.y"
+#line 111 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBool((yyvsp[0].boolVal)); }
 #line 1503 "swift.tab.c"
     break;
 
   case 25: /* expr: expr '+' expr  */
-#line 108 "parser.y"
+#line 112 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Add); }
 #line 1509 "swift.tab.c"
     break;
 
   case 26: /* expr: expr '-' expr  */
-#line 109 "parser.y"
+#line 113 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Sub); }
 #line 1515 "swift.tab.c"
     break;
 
   case 27: /* expr: expr '*' expr  */
-#line 110 "parser.y"
+#line 114 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Mul); }
 #line 1521 "swift.tab.c"
     break;
 
   case 28: /* expr: expr '/' expr  */
-#line 111 "parser.y"
+#line 115 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Div); }
 #line 1527 "swift.tab.c"
     break;
 
   case 29: /* expr: expr EQ expr  */
-#line 112 "parser.y"
+#line 116 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Eq); }
 #line 1533 "swift.tab.c"
     break;
 
   case 30: /* expr: expr NE expr  */
-#line 113 "parser.y"
+#line 117 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Ne); }
 #line 1539 "swift.tab.c"
     break;
 
   case 31: /* expr: expr '>' expr  */
-#line 114 "parser.y"
+#line 118 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Gt); }
 #line 1545 "swift.tab.c"
     break;
 
   case 32: /* expr: expr '<' expr  */
-#line 115 "parser.y"
+#line 119 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Lt); }
 #line 1551 "swift.tab.c"
     break;
 
   case 33: /* expr: expr GE expr  */
-#line 116 "parser.y"
+#line 120 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Ge); }
 #line 1557 "swift.tab.c"
     break;
 
   case 34: /* expr: expr LE expr  */
-#line 117 "parser.y"
+#line 121 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Le); }
 #line 1563 "swift.tab.c"
     break;
 
   case 35: /* expr: expr '=' expr  */
-#line 118 "parser.y"
+#line 122 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Eq); }
 #line 1569 "swift.tab.c"
     break;
 
   case 36: /* expr: expr AND expr  */
-#line 119 "parser.y"
+#line 123 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::And); }
 #line 1575 "swift.tab.c"
     break;
 
   case 37: /* expr: expr OR expr  */
-#line 120 "parser.y"
+#line 124 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Or); }
 #line 1581 "swift.tab.c"
     break;
 
   case 38: /* expr: '-' expr  */
-#line 121 "parser.y"
+#line 125 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createUnOperation((yyvsp[0].exprNode),ExprType::UMinus); }
 #line 1587 "swift.tab.c"
     break;
 
   case 39: /* expr: NOT expr  */
-#line 122 "parser.y"
+#line 126 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createUnOperation((yyvsp[0].exprNode),ExprType::Not); }
 #line 1593 "swift.tab.c"
     break;
 
   case 40: /* expr: expr '[' expr ']'  */
-#line 123 "parser.y"
+#line 127 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createSubscriptNode((yyvsp[-3].exprNode),(yyvsp[-1].exprNode)); }
 #line 1599 "swift.tab.c"
     break;
 
   case 41: /* expr: expr '.' ID  */
-#line 124 "parser.y"
+#line 128 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createFiledAccessNode((yyvsp[-2].exprNode),(yyvsp[0].Id)); }
 #line 1605 "swift.tab.c"
     break;
 
   case 42: /* expr: expr '.' ID '(' func_arg_list ')'  */
-#line 125 "parser.y"
+#line 129 "parser.y"
                                         { ExprNode* a = ExprNode::createFiledAccessNode((yyvsp[-5].exprNode),(yyvsp[-3].Id)); (yyval.exprNode) = ExprNode::createFuncCall((yyvsp[-1].EL),(yyvsp[-3].Id),a);}
 #line 1611 "swift.tab.c"
     break;
 
   case 43: /* expr: '[' expr_list_e ']'  */
-#line 126 "parser.y"
+#line 130 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createArray((yyvsp[-1].EL));}
 #line 1617 "swift.tab.c"
     break;
 
   case 44: /* expr: ID  */
-#line 127 "parser.y"
+#line 131 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createId((yyvsp[0].Id));}
 #line 1623 "swift.tab.c"
     break;
 
   case 45: /* expr: ID '(' func_arg_list ')'  */
-#line 128 "parser.y"
+#line 132 "parser.y"
                                         { (yyval.exprNode) = ExprNode::createFuncCall((yyvsp[-1].EL),(yyvsp[-3].Id),nullptr);}
 #line 1629 "swift.tab.c"
     break;
 
   case 46: /* expr: '(' expr ')'  */
-#line 129 "parser.y"
+#line 133 "parser.y"
                                         { (yyval.exprNode) = (yyvsp[-1].exprNode);}
 #line 1635 "swift.tab.c"
     break;
 
   case 47: /* expr_list: expr  */
-#line 134 "parser.y"
+#line 138 "parser.y"
                           { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
 #line 1641 "swift.tab.c"
     break;
 
   case 48: /* expr_list: expr_list ',' expr  */
-#line 135 "parser.y"
+#line 139 "parser.y"
                           { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
 #line 1647 "swift.tab.c"
     break;
 
   case 49: /* expr_list_e: %empty  */
-#line 139 "parser.y"
+#line 143 "parser.y"
                 { (yyval.EL) = nullptr; }
 #line 1653 "swift.tab.c"
     break;
 
   case 50: /* expr_list_e: expr_list  */
-#line 140 "parser.y"
+#line 144 "parser.y"
                 { (yyval.EL) = (yyvsp[0].EL); }
 #line 1659 "swift.tab.c"
     break;
 
   case 51: /* type: INT_KW  */
-#line 144 "parser.y"
-                    { (yyval.Id) = new std::string("Int"); }
+#line 148 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string("Int"));           }
 #line 1665 "swift.tab.c"
     break;
 
   case 52: /* type: BOOL_KW  */
-#line 145 "parser.y"
-                    { (yyval.Id) = new std::string("Bool"); }
+#line 149 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string("Bool"));          }
 #line 1671 "swift.tab.c"
     break;
 
   case 53: /* type: UINT_KW  */
-#line 146 "parser.y"
-                    { (yyval.Id) = new std::string("UInt"); }
+#line 150 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string("Uint"));          }
 #line 1677 "swift.tab.c"
     break;
 
   case 54: /* type: FLOAT_KW  */
-#line 147 "parser.y"
-                    { (yyval.Id) = new std::string("Float"); }
+#line 151 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string("Float"));          }
 #line 1683 "swift.tab.c"
     break;
 
   case 55: /* type: STRING_KW  */
-#line 148 "parser.y"
-                    { (yyval.Id) = new std::string("String"); }
+#line 152 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string("String"));        }
 #line 1689 "swift.tab.c"
     break;
 
   case 56: /* type: '[' type ']'  */
-#line 149 "parser.y"
-                    { (yyval.Id) = new std::string("[" + *(yyvsp[-1].Id) + "]"); delete (yyvsp[-1].Id); }
+#line 153 "parser.y"
+                    { (yyvsp[-1].dataType)->arDimension++; (yyval.dataType) = (yyvsp[-1].dataType); }
 #line 1695 "swift.tab.c"
     break;
 
   case 57: /* type: ID  */
-#line 150 "parser.y"
-                    { (yyval.Id) = new std::string(*(yyvsp[0].Id)); delete (yyvsp[0].Id); }
+#line 154 "parser.y"
+                    { (yyval.dataType) = new DataType(new std::string(*(yyvsp[0].Id)));             }
 #line 1701 "swift.tab.c"
     break;
 
   case 58: /* decl_items: decl_item  */
-#line 154 "parser.y"
+#line 158 "parser.y"
                                 { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
 #line 1707 "swift.tab.c"
     break;
 
   case 59: /* decl_items: decl_items ',' decl_item  */
-#line 155 "parser.y"
+#line 159 "parser.y"
                                 { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
 #line 1713 "swift.tab.c"
     break;
 
   case 60: /* decl_item: ID '=' expr  */
-#line 159 "parser.y"
+#line 163 "parser.y"
                            { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-2].Id),(yyvsp[0].exprNode),nullptr); }
 #line 1719 "swift.tab.c"
     break;
 
   case 61: /* decl_item: ID ':' type  */
-#line 160 "parser.y"
-                           { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].Id)); }
+#line 164 "parser.y"
+                           { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].dataType)); }
 #line 1725 "swift.tab.c"
     break;
 
   case 62: /* decl_item: ID ':' type '=' expr  */
-#line 161 "parser.y"
-                           { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-4].Id),(yyvsp[0].exprNode),(yyvsp[-2].Id));   }
+#line 165 "parser.y"
+                           { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-4].Id),(yyvsp[0].exprNode),(yyvsp[-2].dataType));   }
 #line 1731 "swift.tab.c"
     break;
 
   case 63: /* var_decl: LET_KW decl_items  */
-#line 165 "parser.y"
+#line 169 "parser.y"
                         { (yyval.stmtNode) = StmtNode::createDeclStmt((yyvsp[0].EL), StmtType::letDecl); }
 #line 1737 "swift.tab.c"
     break;
 
   case 64: /* var_decl: VAR_KW decl_items  */
-#line 166 "parser.y"
+#line 170 "parser.y"
                         { (yyval.stmtNode) = StmtNode::createDeclStmt((yyvsp[0].EL), StmtType::varDecl); }
 #line 1743 "swift.tab.c"
     break;
 
   case 65: /* func_decl: FUNC ID '(' func_param_list_e ')' ARROW type block  */
-#line 170 "parser.y"
-                                                       { (yyval.stmtNode) = StmtNode::createFuncDecl((yyvsp[-6].Id),(yyvsp[-4].EL),(yyvsp[-1].Id),(yyvsp[0].SL)); }
+#line 174 "parser.y"
+                                                       { (yyval.stmtNode) = StmtNode::createFuncDecl((yyvsp[-6].Id),(yyvsp[-4].EL),(yyvsp[-1].dataType),(yyvsp[0].SL)); }
 #line 1749 "swift.tab.c"
     break;
 
   case 66: /* func_decl: FUNC ID '(' func_param_list_e ')' block  */
-#line 171 "parser.y"
+#line 175 "parser.y"
                                                          { (yyval.stmtNode) = StmtNode::createFuncDecl((yyvsp[-4].Id),(yyvsp[-2].EL),nullptr,(yyvsp[0].SL)); }
 #line 1755 "swift.tab.c"
     break;
 
   case 67: /* class_decl: CLASS ID ':' ID '{' class_decl_list_e '}'  */
-#line 175 "parser.y"
+#line 179 "parser.y"
                                               { (yyval.stmtNode) = StmtNode::createClassDecl((yyvsp[-5].Id),(yyvsp[-3].Id),(yyvsp[-1].SL));}
 #line 1761 "swift.tab.c"
     break;
 
   case 68: /* class_decl: CLASS ID '{' class_decl_list_e '}'  */
-#line 176 "parser.y"
+#line 180 "parser.y"
                                               { (yyval.stmtNode) = StmtNode::createClassDecl((yyvsp[-3].Id),nullptr,(yyvsp[-1].SL));}
 #line 1767 "swift.tab.c"
     break;
 
   case 69: /* func_param: ID ':' type  */
-#line 180 "parser.y"
-                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].Id)); }
+#line 184 "parser.y"
+                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].dataType)); }
 #line 1773 "swift.tab.c"
     break;
 
   case 70: /* func_param: ID ID ':' type  */
-#line 181 "parser.y"
-                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),(yyvsp[-3].Id),(yyvsp[0].Id)); }
+#line 185 "parser.y"
+                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),(yyvsp[-3].Id),(yyvsp[0].dataType)); }
 #line 1779 "swift.tab.c"
     break;
 
   case 71: /* func_param: '_' ID ':' type  */
-#line 182 "parser.y"
-                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),(yyvsp[-3].Id),(yyvsp[0].Id)); }
+#line 186 "parser.y"
+                      { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),(yyvsp[-3].Id),(yyvsp[0].dataType)); }
 #line 1785 "swift.tab.c"
     break;
 
   case 72: /* func_param_list: func_param  */
-#line 186 "parser.y"
+#line 190 "parser.y"
                                      { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
 #line 1791 "swift.tab.c"
     break;
 
   case 73: /* func_param_list: func_param_list ',' func_param  */
-#line 187 "parser.y"
+#line 191 "parser.y"
                                      { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
 #line 1797 "swift.tab.c"
     break;
 
   case 74: /* func_param_list_e: %empty  */
-#line 191 "parser.y"
+#line 195 "parser.y"
                       { (yyval.EL) = nullptr; }
 #line 1803 "swift.tab.c"
     break;
 
   case 75: /* func_param_list_e: func_param_list  */
-#line 192 "parser.y"
+#line 196 "parser.y"
                       { (yyval.EL) = (yyvsp[0].EL); }
 #line 1809 "swift.tab.c"
     break;
 
   case 76: /* func_arg: ID ':' expr  */
-#line 196 "parser.y"
+#line 200 "parser.y"
                 { (yyval.exprNode) = ExprNode::createFuncArgExpr((yyvsp[-2].Id),(yyvsp[0].exprNode)); }
 #line 1815 "swift.tab.c"
     break;
 
   case 77: /* func_arg: expr  */
-#line 197 "parser.y"
+#line 201 "parser.y"
                 { (yyval.exprNode) = ExprNode::createFuncArgExpr(nullptr,(yyvsp[0].exprNode)); }
 #line 1821 "swift.tab.c"
     break;
 
   case 78: /* func_arg_list: %empty  */
-#line 201 "parser.y"
+#line 205 "parser.y"
                              { (yyval.EL) = nullptr; }
 #line 1827 "swift.tab.c"
     break;
 
   case 79: /* func_arg_list: func_arg_list_nonempty  */
-#line 202 "parser.y"
+#line 206 "parser.y"
                              { (yyval.EL) = (yyvsp[0].EL); }
 #line 1833 "swift.tab.c"
     break;
 
   case 80: /* func_arg_list_nonempty: func_arg  */
-#line 206 "parser.y"
+#line 210 "parser.y"
                                            { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
 #line 1839 "swift.tab.c"
     break;
 
   case 81: /* func_arg_list_nonempty: func_arg_list_nonempty ',' func_arg  */
-#line 207 "parser.y"
+#line 211 "parser.y"
                                            { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
 #line 1845 "swift.tab.c"
     break;
 
   case 82: /* access_modifier: %empty  */
-#line 211 "parser.y"
+#line 215 "parser.y"
                    { (yyval.Id) = nullptr; }
 #line 1851 "swift.tab.c"
     break;
 
   case 83: /* access_modifier: PUBLIC  */
-#line 212 "parser.y"
+#line 216 "parser.y"
                    { (yyval.Id) = new std::string("PUBLIC"); }
 #line 1857 "swift.tab.c"
     break;
 
   case 84: /* access_modifier: FILE_PRIVATE  */
-#line 213 "parser.y"
+#line 217 "parser.y"
                    { (yyval.Id) = new std::string("FILE_PRIVATE"); }
 #line 1863 "swift.tab.c"
     break;
 
   case 85: /* access_modifier: PRIVATE  */
-#line 214 "parser.y"
+#line 218 "parser.y"
                    { (yyval.Id) = new std::string("PRIVATE"); }
 #line 1869 "swift.tab.c"
     break;
 
   case 86: /* class_decl_list: class_decl_list class_member  */
-#line 218 "parser.y"
+#line 222 "parser.y"
                                  { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
 #line 1875 "swift.tab.c"
     break;
 
   case 87: /* class_decl_list: class_member  */
-#line 219 "parser.y"
+#line 223 "parser.y"
                    { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
 #line 1881 "swift.tab.c"
     break;
 
   case 88: /* class_member: access_modifier var_decl  */
-#line 223 "parser.y"
+#line 227 "parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[0].stmtNode),(yyvsp[-1].Id),false,StmtType::classMemberVar);}
 #line 1887 "swift.tab.c"
     break;
 
   case 89: /* class_member: access_modifier func_decl  */
-#line 224 "parser.y"
+#line 228 "parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[0].stmtNode),(yyvsp[-1].Id),false,StmtType::classMemberFunc);}
 #line 1893 "swift.tab.c"
     break;
 
   case 90: /* class_member: access_modifier STATIC var_decl  */
-#line 225 "parser.y"
+#line 229 "parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[0].stmtNode),(yyvsp[-2].Id),true,StmtType::classMemberVar);}
 #line 1899 "swift.tab.c"
     break;
 
   case 91: /* class_member: access_modifier STATIC func_decl  */
-#line 226 "parser.y"
+#line 230 "parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[0].stmtNode),(yyvsp[-2].Id),true,StmtType::classMemberFunc);}
 #line 1905 "swift.tab.c"
     break;
 
   case 92: /* class_member: access_modifier INIT '(' func_param_list_e ')' block  */
-#line 227 "parser.y"
+#line 231 "parser.y"
                                                            { StmtNode* f = StmtNode::createFuncDecl((yyvsp[-4].Id),(yyvsp[-2].EL),nullptr,(yyvsp[0].SL));
                                                              (yyval.stmtNode) =  StmtNode::createClassMember(f,(yyvsp[-5].Id),false,StmtType::classMemberInit);  
                                                            }
@@ -1913,7 +1913,7 @@ yyreduce:
     break;
 
   case 93: /* class_member: DEINIT block  */
-#line 230 "parser.y"
+#line 234 "parser.y"
                                                            { StmtNode* f = StmtNode::createFuncDecl((yyvsp[-1].Id),nullptr,nullptr,(yyvsp[0].SL)); 
                                                              (yyval.stmtNode) =  StmtNode::createClassMember(f,(yyvsp[-1].Id),false,StmtType::classMemberDeinit);
                                                            }
@@ -1921,79 +1921,79 @@ yyreduce:
     break;
 
   case 94: /* class_decl_list_e: %empty  */
-#line 236 "parser.y"
+#line 240 "parser.y"
               { (yyval.SL) = nullptr;}
 #line 1927 "swift.tab.c"
     break;
 
   case 95: /* class_decl_list_e: class_decl_list  */
-#line 237 "parser.y"
+#line 241 "parser.y"
                       { (yyval.SL) = (yyvsp[0].SL);}
 #line 1933 "swift.tab.c"
     break;
 
   case 96: /* if_stmt: IF expr block  */
-#line 241 "parser.y"
+#line 245 "parser.y"
                   { (yyval.stmtNode) = StmtNode::createIfStmt((yyvsp[-1].exprNode),(yyvsp[0].SL),nullptr); }
 #line 1939 "swift.tab.c"
     break;
 
   case 97: /* if_stmt: IF expr block ELSE if_stmt  */
-#line 242 "parser.y"
+#line 246 "parser.y"
                                  { (yyval.stmtNode) = StmtNode::createElseIfStmt((yyvsp[-3].exprNode),(yyvsp[-2].SL),(yyvsp[0].stmtNode));}
 #line 1945 "swift.tab.c"
     break;
 
   case 98: /* if_stmt: IF expr block ELSE block  */
-#line 243 "parser.y"
+#line 247 "parser.y"
                                { (yyval.stmtNode) = StmtNode::createIfStmt((yyvsp[-3].exprNode),(yyvsp[-2].SL),(yyvsp[0].SL));  }
 #line 1951 "swift.tab.c"
     break;
 
   case 99: /* switch_stmt: SWITCH expr '{' switch_case_list '}'  */
-#line 247 "parser.y"
+#line 251 "parser.y"
                                          { (yyval.stmtNode) = StmtNode::createSwitchStmt((yyvsp[-3].exprNode),(yyvsp[-1].SL));}
 #line 1957 "swift.tab.c"
     break;
 
   case 100: /* switch_case_list: switch_case  */
-#line 251 "parser.y"
+#line 255 "parser.y"
                                     { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
 #line 1963 "swift.tab.c"
     break;
 
   case 101: /* switch_case_list: switch_case_list switch_case  */
-#line 252 "parser.y"
+#line 256 "parser.y"
                                     { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
 #line 1969 "swift.tab.c"
     break;
 
   case 102: /* switch_case: CASE expr_list ':' block  */
-#line 256 "parser.y"
+#line 260 "parser.y"
                              { (yyval.stmtNode) = StmtNode::createCaseStmt((yyvsp[-2].EL),(yyvsp[0].SL));}
 #line 1975 "swift.tab.c"
     break;
 
   case 103: /* switch_case: DEFAULT ':' block  */
-#line 257 "parser.y"
+#line 261 "parser.y"
                              { (yyval.stmtNode) = StmtNode::createCaseStmt(nullptr,(yyvsp[0].SL));}
 #line 1981 "swift.tab.c"
     break;
 
   case 104: /* for_stmt: FOR ID IN expr block  */
-#line 261 "parser.y"
+#line 265 "parser.y"
                          { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),(yyvsp[-3].Id),(yyvsp[0].SL),StmtType::For); }
 #line 1987 "swift.tab.c"
     break;
 
   case 105: /* while_stmt: WHILE expr block  */
-#line 265 "parser.y"
+#line 269 "parser.y"
                      { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),nullptr,(yyvsp[0].SL),StmtType::While); }
 #line 1993 "swift.tab.c"
     break;
 
   case 106: /* block: '{' stmt_list '}'  */
-#line 269 "parser.y"
+#line 273 "parser.y"
                       { (yyval.SL) = (yyvsp[-1].SL);}
 #line 1999 "swift.tab.c"
     break;
@@ -2192,7 +2192,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 272 "parser.y"
+#line 276 "parser.y"
 
 
 void yyerror(const char* s){

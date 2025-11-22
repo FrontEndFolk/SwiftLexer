@@ -16,7 +16,7 @@ using namespace std;
 void yyerror(const char* s);
 int yylex(void);
 
-std::vector<StmtNode*>* root = nullptr;
+Program* root = nullptr;
 
 %}
 
@@ -28,13 +28,15 @@ std::vector<StmtNode*>* root = nullptr;
     std::string* Id;
     StmtNode* stmtNode;
     ExprNode* exprNode; 
+    DataType* dataType;
     std::vector<StmtNode*>* SL;
     std::vector<ExprNode*>* EL;
+    Program* program;
 } 
 
 %debug
 
-%start program
+
 
  
 %token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE STATIC
@@ -44,12 +46,15 @@ std::vector<StmtNode*>* root = nullptr;
 %token <Id> ID STRING_C  '_' INIT DEINIT   
 %token <Float> FLOAT_HEX FLOAT_DEC
 
-%type <SL> program stmt_list top_stmt_list class_decl_list switch_case_list block class_decl_list_e
+%type <program> program
+%type <SL> stmt_list top_stmt_list class_decl_list switch_case_list block class_decl_list_e
 %type <EL> expr_list decl_items func_param_list func_param_list_e func_arg_list func_arg_list_nonempty expr_list_e
 %type <stmtNode> stmt top_stmt func_decl class_decl var_decl if_stmt switch_stmt for_stmt while_stmt class_member  switch_case
 %type <exprNode> expr decl_item func_param func_arg  
-%type <Id> type access_modifier
+%type <Id> access_modifier
+%type <dataType> type
 
+%start program
 
 /* Operators */
 %left ',' 
@@ -67,13 +72,12 @@ std::vector<StmtNode*>* root = nullptr;
 
 // ---- Grammar rules ----
 
-program : top_stmt_list {root = $1; $$ = $1;}
+program : top_stmt_list {root = new Program($1); $$ = root; root->print();}
 ;
 
 top_stmt_list:
       top_stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | stmt_list top_stmt { $$ = $1; $$->push_back($2); }
-       
+    | stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
     ;
 
 top_stmt:
@@ -141,13 +145,13 @@ expr_list_e:
     ;
 
 type:
-      INT_KW        { $$ = new std::string("Int"); }
-    | BOOL_KW       { $$ = new std::string("Bool"); }
-    | UINT_KW       { $$ = new std::string("UInt"); }
-    | FLOAT_KW      { $$ = new std::string("Float"); }
-    | STRING_KW     { $$ = new std::string("String"); }
-    | '[' type ']'  { $$ = new std::string("[" + *$2 + "]"); delete $2; }
-    | ID            { $$ = new std::string(*$1); delete $1; }
+      INT_KW        { $$ = new DataType(new std::string("Int"));           }
+    | BOOL_KW       { $$ = new DataType(new std::string("Bool"));          }
+    | UINT_KW       { $$ = new DataType(new std::string("Uint"));          }
+    | FLOAT_KW      { $$ = new DataType(new std::string("Float"));          }
+    | STRING_KW     { $$ = new DataType(new std::string("String"));        }
+    | '[' type ']'  { $2->arDimension++; $$ = $2; }
+    | ID            { $$ = new DataType(new std::string(*$1));             }
     ;
 
 decl_items:

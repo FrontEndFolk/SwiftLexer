@@ -43,9 +43,34 @@ enum StmtType {
 
 struct Node 
 {
-protected:
+public:
+	int id;
 	StmtType stmtType;
 	ExprType exprType;
+	virtual void print() = 0;
+	virtual std::string getNodeLabel() = 0;
+};
+
+enum BaseTypes
+{
+	INT, FLOAT, STRING, BOOL, UINT
+};
+
+struct DataType
+{
+public:
+	DataType(std::string* type);
+
+	bool isArray();
+	std::string getNodeLabel();
+	void print();
+
+	int id;
+	BaseTypes base;
+	int arDimension;
+	std::string className;
+	std::string typeLabel;
+
 };
 
 struct ExprNode : Node {
@@ -54,6 +79,7 @@ public:
 	long long Num;
 	std::string* Name;
 	ExprNode* expr;
+	DataType* dataType;
 
 
 	// bin operation
@@ -63,8 +89,8 @@ public:
 	// array
 	std::vector<ExprNode*>* exprList;
 
-	//decl
 	std::string* declType;
+
 
 	static ExprNode* createBinOperation(ExprNode* leftExpr, ExprNode* rightExpr, ExprType type);
 	static ExprNode* createUnOperation(ExprNode* expr, ExprType type);
@@ -76,17 +102,17 @@ public:
 	static ExprNode* createFiledAccessNode(ExprNode* expr, std::string* id);
 	static ExprNode* createFuncCall(std::vector<ExprNode*>* exprList, std::string* id, ExprNode* scope);
 	static ExprNode* createArray(std::vector<ExprNode*>* exprList);
-	static ExprNode* createDeclExpr(std::string* id, ExprNode* expr,std::string* type);
-	static ExprNode* createFuncParamExpr(std::string* paramName, std::string* label, std::string* type);
+	static ExprNode* createDeclExpr(std::string* id, ExprNode* expr,DataType* type);
+	static ExprNode* createFuncParamExpr(std::string* paramName, std::string* label, DataType* type);
 	static ExprNode* createFuncArgExpr(std::string* argName, ExprNode* expr);
-	
+	void print() override;
+	virtual std::string getNodeLabel() override;
 };
 
 struct StmtNode : Node {
 protected:
 	ExprNode* Expr;
 	std::vector<StmtNode*>* Block;
-
 	std::vector<ExprNode*>* declItems;
 
 public:
@@ -97,13 +123,22 @@ public:
 	static StmtNode* createReturnStmt(ExprNode* expr);
 	static StmtNode* createBreakStmt();
 	static StmtNode* createContinueStmt();
-	static StmtNode* createFuncDecl(std::string* funcName, std::vector<ExprNode*>* params,std::string* type, std::vector<StmtNode*>* block);
+	static StmtNode* createFuncDecl(std::string* funcName, std::vector<ExprNode*>* params, DataType* type, std::vector<StmtNode*>* block);
 	static StmtNode* createClassDecl(std::string* className, std::string* parentName,std::vector<StmtNode*>* body);
 	static StmtNode* createClassMember(StmtNode* stmt, std::string* accessMod, bool isStatic,StmtType type);
 	static StmtNode* createDeclStmt(std::vector<ExprNode*>* items, StmtType type);
 	static StmtNode* createSwitchStmt(ExprNode* expr, std::vector<StmtNode*>* body);
 	static StmtNode* createCaseStmt(std::vector<ExprNode*>*, std::vector<StmtNode*>* body);
-
-
+	void print() override;
+	virtual std::string getNodeLabel() override;
 };
 
+
+struct Program
+{
+public:
+	Program(std::vector<StmtNode*>* sl);
+	std::vector<StmtNode*>* root;
+
+	void print();
+};

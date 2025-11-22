@@ -145,6 +145,8 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dotHelpers.h" />
+    <ClInclude Include="idManager.h" />
     <ClInclude Include="nodes.h" />
     <ClInclude Include="swift.tab.h" />
     <ClInclude Include="unistd.h" />
