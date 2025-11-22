@@ -2,20 +2,20 @@
 #include <string>
 #include <sstream>
 
-std::string getListNodeLabel(std::string listName, int id)
+std::string getSupportNodeLabel(std::string nodeName, int id)
 {
 	std::stringstream ss;
 
-	ss << '"' << listName << id << '"' << " [label=\"" << listName << "\"]";
+	ss << '"' << nodeName << id << '"' << " [label=\"" << nodeName << "\"]";
 
 	return ss.str();
 }
 
-std::string getListNode(std::string listName, int id) 
+std::string getSupportNode(std::string nodeName, int id)
 {
 	std::stringstream ss;
 
-	ss << '"' << listName << id << '"';
+	ss << '"' << nodeName << id << '"';
 
 	return ss.str();
 }

@@ -11,7 +11,7 @@ enum ExprType {
 	Sub,
 	Mul,
 	Div,
-	Asn,
+	Assign,
 	Lt,
 	Gt,
 	Le,
@@ -24,7 +24,8 @@ enum ExprType {
 	Not,
 	decl,
 	funcParam,
-	array
+	array,
+	arBrackets
 };
 
 enum StmtType { 

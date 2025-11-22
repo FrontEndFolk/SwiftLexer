@@ -32,6 +32,9 @@ std::string StmtNode::getNodeLabel() {
         case StmtType::letDecl:
             ss << "LetDeclStmt";
             break;
+        case StmtType::Expr:
+            ss << "ExprStmt";
+            break;
     }
     ss << "\"]";
     return ss.str();
@@ -50,7 +53,14 @@ std::string ExprNode::getNodeLabel() {
     case ExprType::array:
         ss << "array";
         break;
+    case ExprType::arBrackets:
+        ss << "arBrackets[]";
+        break;
+    case ExprType::Id:
+        ss << "Id: " << *Name;
+        break;
     }
+    
     ss << "\"]";
     return ss.str();
 };
@@ -127,8 +137,10 @@ bool DataType::isArray()
 
 
 void Program::print() {
+    
     for (auto stmt : *root)
     {
+        std::cout << "StmtList" << " -> " << stmt->id << std::endl;
         stmt->print();
     }
 };
@@ -144,16 +156,27 @@ void ExprNode::print()
         expr->print();
         break;
     case ExprType::Int:
-        std::cout << id << std::endl;
+        // не надо ничего печатать кроме label
+        break;
+    case ExprType::Id:
+        // не надо ничего печатать кроме label
         break;
     case ExprType::array:
-        std::cout << getListNodeLabel("exprList", id) << std::endl;
-        std::cout << id << " -> " << getListNode("exprList", id) << std::endl;
+        std::cout << getSupportNodeLabel("exprList", id) << std::endl;
+        std::cout << id << " -> " << getSupportNode("exprList", id) << std::endl;
         for (auto item : *exprList) 
         {
             std::cout << item->id << item->getNodeLabel() << std::endl;
-            std::cout << getListNode("exprList", id) << " -> " << item->id << std::endl;
+            std::cout << getSupportNode("exprList", id) << " -> " << item->id << std::endl;
         }
+        break;
+    case ExprType::arBrackets:
+        LeftExpr->print();
+        RightExpr->print();
+        
+        std::cout << id << " -> " << LeftExpr->id << std::endl;
+        std::cout << id << " -> " << RightExpr->id << std::endl;
+
         break;
     }
     
@@ -166,19 +189,24 @@ void StmtNode::print()
     switch (stmtType) 
     {
         case StmtType::letDecl:
-            std::cout << getListNodeLabel("LetdeclList", id) << std::endl;
-            std::cout << id  <<" -> " << getListNode("LetdeclList",id) << std::endl;
+            std::cout << getSupportNodeLabel("LetdeclList", id) << std::endl;
+            std::cout << id  <<" -> " << getSupportNode("LetdeclList",id) << std::endl;
             
             for (auto item : *declItems)
             {
-                std::cout << getListNode("LetdeclList", id) << " -> " << item->id << std::endl;
+                std::cout << getSupportNode("LetdeclList", id) << " -> " << item->id << std::endl;
                 std::cout << item->id << " -> " << item->dataType->id << std::endl;
                 std::cout << item->id << " -> " << item->expr->id << std::endl;
                 
                 item->print();
             }
         break;
-        
+
+        case StmtType::Expr:
+            std::cout << id << " -> " << Expr->id << std::endl;
+            Expr->print();
+            
+        break;
     }
 }
 
@@ -212,8 +240,12 @@ ExprNode* ExprNode::createInt(long long val) {
 }
 
 ExprNode* ExprNode::createId(std::string* id) {
+    ExprNode* expr = new ExprNode();
+    expr->id = getNewId();
+    expr->exprType = ExprType::Id;
+    expr->Name = id;
     std::cout << "Called ExprNode::createId(" << (id ? *id : "null") << ")" << std::endl;
-    return nullptr;
+    return expr;
 }
 
 ExprNode* ExprNode::createFloat(float val) {
@@ -226,9 +258,16 @@ ExprNode* ExprNode::createBool(bool val) {
     return nullptr;
 }
 
-ExprNode* ExprNode::createSubscriptNode(ExprNode* id, ExprNode* subscripValue) {
+ExprNode* ExprNode::createSubscriptNode(ExprNode* id, ExprNode* subscripValue) 
+{
+    ExprNode* expr = new ExprNode();
+    expr->id = getNewId();
+    expr->exprType = ExprType::arBrackets;
+    expr->LeftExpr = id;
+    expr->RightExpr = subscripValue;
+
     std::cout << "Called ExprNode::createSubscriptNode()" << std::endl;
-    return nullptr;
+    return expr;
 }
 
 ExprNode* ExprNode::createFiledAccessNode(ExprNode* expr, std::string* id) {
@@ -284,8 +323,14 @@ ExprNode* ExprNode::createFuncArgExpr(std::string* argName, ExprNode* expr) {
 // ------------------------------------------------------------
 
 StmtNode* StmtNode::createExprAsStmt(ExprNode* expr) {
+
+    StmtNode* stmt = new StmtNode();
+    stmt->id = getNewId();
+    stmt->Expr = expr;
+    stmt->stmtType = StmtType::Expr;
+
     std::cout << "Called StmtNode::createExprAsStmt()" << std::endl;
-    return nullptr;
+    return stmt;
 }
 
 StmtNode* StmtNode::createIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_true, std::vector<StmtNode*>* p_false) {
