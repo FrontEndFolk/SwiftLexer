@@ -141,7 +141,7 @@
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(ProjectDir)win_flex.exe" -o "$(ProjectDir)lex.yy.c" "$(ProjectDir)swift.l"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Генерация lex.yy.cpp из swift.l</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)lex.yy.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)lex.yy.c</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +152,13 @@
     <ClInclude Include="unistd.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="parser.y" />
+    <CustomBuild Include="parser.y">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(ProjectDir)win_bison.exe" -d "$(ProjectDir)parser.y" -o "$(ProjectDir)swift.tab.c" </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Генерация бизон файла</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)swift.tab.c</Outputs>
+    </CustomBuild>
+    <None Include="win_bison.exe" />
     <None Include="win_flex.exe" />
   </ItemGroup>
   <ItemGroup>
