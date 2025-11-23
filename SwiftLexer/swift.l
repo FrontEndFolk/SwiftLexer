@@ -69,8 +69,10 @@ static string stripUnderscores(const char* txt) {
 "true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
 "false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
 "nil"			{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
-
-
+"in"            { cout << "\"in\" "  << yytext << '\n'; return IN;}
+"_"             { cout << "\"underscore\" "  << yytext << '\n'; return UNDERSCORE;}
+"..."           { cout << "\"closed range\" "  << yytext << '\n'; return CLOSED_RANGE;}
+"..<"           { cout << "\"opened range\" "  << yytext << '\n'; return OPENED_RANGE;}
 
 "Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
 "String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }

@@ -25,7 +25,9 @@ enum ExprType {
 	decl,
 	funcParam,
 	array,
-	arBrackets
+	arBrackets,
+	ClosedRange,
+	OpenedRange
 };
 
 enum StmtType { 
@@ -106,6 +108,8 @@ public:
 	static ExprNode* createDeclExpr(std::string* id, ExprNode* expr,DataType* type);
 	static ExprNode* createFuncParamExpr(std::string* paramName, std::string* label, DataType* type);
 	static ExprNode* createFuncArgExpr(std::string* argName, ExprNode* expr);
+	static ExprNode* createLoopRange(ExprNode* lowerBound, ExprNode* upperBound,ExprType type);
+	
 	void print() override;
 	virtual std::string getNodeLabel() override;
 };
@@ -115,6 +119,7 @@ protected:
 	ExprNode* Expr;
 	std::vector<StmtNode*>* Block;
 	std::vector<ExprNode*>* declItems;
+	std::string* iterable;
 
 public:
 	static StmtNode* createExprAsStmt(ExprNode* expr);

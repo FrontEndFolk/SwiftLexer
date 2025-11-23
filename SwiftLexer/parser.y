@@ -39,11 +39,11 @@ Program* root = nullptr;
 
 
  
-%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE STATIC
+%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE STATIC UNDERSCORE CLOSED_RANGE OPENED_RANGE
 
 %token <boolVal> TRUE FALSE
 %token <Int> INT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL
-%token <Id> ID STRING_C  '_' INIT DEINIT   
+%token <Id> ID STRING_C INIT DEINIT   
 %token <Float> FLOAT_HEX FLOAT_DEC
 
 %type <program> program
@@ -131,6 +131,8 @@ expr:
     | ID                                { $$ = ExprNode::createId($1);}
     | ID '(' func_arg_list ')'          { $$ = ExprNode::createFuncCall($3,$1,nullptr);}
     | '(' expr ')'                      { $$ = $2;}
+    | expr CLOSED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::ClosedRange);}
+    | expr OPENED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::OpenedRange);}
     ;
 
 
@@ -183,7 +185,7 @@ class_decl:
 func_param: 
     ID ':' type       { $$ = ExprNode::createFuncParamExpr($1,nullptr,$3); }
     | ID ID ':' type  { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
-    | '_' ID ':' type { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
+    | UNDERSCORE ID ':' type { $$ = ExprNode::createFuncParamExpr($2,new std::string("_"),$4); }
     ;
 
 func_param_list:
@@ -263,6 +265,7 @@ switch_case:
 	
 for_stmt: 
     FOR ID IN expr block { $$ = StmtNode::createLoopStmt($4,$2,$5,StmtType::For); }
+    | FOR UNDERSCORE IN expr block { $$ = StmtNode::createLoopStmt($4,nullptr,$5,StmtType::For); }
     ;
 
 while_stmt:
