@@ -1,30 +1,30 @@
-#include "nodes.h"
+п»ї#include "nodes.h"
 #include "idManager.h"
 #include "dotHelpers.h"
 #include <iostream>
 #include <sstream>
 // ------------------------------------------------------------
-// Вспомогательные функции
+// Г‚Г±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ
 // ------------------------------------------------------------
 
 std::string StmtNode::getNodeLabel() {
     std::stringstream ss;
     ss << " [label=\"";
-    switch (stmtType) 
+    switch (stmtType)
     {
-        case StmtType::letDecl:
-            ss << "LetDeclStmt";
-            break;
-        case StmtType::Expr:
-            ss << "ExprStmt";
-            break;
-        
-        case StmtType::For:
-            ss << "LoopStmt";
-            break;
-        case StmtType::While:
-            ss << "LoopStmt";
-            break;
+    case StmtType::letDecl:
+        ss << "LetDeclStmt";
+        break;
+    case StmtType::Expr:
+        ss << "ExprStmt";
+        break;
+
+    case StmtType::For:
+        ss << "LoopStmt";
+        break;
+    case StmtType::While:
+        ss << "LoopStmt";
+        break;
     }
     ss << "\"]";
     return ss.str();
@@ -35,7 +35,7 @@ std::string ExprNode::getNodeLabel() {
     switch (exprType)
     {
     case ExprType::decl:
-        ss << "letDecl: " << *Name ;
+        ss << "letDecl: " << *Name;
         break;
     case ExprType::Int:
         ss << "Int:" << Num;
@@ -57,7 +57,7 @@ std::string ExprNode::getNodeLabel() {
         break;
     }
 
-    
+
     ss << "\"]";
     return ss.str();
 };
@@ -87,7 +87,7 @@ bool DataType::isArray()
 // ------------------------------------------------------------
 // DataType init, print
 // ------------------------------------------------------------
-DataType::DataType(std::string* type) 
+DataType::DataType(std::string* type)
 {
     id = getNewId();
 
@@ -114,7 +114,7 @@ DataType::DataType(std::string* type)
     {
         base = BaseTypes::STRING;
     }
-    else 
+    else
     {
         className = *type;
     }
@@ -124,7 +124,7 @@ void DataType::print()
 {
     std::cout << getNodeLabel();
 
-    if (isArray()) 
+    if (isArray())
     {
         std::cout << id << " -> " << "Type:" << typeLabel << id << std::endl;
     }
@@ -141,12 +141,12 @@ Program::Program(std::vector<StmtNode*>* sl) {
 }
 
 void Program::print() {
-    
-    std::cout << getSupportNodeLabel("StmtList", 1000/*костыль потому что у Program нет id*/);
+
+    std::cout << getSupportNodeLabel("StmtList", 1000/*ГЄГ®Г±ГІГ»Г«Гј ГЇГ®ГІГ®Г¬Гі Г·ГІГ® Гі Program Г­ГҐГІ id*/);
 
     for (auto stmt : *root)
     {
-        std::cout << getSupportNode("StmtList",1000) << " -> " << stmt->id << std::endl;
+        std::cout << getSupportNode("StmtList", 1000) << " -> " << stmt->id << std::endl;
         stmt->print();
     }
 };
@@ -168,17 +168,17 @@ void ExprNode::print()
         break;
 
     case ExprType::Int:
-        // не надо ничего печатать кроме label
+        // Г­ГҐ Г­Г Г¤Г® Г­ГЁГ·ГҐГЈГ® ГЇГҐГ·Г ГІГ ГІГј ГЄГ°Г®Г¬ГҐ label
         break;
 
     case ExprType::Id:
-        // не надо ничего печатать кроме label
+        // Г­ГҐ Г­Г Г¤Г® Г­ГЁГ·ГҐГЈГ® ГЇГҐГ·Г ГІГ ГІГј ГЄГ°Г®Г¬ГҐ label
         break;
 
     case ExprType::array:
         std::cout << getSupportNodeLabel("exprList", id) << std::endl;
         std::cout << id << " -> " << getSupportNode("exprList", id) << std::endl;
-        for (auto item : *exprList) 
+        for (auto item : *exprList)
         {
             std::cout << item->id << item->getNodeLabel() << std::endl;
             std::cout << getSupportNode("exprList", id) << " -> " << item->id << std::endl;
@@ -188,12 +188,12 @@ void ExprNode::print()
     case ExprType::arBrackets:
         LeftExpr->print();
         RightExpr->print();
-        
+
         std::cout << id << " -> " << LeftExpr->id << std::endl;
         std::cout << id << " -> " << RightExpr->id << std::endl;
 
         break;
-    
+
     case ExprType::ClosedRange:
         std::cout << id << " -> " << LeftExpr->id << std::endl;
         std::cout << id << " -> " << RightExpr->id << std::endl;
@@ -216,77 +216,77 @@ void ExprNode::print()
 // StmtNode print
 // ------------------------------------------------------------
 
-void StmtNode::print() 
+void StmtNode::print()
 {
     std::cout << id << getNodeLabel() << std::endl;
 
 
     std::stringstream suportNodeName;
-    switch (stmtType) 
+    switch (stmtType)
     {
-        case StmtType::letDecl:
-            std::cout << getSupportNodeLabel("LetdeclList", id) << std::endl;
-            std::cout << id  <<" -> " << getSupportNode("LetdeclList",id) << std::endl;
-            
-            for (auto item : *declItems)
-            {
-                std::cout << getSupportNode("LetdeclList", id) << " -> " << item->id << std::endl;
-                std::cout << item->id << " -> " << item->dataType->id << std::endl;
-                std::cout << item->id << " -> " << item->expr->id << std::endl;
-                
-                item->print();
-            }
-            break;
+    case StmtType::letDecl:
+        std::cout << getSupportNodeLabel("LetdeclList", id) << std::endl;
+        std::cout << id << " -> " << getSupportNode("LetdeclList", id) << std::endl;
 
-        case StmtType::Expr:
-            std::cout << id << " -> " << Expr->id << std::endl;
-            Expr->print();
-            break;
-        
-        case StmtType::For:
-            
-            suportNodeName << "ForLoop iterable id: " << *iterable;
+        for (auto item : *declItems)
+        {
+            std::cout << getSupportNode("LetdeclList", id) << " -> " << item->id << std::endl;
+            std::cout << item->id << " -> " << item->dataType->id << std::endl;
+            std::cout << item->id << " -> " << item->expr->id << std::endl;
 
-            std::cout << getSupportNodeLabel(suportNodeName.str(), id) << std::endl;
-            std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+            item->print();
+        }
+        break;
 
-            std::cout << id << " -> " << getSupportNode(suportNodeName.str(), id) << std::endl;
+    case StmtType::Expr:
+        std::cout << id << " -> " << Expr->id << std::endl;
+        Expr->print();
+        break;
 
-            Expr->print();
-            
-            for (auto stmt : *Block) 
-            {
-                stmt->print();
-                std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
-            }
+    case StmtType::For:
 
-            std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"iterable\"]" <<std::endl;
-            std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << getSupportNode("StmtList", id) << "[label=\"body\"]" << std::endl;
+        suportNodeName << "ForLoop iterable id: " << *iterable;
 
-            break;
+        std::cout << getSupportNodeLabel(suportNodeName.str(), id) << std::endl;
+        std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
 
-        case StmtType::While:
-            
-            suportNodeName.clear();
-            suportNodeName << "WhileLoop";
+        std::cout << id << " -> " << getSupportNode(suportNodeName.str(), id) << std::endl;
 
-            std::cout << getSupportNodeLabel(suportNodeName.str(), id) << std::endl;
-            std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+        Expr->print();
 
-            std::cout << id << " -> " << getSupportNode(suportNodeName.str(), id) << std::endl;
+        for (auto stmt : *Block)
+        {
+            stmt->print();
+            std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
+        }
 
-            Expr->print();
+        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"iterable\"]" << std::endl;
+        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << getSupportNode("StmtList", id) << "[label=\"body\"]" << std::endl;
 
-            for (auto stmt : *Block)
-            {
-                stmt->print();
-                std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
-            }
+        break;
 
-            std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"condition\"]" << std::endl;
-            std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << getSupportNode("StmtList", id) << "[label=\"body\"]" << std::endl;
+    case StmtType::While:
 
-            break;
+        suportNodeName.clear();
+        suportNodeName << "WhileLoop";
+
+        std::cout << getSupportNodeLabel(suportNodeName.str(), id) << std::endl;
+        std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+
+        std::cout << id << " -> " << getSupportNode(suportNodeName.str(), id) << std::endl;
+
+        Expr->print();
+
+        for (auto stmt : *Block)
+        {
+            stmt->print();
+            std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
+        }
+
+        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"condition\"]" << std::endl;
+        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << getSupportNode("StmtList", id) << "[label=\"body\"]" << std::endl;
+
+        break;
     }
 }
 
@@ -338,7 +338,7 @@ ExprNode* ExprNode::createBool(bool val) {
     return nullptr;
 }
 
-ExprNode* ExprNode::createSubscriptNode(ExprNode* id, ExprNode* subscripValue) 
+ExprNode* ExprNode::createSubscriptNode(ExprNode* id, ExprNode* subscripValue)
 {
     ExprNode* expr = new ExprNode();
     expr->id = getNewId();
@@ -367,7 +367,7 @@ ExprNode* ExprNode::createArray(std::vector<ExprNode*>* exprList) {
     arrayNode->exprType = ExprType::array;
 
     std::cout << "Called ExprNode::createArray()" << std::endl;
-    
+
     return arrayNode;
 }
 
@@ -379,11 +379,12 @@ ExprNode* ExprNode::createDeclExpr(std::string* id, ExprNode* expr, DataType* ty
     declExprNode->exprType = ExprType::decl;
     declExprNode->dataType = type;
 
-    //TODO DataType* type можеть быть nullptr в случае если мы явно не укзали тип переменой
-    //в этом случае тип переменной нужно определять из expr что по идее должно делаться на этапе семантического анализа
+    //TODO DataType* type Г¬Г®Г¦ГҐГІГј ГЎГ»ГІГј nullptr Гў Г±Г«ГіГ·Г ГҐ ГҐГ±Г«ГЁ Г¬Г» ГїГўГ­Г® Г­ГҐ ГіГЄГ§Г Г«ГЁ ГІГЁГЇ ГЇГҐГ°ГҐГ¬ГҐГ­Г®Г©
+    //Гў ГЅГІГ®Г¬ Г±Г«ГіГ·Г ГҐ ГІГЁГЇ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г© Г­ГіГ¦Г­Г® Г®ГЇГ°ГҐГ¤ГҐГ«ГїГІГј ГЁГ§ expr Г·ГІГ® ГЇГ® ГЁГ¤ГҐГҐ Г¤Г®Г«Г¦Г­Г® Г¤ГҐГ«Г ГІГјГ±Гї Г­Г  ГЅГІГ ГЇГҐ Г±ГҐГ¬Г Г­ГІГЁГ·ГҐГ±ГЄГ®ГЈГ® Г Г­Г Г«ГЁГ§Г 
 
     std::cout << "Called ExprNode::createDeclExpr("
-        << (id ? *id : "null") << ", type=" << type->typeLabel << ")" << std::endl;
+        << (id ? *id : "null")
+        << ", type=" << (type ? type->typeLabel : "nullptr") << ")" << std::endl;
     return declExprNode;
 }
 
@@ -391,7 +392,7 @@ ExprNode* ExprNode::createFuncParamExpr(std::string* paramName, std::string* lab
     std::cout << "Called ExprNode::createFuncParamExpr("
         << (paramName ? *paramName : "null")
         << ", label=" << (label ? *label : "null")
-        << ", type=" << type->typeLabel << ")" << std::endl;
+        << ", type=" << (type ? type->typeLabel : "nullptr") << ")" << std::endl;
     return nullptr;
 }
 
@@ -401,7 +402,7 @@ ExprNode* ExprNode::createFuncArgExpr(std::string* argName, ExprNode* expr) {
     return nullptr;
 }
 
-ExprNode* ExprNode::createLoopRange(ExprNode* lowerBound, ExprNode* upperBound, ExprType type) 
+ExprNode* ExprNode::createLoopRange(ExprNode* lowerBound, ExprNode* upperBound, ExprType type)
 {
     ExprNode* expr = new ExprNode();
     expr->id = getNewId();
@@ -440,7 +441,7 @@ StmtNode* StmtNode::createElseIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_t
 }
 
 StmtNode* StmtNode::createLoopStmt(ExprNode* cond, std::string* i, std::vector<StmtNode*>* body, StmtType type) {
-    
+
     StmtNode* stmt = new StmtNode();
     stmt->id = getNewId();
     stmt->stmtType = type;
@@ -470,7 +471,7 @@ StmtNode* StmtNode::createContinueStmt() {
 StmtNode* StmtNode::createFuncDecl(std::string* funcName, std::vector<ExprNode*>* params, DataType* type, std::vector<StmtNode*>* block) {
     std::cout << "Called StmtNode::createFuncDecl("
         << (funcName ? *funcName : "null")
-        << ", returnType=" << type->typeLabel << ")" << std::endl;
+        << ", returnType=" << (type ? type->typeLabel : "nullptr") << ")" << std::endl;
     return nullptr;
 }
 
@@ -483,7 +484,7 @@ StmtNode* StmtNode::createClassDecl(std::string* className, std::string* parentN
 
 StmtNode* StmtNode::createClassMember(StmtNode* stmt, std::string* accessMod, bool isStatic, StmtType type) {
     std::cout << "Called StmtNode::createClassMember("
-        << "accessMod=" << accessMod
+        << "accessMod=" << (accessMod ? *accessMod : "nullptr")
         << ", isStatic=" << std::boolalpha << isStatic << ")" << std::endl;
     return nullptr;
 }
@@ -506,5 +507,3 @@ StmtNode* StmtNode::createDeclStmt(std::vector<ExprNode*>* items, StmtType type)
     std::cout << "Called StmtNode::createDeclStmt()" << std::endl;
     return declStmtNode;
 }
-
-

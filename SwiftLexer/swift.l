@@ -12,6 +12,7 @@ INT_BINARY		0b[01][_01]*
 INT_OCTAL		0o[0-7][_0-7]*
 INT_DECIMAL	    [0-9][_0-9]*
 INT_HEXADECIMAL	0x[0-9a-fA-F][_0-9a-fA-F]*
+CHAR_LITERAL    '([^'\\\n]|\\[nrtbfv0'"\\]|\\u\{[0-9A-Fa-f]{1,8}\})'
 
 ID_START		[a-zA-Z_]
 ID_CONT		[a-zA-Z0-9_]
@@ -66,6 +67,19 @@ static string stripUnderscores(const char* txt) {
 "for"			{ cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
 "while"			{ cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
 "return"		{ cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
+"switch"        { cout << "\"SWITCH\" " << yytext << '\n'; return SWITCH; }
+"case"          { cout << "\"CASE\" " << yytext << '\n'; return CASE; }
+"default"       { cout << "\"DEFAULT\" " << yytext << '\n'; return DEFAULT; }
+"where"         { cout << "\"WHERE\" " << yytext << '\n'; return WHERE; }
+"fallthrough"   { cout << "\"FALLTHROUGH\" " << yytext << '\n'; return FALLTHROUGH; }
+"break"         { cout << "\"BREAK\" " << yytext << '\n'; return BREAK; }
+"continue"      { cout << "\"CONTINUE\" " << yytext << '\n'; return CONTINUE; }
+"static"        { cout << "\"STATIC\" " << yytext << '\n'; return STATIC; }
+"open"          { cout << "\"OPEN\" " << yytext << '\n'; return OPEN; }
+"internal"      { cout << "\"INTERNAL\" " << yytext << '\n'; return INTERNAL; }
+"public"        { cout << "\"PUBLIC\" " << yytext << '\n'; return PUBLIC; }
+"private"       { cout << "\"PRIVATE\" " << yytext << '\n'; return PRIVATE; }
+"fileprivate"   { cout << "\"FILE_PRIVATE\" " << yytext << '\n'; return FILE_PRIVATE; }
 "true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
 "false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
 "nil"			{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
@@ -90,6 +104,50 @@ static string stripUnderscores(const char* txt) {
     return ID;
 }
 
+{CHAR_LITERAL} {
+    string txt = yytext;
+    txt = txt.substr(1, txt.length() - 2);
+    
+    char ch;
+    if (txt[0] == '\\') {
+        switch(txt[1]) {
+            case 'n': ch = '\n'; break;
+            case 'r': ch = '\r'; break;
+            case 't': ch = '\t'; break;
+            case 'b': ch = '\b'; break;
+            case 'f': ch = '\f'; break;
+            case 'v': ch = '\v'; break;
+            case '0': ch = '\0'; break;
+            case '\'': ch = '\''; break;
+            case '"': ch = '"'; break;
+            case '\\': ch = '\\'; break;
+            case 'u': {
+                string hex = txt.substr(3, txt.length() - 4);
+                ch = (char)strtol(hex.c_str(), nullptr, 16);
+                break;
+            }
+            default: ch = txt[1]; break;
+        }
+    } else {
+        ch = txt[0];
+    }
+    
+    yylval.Int = (int)ch;
+    cout << "\"LITERAL_CHAR\" ";
+    if (ch == '\n') cout << "'\\n'";
+    else if (ch == '\t') cout << "'\\t'";
+    else if (ch == '\r') cout << "'\\r'";
+    else if (ch == '\0') cout << "'\\0'";
+    else if (ch == '\\') cout << "'\\\\'";
+    else if (ch == '\'') cout << "'\\''";
+    else cout << "'" << ch << "'";
+    cout << '\n';
+    return INT_DEC;
+}
+
+'[^'\n]* {
+    cout << "ERROR: unterminated character literal at line " << lineNumber << '\n';
+}
 
 {FLOAT_HEX} {
     string clean = stripUnderscores(yytext);
