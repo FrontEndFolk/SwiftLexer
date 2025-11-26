@@ -383,28 +383,28 @@ void StmtNode::print()
         break;
 
     case StmtType::If:
-        // Print condition
-        std::cout << getSupportNodeLabel("Condition", id) << std::endl;
-        std::cout << id << " -> " << getSupportNode("Condition", id) << std::endl;
-        std::cout << getSupportNode("Condition", id) << " -> " << Expr->id << std::endl;
+        // Print condition with label on edge
+        std::cout << id << " -> " << Expr->id << " [label=\"condition if true\"]" << std::endl;
         Expr->print();
 
-        // Print true block
+        // Print true block with StmtList
         if (Block && !Block->empty()) {
-            std::cout << getSupportNodeLabel("TrueBlock", id) << std::endl;
-            std::cout << id << " -> " << getSupportNode("TrueBlock", id) << std::endl;
+            std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+            std::cout << id << " -> " << getSupportNode("StmtList", id) << " [label=\"true\"]" << std::endl;
+
             for (auto stmt : *Block) {
-                std::cout << getSupportNode("TrueBlock", id) << " -> " << stmt->id << std::endl;
+                std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
                 stmt->print();
             }
         }
 
-        // Print false block
+        // Print else block with StmtList (same name!)
         if (ElseBlock && !ElseBlock->empty()) {
-            std::cout << getSupportNodeLabel("FalseBlock", id) << std::endl;
-            std::cout << id << " -> " << getSupportNode("FalseBlock", id) << std::endl;
+            std::cout << getSupportNodeLabel("StmtList", id + 1000) << std::endl;  // Different ID to avoid conflict
+            std::cout << id << " -> " << getSupportNode("StmtList", id + 1000) << " [label=\"else\"]" << std::endl;
+
             for (auto stmt : *ElseBlock) {
-                std::cout << getSupportNode("FalseBlock", id) << " -> " << stmt->id << std::endl;
+                std::cout << getSupportNode("StmtList", id + 1000) << " -> " << stmt->id << std::endl;
                 stmt->print();
             }
         }
