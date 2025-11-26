@@ -137,7 +137,7 @@ static string stripUnderscores(const char* txt) {
     return INT_DEC;
 }
 
-\" { strBuf = "\""; BEGIN(STRING); }
+\" { strBuf.clear(); BEGIN(STRING); } 
 <STRING>[^\\\"\n]+ { 
                      strBuf += yytext;
                      yylval.Id = new std::string(strBuf);
@@ -158,7 +158,7 @@ static string stripUnderscores(const char* txt) {
     BEGIN(INITIAL);
 }
 <STRING>\" {
-    strBuf += "\"";
+    yylval.Id = new std::string(strBuf); 
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }

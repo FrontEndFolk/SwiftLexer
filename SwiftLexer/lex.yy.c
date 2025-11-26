@@ -1,6 +1,6 @@
-#line 1 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 1 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
-#line 3 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 3 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -656,11 +656,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 1 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 
 
 
-#line 20 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 20 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 #define YY_NO_UNISTD_H 1
 #include "swift.tab.h"
 
@@ -691,8 +691,8 @@ static string stripUnderscores(const char* txt) {
     }
     return clean;
 }
-#line 694 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
-#line 695 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 694 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 695 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT_MULTILINE 1
@@ -912,15 +912,15 @@ YY_DECL
 		}
 
 	{
-#line 52 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 52 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 
 
-#line 55 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 55 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
     static int lineNumber = 1;
     static string strBuf;
     static int commentDepth = 0;
 
-#line 923 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 923 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -986,112 +986,112 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 59 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 59 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { lineNumber++; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 61 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 61 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"CLASS\" " << yytext << '\n'; return CLASS; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 62 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 62 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"FUNC\" " << yytext << '\n'; return FUNC;   }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 63 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 63 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"VAR\" "  << yytext << '\n'; return VAR_KW; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 64 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 64 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LET\" "  << yytext << '\n'; return LET_KW; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 65 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 65 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"IF\" "   << yytext << '\n'; return IF;     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 66 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 66 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"ELSE\" " << yytext << '\n'; return ELSE;   }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 67 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 67 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 68 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 68 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 69 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 69 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 70 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 70 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 71 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 71 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 72 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 72 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 76 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 76 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 77 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 77 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 78 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 78 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_INT\" "       << yytext << '\n'; return INT_KW; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 79 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 79 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_UINT\" "      << yytext << '\n'; return UINT_KW; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 80 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 80 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; return FLOAT_KW; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 81 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 81 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; return DOUBLE_KW; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 83 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 83 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {cout << "\"INIT\" "   << yytext << '\n'; yylval.Id = new std::string(yytext); return INIT;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 84 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 84 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {cout << "\"DEINIT\" " << yytext << '\n'; yylval.Id = new std::string(yytext); return DEINIT;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 86 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 86 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { 
     yylval.Id = new std::string(yytext);
     cout << "\"IDENTIFIER\" " << yytext << '\n';
@@ -1100,7 +1100,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 93 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 93 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     double val = strtod(clean.c_str(), nullptr);
@@ -1111,7 +1111,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 101 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 101 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     double val = strtod(clean.c_str(), nullptr);
@@ -1122,7 +1122,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 109 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 109 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext + 2); 
     unsigned long long val = strtoull(clean.c_str(), nullptr, 2);
@@ -1133,7 +1133,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 117 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 117 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext + 2);
     unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
@@ -1144,7 +1144,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 125 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 125 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     unsigned long long val = strtoull(clean.c_str(), nullptr, 16);
@@ -1155,7 +1155,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 133 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 133 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     string clean = stripUnderscores(yytext);
     long long val = strtoll(clean.c_str(), nullptr, 10);
@@ -1166,12 +1166,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 141 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
-{ strBuf = "\""; BEGIN(STRING); }
+#line 141 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
+{ strBuf.clear(); BEGIN(STRING); } 
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 142 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 142 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { 
                      strBuf += yytext;
                      yylval.Id = new std::string(strBuf);
@@ -1180,58 +1180,58 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 147 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 147 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\\"; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 148 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 148 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\n"; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 149 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 149 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\b"; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 150 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 150 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\0"; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 151 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 151 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\f"; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 152 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 152 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\r"; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 153 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 153 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\t"; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 154 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 154 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\v"; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 155 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 155 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "'"; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 156 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 156 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\""; }
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 157 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 157 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated string at line " << lineNumber << '\n';
     BEGIN(INITIAL);
@@ -1239,15 +1239,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 161 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 161 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
-    strBuf += "\"";
+    yylval.Id = new std::string(strBuf); 
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
     BEGIN(INITIAL);
 }
 	YY_BREAK
 case YY_STATE_EOF(STRING):
-#line 166 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 166 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: string isn't closed at end of file\n";
     BEGIN(INITIAL);
@@ -1255,62 +1255,62 @@ case YY_STATE_EOF(STRING):
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 171 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 171 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"PLUS_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 172 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 172 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MINUS_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 173 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 173 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"DIV_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 174 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 174 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MUL_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 175 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 175 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MOD_ASSIGN\" " << yytext << '\n'; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 177 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 177 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"EQ\" " << yytext << '\n';  return EQ;  }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 178 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 178 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"NEQ\" " << yytext << '\n'; return NE;  }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 179 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 179 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LTE\" " << yytext << '\n'; return LE;  }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 180 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 180 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"GTE\" " << yytext << '\n'; return GE;  }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 181 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 181 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"OR\" " << yytext << '\n';  return OR;  }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 182 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 182 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"AND\" " << yytext << '\n'; return AND; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 184 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 184 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { 
         cout << "\"ASSIGN\" " << yytext << '\n';
         return '='; 
@@ -1318,107 +1318,107 @@ YY_RULE_SETUP
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 188 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 188 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LT\" " << yytext << '\n';        return '<';   }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 189 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 189 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"GT\" " << yytext << '\n';        return '>';   }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 190 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 190 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"DOT\" " << yytext << '\n';       return '.';   }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 191 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 191 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"COMMA\" " << yytext << '\n';     return ',';   }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 192 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 192 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"SEMICOLON\" " << yytext << '\n'; return ';';   }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 193 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 193 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"COLON\" " << yytext << '\n';     return ':';   }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 194 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 194 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"ARROW\" " << yytext << '\n';     return ARROW; }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 196 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 196 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"PLUS\" " << yytext << '\n';  return '+'; }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 197 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 197 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MINUS\" " << yytext << '\n'; return '-'; }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 198 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 198 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MUL\" " << yytext << '\n';   return '*'; }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 199 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 199 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"DIV\" " << yytext << '\n';   return '/'; }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 200 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 200 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"MOD\" " << yytext << '\n';   return '%'; }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 201 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 201 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"NOT\" " << yytext << '\n';  return NOT; }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 203 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 203 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LPAREN\" " << yytext << '\n';   return '('; }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 204 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 204 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"RPAREN\" " << yytext << '\n';   return ')'; }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 205 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 205 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LBRACKET\" " << yytext << '\n'; return '['; }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 206 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 206 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"RBRACKET\" " << yytext << '\n'; return ']'; }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 207 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 207 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"LBRACE\" " << yytext << '\n';   return '{'; }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 208 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 208 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"RBRACE\" " << yytext << '\n';   return '}'; }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 211 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 211 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 212 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 212 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     strBuf += "\"\"\"";
     cout << "\"LITERAL_STRING\" " << strBuf << '\n';
@@ -1427,17 +1427,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 217 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 217 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += yytext; }
 	YY_BREAK
 case 77:
 /* rule 77 can match eol */
 YY_RULE_SETUP
-#line 218 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 218 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\n"; lineNumber++; }
 	YY_BREAK
 case YY_STATE_EOF(STRING_MULTILINE):
-#line 219 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 219 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated multiline string\n";
     BEGIN(INITIAL);
@@ -1445,22 +1445,22 @@ case YY_STATE_EOF(STRING_MULTILINE):
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 224 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 224 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"INLINE_COMMENT\" " << yytext << '\n'; }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 226 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 226 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { commentDepth = 1; strBuf.clear(); BEGIN(COMMENT_MULTILINE); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 227 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 227 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { commentDepth++; strBuf += yytext; }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 228 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 228 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     commentDepth--;
     if (commentDepth == 0) {
@@ -1471,17 +1471,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 235 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 235 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += yytext; }
 	YY_BREAK
 case 83:
 /* rule 83 can match eol */
 YY_RULE_SETUP
-#line 236 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 236 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { strBuf += "\n"; lineNumber++; }
 	YY_BREAK
 case YY_STATE_EOF(COMMENT_MULTILINE):
-#line 237 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 237 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 {
     cout << "ERROR: unterminated multiline comment\n";
     BEGIN(INITIAL);
@@ -1489,20 +1489,20 @@ case YY_STATE_EOF(COMMENT_MULTILINE):
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 242 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 242 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { /* skip */ }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 244 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 244 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 { cout << "\"UNKNOWN\" " << yytext << '\n'; }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 246 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 246 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 ECHO;
 	YY_BREAK
-#line 1505 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\lex.yy.c"
+#line 1505 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2520,5 +2520,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 246 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.l"
+#line 246 "C:\\Users\\shama\\Desktop\\SwiftLexer\\SwiftLexer\\swift.l"
 
