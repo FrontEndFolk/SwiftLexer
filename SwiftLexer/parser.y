@@ -39,11 +39,10 @@ Program* root = nullptr;
 
 
  
-%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE STATIC
-
+%token LET_KW VAR_KW FUNC CLASS RETURN ELSE FOR IN WHILE IF SWITCH CASE DEFAULT WHERE FALLTHROUGH NIL BREAK CONTINUE ARROW INT_KW BOOL_KW UINT_KW FLOAT_KW DOUBLE_KW STRING_KW PUBLIC PRIVATE FILE_PRIVATE OPEN INTERNAL STATIC UNDERSCORE CLOSED_RANGE OPENED_RANGE
 %token <boolVal> TRUE FALSE
 %token <Int> INT_DEC INT_BINARY INT_OCTAL INT_HEXADECIMAL
-%token <Id> ID STRING_C  '_' INIT DEINIT   
+%token <Id> ID STRING_C INIT DEINIT   
 %token <Float> FLOAT_HEX FLOAT_DEC
 
 %type <program> program
@@ -77,13 +76,14 @@ program : top_stmt_list {root = new Program($1); $$ = root; root->print();}
 
 top_stmt_list:
       top_stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
+    | top_stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
     ;
 
 top_stmt:
     stmt             { $$ = $1; }
-    | func_decl ';'  { $$ = $1; }
-    | class_decl ';' { $$ = $1; }
+    | func_decl      { $$ = $1; }
+    | class_decl     { $$ = $1; }
+    ;
 
 stmt_list:
       stmt           { $$ = new std::vector<StmtNode*>({$1}); }
@@ -126,7 +126,7 @@ expr:
     | NOT expr                          { $$ = ExprNode::createUnOperation($2,ExprType::Not); }      
     | expr '[' expr ']'                 { $$ = ExprNode::createSubscriptNode($1,$3); }
     | expr '.' ID                       { $$ = ExprNode::createFieldAccessNode($1,$3); }
-    | expr '.' ID '(' func_arg_list ')' { ExprNode* access = ExprNode::createFieldAccessNode($1, $3); $$ = ExprNode::createFieldAccessCall(access, $5);} 
+    | expr '.' ID '(' func_arg_list ')' { ExprNode* access = ExprNode::createFieldAccessNode($1, $3); $$ = ExprNode::createFieldAccessCall(access,$3, $5);} 
     | '[' expr_list_e ']'               { $$ = ExprNode::createArray($2);}
     | ID                                { $$ = ExprNode::createId($1);}
     | ID '(' func_arg_list ')'          { $$ = ExprNode::createFuncCall($3,$1,nullptr);}
@@ -176,14 +176,14 @@ func_decl:
     ;
 
 class_decl:
-    CLASS ID ':' ID '{' class_decl_list_e '}' { $$ = StmtNode::createClassDecl($2,$4,$6);} 
-    | CLASS ID '{' class_decl_list_e '}'      { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
+    CLASS ID ':' ID '{' class_decl_list_e '}' ';'{ $$ = StmtNode::createClassDecl($2,$4,$6);} 
+    | CLASS ID '{' class_decl_list_e '}' ';'     { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
     ;
 
 func_param: 
     ID ':' type       { $$ = ExprNode::createFuncParamExpr($1,nullptr,$3); }
     | ID ID ':' type  { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
-    | '_' ID ':' type { $$ = ExprNode::createFuncParamExpr($2,$1,$4); }
+    | UNDERSCORE ID ':' type { $$ = ExprNode::createFuncParamExpr($2,new std::string("_"),$4); }
     ;
 
 func_param_list:
@@ -263,6 +263,7 @@ switch_case:
 	
 for_stmt: 
     FOR ID IN expr block { $$ = StmtNode::createLoopStmt($4,$2,$5,StmtType::For); }
+    | FOR UNDERSCORE IN expr block { $$ = StmtNode::createLoopStmt($4,nullptr,$5,StmtType::For); }
     ;
 
 while_stmt:
@@ -270,7 +271,7 @@ while_stmt:
     ;
 
 block: 
-    '{' stmt_list '}' { $$ = $2;}
+    '{' stmt_list '}' ';' { $$ = $2;}
     ;
 	
 %%

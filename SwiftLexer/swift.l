@@ -66,11 +66,26 @@ static string stripUnderscores(const char* txt) {
 "for"			{ cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
 "while"			{ cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
 "return"		{ cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
+"switch"        { cout << "\"SWITCH\" " << yytext << '\n'; return SWITCH; }
+"case"          { cout << "\"CASE\" " << yytext << '\n'; return CASE; }
+"default"       { cout << "\"DEFAULT\" " << yytext << '\n'; return DEFAULT; }
+"where"         { cout << "\"WHERE\" " << yytext << '\n'; return WHERE; }
+"fallthrough"   { cout << "\"FALLTHROUGH\" " << yytext << '\n'; return FALLTHROUGH; }
+"break"         { cout << "\"BREAK\" " << yytext << '\n'; return BREAK; }
+"continue"      { cout << "\"CONTINUE\" " << yytext << '\n'; return CONTINUE; }
+"static"        { cout << "\"STATIC\" " << yytext << '\n'; return STATIC; }
+"open"          { cout << "\"OPEN\" " << yytext << '\n'; return OPEN; }
+"internal"      { cout << "\"INTERNAL\" " << yytext << '\n'; return INTERNAL; }
+"public"        { cout << "\"PUBLIC\" " << yytext << '\n'; return PUBLIC; }
+"private"       { cout << "\"PRIVATE\" " << yytext << '\n'; return PRIVATE; }
+"fileprivate"   { cout << "\"FILE_PRIVATE\" " << yytext << '\n'; return FILE_PRIVATE; }
 "true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
 "false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
 "nil"			{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
-
-
+"in"            { cout << "\"in\" "  << yytext << '\n'; return IN;}
+"_"             { cout << "\"underscore\" "  << yytext << '\n'; return UNDERSCORE;}
+"..."           { cout << "\"closed range\" "  << yytext << '\n'; return CLOSED_RANGE;}
+"..<"           { cout << "\"opened range\" "  << yytext << '\n'; return OPENED_RANGE;}
 
 "Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
 "String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }
@@ -87,7 +102,6 @@ static string stripUnderscores(const char* txt) {
     cout << "\"IDENTIFIER\" " << yytext << '\n';
     return ID;
 }
-
 
 {FLOAT_HEX} {
     string clean = stripUnderscores(yytext);

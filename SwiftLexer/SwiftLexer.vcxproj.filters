@@ -49,12 +49,15 @@
     <CustomBuild Include="swift.l">
       <Filter>Исходные файлы</Filter>
     </CustomBuild>
+    <CustomBuild Include="parser.y">
+      <Filter>Исходные файлы</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="win_flex.exe">
       <Filter>Исходные файлы</Filter>
     </None>
-    <None Include="parser.y">
+    <None Include="win_bison.exe">
       <Filter>Исходные файлы</Filter>
     </None>
   </ItemGroup>
