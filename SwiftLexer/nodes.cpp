@@ -30,6 +30,9 @@ std::string StmtNode::getNodeLabel() {
     case StmtType::Switch:
         ss << "SwitchStmt";
         break;
+    case StmtType::CaseStmt:
+        ss << "CaseStmt";
+        break;
     }
     ss << "\"]";
     return ss.str();
@@ -398,9 +401,9 @@ void StmtNode::print()
             }
         }
 
-        // Print else block with StmtList (same name!)
+        // Print else block with StmtList (same name, different ID)
         if (ElseBlock && !ElseBlock->empty()) {
-            std::cout << getSupportNodeLabel("StmtList", id + 1000) << std::endl;  // Different ID to avoid conflict
+            std::cout << getSupportNodeLabel("StmtList", id + 1000) << std::endl;
             std::cout << id << " -> " << getSupportNode("StmtList", id + 1000) << " [label=\"else\"]" << std::endl;
 
             for (auto stmt : *ElseBlock) {
@@ -423,6 +426,19 @@ void StmtNode::print()
             std::cout << id << " -> " << getSupportNode("Cases", id) << std::endl;
             for (auto stmt : *Block) {
                 std::cout << getSupportNode("Cases", id) << " -> " << stmt->id << std::endl;
+                stmt->print();
+            }
+        }
+        break;
+
+    case StmtType::CaseStmt:
+        // Print case body with StmtList
+        if (Block && !Block->empty()) {
+            std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+            std::cout << id << " -> " << getSupportNode("StmtList", id) << std::endl;
+
+            for (auto stmt : *Block) {
+                std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
                 stmt->print();
             }
         }
@@ -668,9 +684,14 @@ StmtNode* StmtNode::createSwitchStmt(ExprNode* expr, std::vector<StmtNode*>* bod
     return switchStmt;
 }
 
-StmtNode* StmtNode::createCaseStmt(std::vector<ExprNode*>*, std::vector<StmtNode*>* body) {
+StmtNode* StmtNode::createCaseStmt(std::vector<ExprNode*>* caseExprs, std::vector<StmtNode*>* body) {
+    StmtNode* caseStmt = new StmtNode();
+    caseStmt->id = getNewId();
+    caseStmt->stmtType = StmtType::CaseStmt;
+    caseStmt->Block = body;
+
     std::cout << "Called StmtNode::createCaseStmt()" << std::endl;
-    return nullptr;
+    return caseStmt;
 }
 
 StmtNode* StmtNode::createDeclStmt(std::vector<ExprNode*>* items, StmtType type) {
