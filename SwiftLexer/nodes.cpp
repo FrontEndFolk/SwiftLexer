@@ -432,10 +432,25 @@ void StmtNode::print()
         break;
 
     case StmtType::CaseStmt:
-        // Print case body with StmtList
+        // Print CaseExprList first
+        std::cout << getSupportNodeLabel("CaseExprList", id) << std::endl;
+        std::cout << id << " -> " << getSupportNode("CaseExprList", id) << std::endl;
+
+        // Print case expressions (expected values) under ExprList
+        if (CaseExprs && !CaseExprs->empty()) {
+            std::cout << getSupportNodeLabel("ExprList", id) << std::endl;
+            std::cout << getSupportNode("CaseExprList", id) << " -> " << getSupportNode("ExprList", id) << " [label=\"expected value\"]" << std::endl;
+
+            for (auto expr : *CaseExprs) {
+                std::cout << getSupportNode("ExprList", id) << " -> " << expr->id << std::endl;
+                expr->print();
+            }
+        }
+
+        // Print case body with StmtList under CaseExprList
         if (Block && !Block->empty()) {
             std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
-            std::cout << id << " -> " << getSupportNode("StmtList", id) << std::endl;
+            std::cout << getSupportNode("CaseExprList", id) << " -> " << getSupportNode("StmtList", id) << " [label=\"body\"]" << std::endl;
 
             for (auto stmt : *Block) {
                 std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
@@ -702,6 +717,7 @@ StmtNode* StmtNode::createCaseStmt(std::vector<ExprNode*>* caseExprs, std::vecto
     StmtNode* caseStmt = new StmtNode();
     caseStmt->id = getNewId();
     caseStmt->stmtType = StmtType::CaseStmt;
+    caseStmt->CaseExprs = caseExprs;
     caseStmt->Block = body;
 
     std::cout << "Called StmtNode::createCaseStmt()" << std::endl;

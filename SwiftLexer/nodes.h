@@ -120,6 +120,7 @@ public:
 	std::vector<StmtNode*>* Block;
 	std::vector<StmtNode*>* ElseBlock;
 	std::vector<ExprNode*>* declItems;
+	std::vector<ExprNode*>* CaseExprs;  // For case values
 	std::string* iterable;
 
 	static StmtNode* createExprAsStmt(ExprNode* expr);
