@@ -9,7 +9,8 @@ enum ExprType {
 	Float,
 	Bool,
 	Id,
-	Add,
+	StringLit,
+	Add, 
 	Sub,
 	Mul,
 	Div,
@@ -26,8 +27,13 @@ enum ExprType {
 	Not,
 	decl,
 	funcParam,
+	funcArg,
 	array,
 	arBrackets,
+	Subscript,
+	FieldAccess,
+	FuncCall,
+	FieldAccessCall,
 	ClosedRange,
 	OpenedRange
 };
@@ -44,7 +50,13 @@ enum StmtType {
 	classMemberFunc,
 	classMemberVar,
 	classMemberInit,
-	classMemberDeinit
+	classMemberDeinit,
+	funcDeclStmt,
+	funcDecl,
+	funcDeclArgList,
+	funcDeclArg,
+	returnStmt,
+	StmtList
 };
 
 struct Node
@@ -59,7 +71,7 @@ public:
 
 enum BaseTypes
 {
-	INT, FLOAT, STRING, BOOL, UINT
+	INT, FLOAT, STRING, BOOL, UINT, DOUBLE
 };
 
 struct DataType
@@ -86,6 +98,10 @@ public:
 	std::string* Name;
 	ExprNode* expr;
 	DataType* dataType;
+	float FloatVal;
+	bool BoolVal;
+	std::string* Label;
+	std::string* StrVal;
 
 	// bin operation
 	ExprNode* LeftExpr;
@@ -102,7 +118,8 @@ public:
 	static ExprNode* createFloat(float val);
 	static ExprNode* createBool(bool val);
 	static ExprNode* createSubscriptNode(ExprNode* id, ExprNode* subscripValue);
-	static ExprNode* createFiledAccessNode(ExprNode* expr, std::string* id);
+	static ExprNode* createFieldAccessNode(ExprNode* expr, std::string* id);
+	static ExprNode* createFieldAccessCall(ExprNode* scope, std::string* methodName, std::vector<ExprNode*>* args);
 	static ExprNode* createFuncCall(std::vector<ExprNode*>* exprList, std::string* id, ExprNode* scope);
 	static ExprNode* createArray(std::vector<ExprNode*>* exprList);
 	static ExprNode* createDeclExpr(std::string* id, ExprNode* expr, DataType* type);
@@ -110,6 +127,7 @@ public:
 	static ExprNode* createFuncArgExpr(std::string* argName, ExprNode* expr);
 	static ExprNode* createLoopRange(ExprNode* lowerBound, ExprNode* upperBound, ExprType type);
 
+	static ExprNode* createString(std::string* s);
 	void print() override;
 	virtual std::string getNodeLabel() override;
 };
@@ -122,6 +140,21 @@ public:
 	std::vector<ExprNode*>* declItems;
 	std::vector<ExprNode*>* CaseExprs;  // For case values
 	std::string* iterable;
+	std::string* FuncName;
+	std::vector<ExprNode*>* Params;
+	DataType* ReturnType;
+	StmtNode* MemberStmt;
+	std::string* AccessMod;
+	bool IsStatic = false;
+	std::vector<ExprNode*>* FuncParams;
+	StmtNode* FuncParamsList;
+	StmtNode* funcDeclNode;
+	StmtNode* argsList;
+	std::vector<ExprNode*>* args;
+	DataType* argType;
+	std::string* argLabel; 
+	std::string* argName; 
+	bool hasDefaultValue = false;
 
 	static StmtNode* createExprAsStmt(ExprNode* expr);
 	static StmtNode* createIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_true, std::vector<StmtNode*>* p_false);
@@ -136,6 +169,8 @@ public:
 	static StmtNode* createDeclStmt(std::vector<ExprNode*>* items, StmtType type);
 	static StmtNode* createSwitchStmt(ExprNode* expr, std::vector<StmtNode*>* body);
 	static StmtNode* createCaseStmt(std::vector<ExprNode*>*, std::vector<StmtNode*>* body);
+	static StmtNode* createFuncDeclArgList(std::vector<ExprNode*>* params);
+	static StmtNode* createFuncDeclStmt(StmtNode* funcDecl);
 
 	void print() override;
 	virtual std::string getNodeLabel() override;

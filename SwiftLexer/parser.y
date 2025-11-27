@@ -76,13 +76,14 @@ program : top_stmt_list {root = new Program($1); $$ = root; root->print();}
 
 top_stmt_list:
       top_stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
+    | top_stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
     ;
 
 top_stmt:
     stmt             { $$ = $1; }
-    | func_decl ';'  { $$ = $1; }
-    | class_decl ';' { $$ = $1; }
+    | func_decl      { $$ = $1; }
+    | class_decl     { $$ = $1; }
+    ;
 
 stmt_list:
       stmt           { $$ = new std::vector<StmtNode*>({$1}); }
@@ -105,7 +106,7 @@ stmt:
 expr:
       INT_DEC                           { $$ = ExprNode::createInt($1); }
     | FLOAT_DEC                         { $$ = ExprNode::createFloat($1); }
-    | STRING_C                          { $$ = ExprNode::createId($1); }
+    | STRING_C                          { $$ = ExprNode::createString($1); }
     | TRUE                              { $$ = ExprNode::createBool($1); }
     | FALSE                             { $$ = ExprNode::createBool($1); }
     | expr '+' expr                     { $$ = ExprNode::createBinOperation($1,$3,ExprType::Add); }
@@ -124,14 +125,12 @@ expr:
     | '-' expr %prec UNMINUS            { $$ = ExprNode::createUnOperation($2,ExprType::UMinus); }
     | NOT expr                          { $$ = ExprNode::createUnOperation($2,ExprType::Not); }      
     | expr '[' expr ']'                 { $$ = ExprNode::createSubscriptNode($1,$3); }
-    | expr '.' ID                       { $$ = ExprNode::createFiledAccessNode($1,$3); }
-    | expr '.' ID '(' func_arg_list ')' { ExprNode* a = ExprNode::createFiledAccessNode($1,$3); $$ = ExprNode::createFuncCall($5,$3,a);} 
+    | expr '.' ID                       { $$ = ExprNode::createFieldAccessNode($1,$3); }
+    | expr '.' ID '(' func_arg_list ')' { ExprNode* access = ExprNode::createFieldAccessNode($1, $3); $$ = ExprNode::createFieldAccessCall(access,$3, $5);} 
     | '[' expr_list_e ']'               { $$ = ExprNode::createArray($2);}
     | ID                                { $$ = ExprNode::createId($1);}
     | ID '(' func_arg_list ')'          { $$ = ExprNode::createFuncCall($3,$1,nullptr);}
     | '(' expr ')'                      { $$ = $2;}
-    | expr CLOSED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::ClosedRange);}
-    | expr OPENED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::OpenedRange);}
     ;
 
 
@@ -177,8 +176,8 @@ func_decl:
     ;
 
 class_decl:
-    CLASS ID ':' ID '{' class_decl_list_e '}' { $$ = StmtNode::createClassDecl($2,$4,$6);} 
-    | CLASS ID '{' class_decl_list_e '}'      { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
+    CLASS ID ':' ID '{' class_decl_list_e '}' ';'{ $$ = StmtNode::createClassDecl($2,$4,$6);} 
+    | CLASS ID '{' class_decl_list_e '}' ';'     { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
     ;
 
 func_param: 
@@ -272,7 +271,7 @@ while_stmt:
     ;
 
 block: 
-    '{' stmt_list '}' { $$ = $2;}
+    '{' stmt_list '}' ';' { $$ = $2;}
     ;
 	
 %%
