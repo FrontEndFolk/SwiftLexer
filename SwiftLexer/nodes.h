@@ -13,7 +13,7 @@ enum ExprType {
 	Sub,
 	Mul,
 	Div,
-	Assign, 
+	Assign,
 	Lt,
 	Gt,
 	Le,
@@ -69,6 +69,7 @@ public:
 	bool isArray();
 	std::string getNodeLabel();
 	void print();
+
 	int id;
 	BaseTypes base;
 	int arDimension;
@@ -85,9 +86,11 @@ public:
 	std::string* Name;
 	ExprNode* expr;
 	DataType* dataType;
+
 	// bin operation
 	ExprNode* LeftExpr;
 	ExprNode* RightExpr;
+
 	// array
 	std::vector<ExprNode*>* exprList;
 	std::string* declType;

@@ -619,9 +619,23 @@ StmtNode* StmtNode::createIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_true,
 }
 
 StmtNode* StmtNode::createElseIfStmt(ExprNode* cond, std::vector<StmtNode*>* p_true, StmtNode* p_false) {
+    StmtNode* elseIfStmt = new StmtNode();
+    elseIfStmt->id = getNewId();
+    elseIfStmt->stmtType = StmtType::If;
+    elseIfStmt->Expr = cond;
+    elseIfStmt->Block = p_true;
+
+    // p_false can be another IfStmt (for else if) or nullptr
+    if (p_false) {
+        elseIfStmt->ElseBlock = new std::vector<StmtNode*>();
+        elseIfStmt->ElseBlock->push_back(p_false);
+    }
+    else {
+        elseIfStmt->ElseBlock = nullptr;
+    }
 
     std::cout << "Called StmtNode::createElseIfStmt()" << std::endl;
-    return nullptr;
+    return elseIfStmt;
 }
 
 StmtNode* StmtNode::createLoopStmt(ExprNode* cond, std::string* i, std::vector<StmtNode*>* body, StmtType type) {
