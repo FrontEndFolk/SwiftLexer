@@ -60,6 +60,18 @@ std::string StmtNode::getNodeLabel() {
         case StmtType::classMemberDeinit:
             ss << "Deinit";
             break;
+        case StmtType::classDecl:
+            ss << "Class:" << *className;
+            if (parentName != nullptr) 
+            {
+                ss << " Parent: " << *parentName;
+            }
+            if (Block == nullptr) 
+            {
+                ss << " No body";
+            }
+            ss << std::endl;
+            break;
     }
     ss << "\"]";
     return ss.str();
@@ -630,6 +642,32 @@ void StmtNode::print()
             }
         }
         break;
+    case StmtType::classDecl:
+
+            if (Block == nullptr) return;
+
+            std::cout << getSupportNodeLabel("StmtList", id) << std::endl;
+            std::cout << id << " -> " << getSupportNode("StmtList", id) << std::endl;
+
+            for (auto item : *Block) 
+            {
+                std::cout << getSupportNode("StmtList", id) << " -> " << item->MemberStmt->id << std::endl;
+
+                if (item->IsStatic) 
+                {
+                    std::cout << getSupportNodeLabel("STATIC", item->MemberStmt->id) << std::endl;
+                    std::cout << item->MemberStmt->id << " -> " << getSupportNode("STATIC", item->MemberStmt->id) << std::endl;
+                }
+                if (item->AccessMod != nullptr) 
+                {
+                    std::cout << getSupportNodeLabel(*item->AccessMod, item->MemberStmt->id) << std::endl;
+                    std::cout << item->MemberStmt->id << " -> " << getSupportNode(*item->AccessMod, item->MemberStmt->id) << std::endl;
+                }
+
+                item->MemberStmt->print();
+            }
+
+        break;
     }
 }
 
@@ -939,13 +977,22 @@ StmtNode* StmtNode::createFuncDecl(std::string* funcName, std::vector<ExprNode*>
 }
 
 StmtNode* StmtNode::createClassDecl(std::string* className, std::string* parentName, std::vector<StmtNode*>* body) {
+    StmtNode* stmt = new StmtNode();
+    stmt->id = getNewId();
+    stmt->stmtType = StmtType::classDecl;
+    stmt->className = className;
+    stmt->parentName = parentName;
+    stmt->Block = body;
+
     std::cout << "Called StmtNode::createClassDecl("
         << (className ? *className : "null")
         << ", parent=" << (parentName ? *parentName : "null") << ")" << std::endl;
-    return nullptr;
+    return stmt;
 }
 
 StmtNode* StmtNode::createClassMember(StmtNode* stmt, std::string* accessMod, bool isStatic, StmtType type) {
+
+
     StmtNode* classMemberNode = new StmtNode();
     classMemberNode->id = getNewId();
     classMemberNode->stmtType = type;

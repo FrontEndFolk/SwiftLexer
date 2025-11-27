@@ -51,6 +51,7 @@ enum StmtType {
 	classMemberVar,
 	classMemberInit,
 	classMemberDeinit,
+	classDecl,
 	funcDeclStmt,
 	funcDecl,
 	funcDeclArgList,
@@ -139,17 +140,24 @@ public:
 	std::vector<StmtNode*>* ElseBlock;
 	std::vector<ExprNode*>* declItems;
 	std::vector<ExprNode*>* CaseExprs;  // For case values
+
 	std::string* iterable;
+	
 	std::string* FuncName;
 	std::vector<ExprNode*>* Params;
 	DataType* ReturnType;
+	
 	StmtNode* MemberStmt;
 	std::string* AccessMod;
 	bool IsStatic = false;
+	std::string* className;
+	std::string* parentName;
+
 	std::vector<ExprNode*>* FuncParams;
 	StmtNode* FuncParamsList;
 	StmtNode* funcDeclNode;
 	StmtNode* argsList;
+	
 	std::vector<ExprNode*>* args;
 	DataType* argType;
 	std::string* argLabel; 

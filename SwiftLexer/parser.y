@@ -224,9 +224,9 @@ class_decl_list:
     ;
 
 class_member:
-    access_modifier var_decl                               { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberVar);}
+    access_modifier var_decl ';'                               { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberVar);}
     | access_modifier func_decl                            { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberFunc);}
-    | access_modifier STATIC var_decl                      { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberVar);}
+    | access_modifier STATIC var_decl ';'                      { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberVar);}
     | access_modifier STATIC func_decl                     { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberFunc);}
     | access_modifier INIT '(' func_param_list_e ')' block { StmtNode* f = StmtNode::createFuncDecl($2,$4,nullptr,$6);
                                                              $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberInit);  
