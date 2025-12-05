@@ -45,7 +45,7 @@ static string stripUnderscores(const char* txt) {
     for (const char* p = txt; *p; ++p) {
         if (*p != '_') clean += *p;
     }
-    return clean;
+    return  clean;
 }
 %}
 
@@ -55,52 +55,53 @@ static string stripUnderscores(const char* txt) {
     static string strBuf;
     static int commentDepth = 0;
 %}
-\n { lineNumber++; }
 
-"class"			{ cout << "\"CLASS\" " << yytext << '\n'; return CLASS; }
-"func"			{ cout << "\"FUNC\" " << yytext << '\n'; return FUNC;   }
-"var"			{ cout << "\"VAR\" "  << yytext << '\n'; return VAR_KW; }
-"let"			{ cout << "\"LET\" "  << yytext << '\n'; return LET_KW; }
-"if"			{ cout << "\"IF\" "   << yytext << '\n'; return IF;     }
-"else"			{ cout << "\"ELSE\" " << yytext << '\n'; return ELSE;   }
-"for"			{ cout << "\"FOR\" "  << yytext << '\n'; return FOR;    }
-"while"			{ cout << "\"WHILE\" "<< yytext << '\n'; return WHILE;  }
-"return"		{ cout << "\"RETURN\" "<< yytext << '\n'; return RETURN;}
-"switch"        { cout << "\"SWITCH\" " << yytext << '\n'; return SWITCH; }
-"case"          { cout << "\"CASE\" " << yytext << '\n'; return CASE; }
-"default"       { cout << "\"DEFAULT\" " << yytext << '\n'; return DEFAULT; }
-"where"         { cout << "\"WHERE\" " << yytext << '\n'; return WHERE; }
-"fallthrough"   { cout << "\"FALLTHROUGH\" " << yytext << '\n'; return FALLTHROUGH; }
-"break"         { cout << "\"BREAK\" " << yytext << '\n'; return BREAK; }
-"continue"      { cout << "\"CONTINUE\" " << yytext << '\n'; return CONTINUE; }
-"static"        { cout << "\"STATIC\" " << yytext << '\n'; return STATIC; }
-"open"          { cout << "\"OPEN\" " << yytext << '\n'; return OPEN; }
-"internal"      { cout << "\"INTERNAL\" " << yytext << '\n'; return INTERNAL; }
-"public"        { cout << "\"PUBLIC\" " << yytext << '\n'; return PUBLIC; }
-"private"       { cout << "\"PRIVATE\" " << yytext << '\n'; return PRIVATE; }
-"fileprivate"   { cout << "\"FILE_PRIVATE\" " << yytext << '\n'; return FILE_PRIVATE; }
-"true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true; return TRUE;}
-"false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false; return FALSE;}
-"nil"			{ cout << "\"NIL\" "  << yytext << '\n'; return NIL;}
-"in"            { cout << "\"in\" "  << yytext << '\n'; return IN;}
-"_"             { cout << "\"underscore\" "  << yytext << '\n'; return UNDERSCORE;}
-"..."           { cout << "\"closed range\" "  << yytext << '\n'; return CLOSED_RANGE;}
-"..<"           { cout << "\"opened range\" "  << yytext << '\n'; return OPENED_RANGE;}
+";"  { cout << "\"SEMICOLON\" " << yytext << '\n';  return  ';';   }
+\n   { lineNumber++; cout << "\"NEW LINE\" " << yytext << '\n';  return  NEW_LINE;   }
+"class"			{ cout << "\"CLASS\" " << yytext << '\n';  return  CLASS; }
+"func"			{ cout << "\"FUNC\" " << yytext << '\n';  return  FUNC;   }
+"var"			{ cout << "\"VAR\" "  << yytext << '\n';  return  VAR_KW; }
+"let"			{ cout << "\"LET\" "  << yytext << '\n';  return  LET_KW; }
+"if"			{ cout << "\"IF\" "   << yytext << '\n';  return  IF;     }
+"else"			{ cout << "\"ELSE\" " << yytext << '\n';  return  ELSE;   }
+"for"			{ cout << "\"FOR\" "  << yytext << '\n';  return  FOR;    }
+"while"			{ cout << "\"WHILE\" "<< yytext << '\n';  return  WHILE;  }
+"return"		{ cout << "\"RETURN\" "<< yytext << '\n';  return  RETURN;}
+"switch"        { cout << "\"SWITCH\" " << yytext << '\n';  return  SWITCH; }
+"case"          { cout << "\"CASE\" " << yytext << '\n';  return  CASE; }
+"default"       { cout << "\"DEFAULT\" " << yytext << '\n';  return  DEFAULT; }
+"where"         { cout << "\"WHERE\" " << yytext << '\n';  return  WHERE; }
+"fallthrough"   { cout << "\"FALLTHROUGH\" " << yytext << '\n';  return  FALLTHROUGH; }
+"break"         { cout << "\"BREAK\" " << yytext << '\n';  return  BREAK; }
+"continue"      { cout << "\"CONTINUE\" " << yytext << '\n';  return  CONTINUE; }
+"static"        { cout << "\"STATIC\" " << yytext << '\n';  return  STATIC; }
+"open"          { cout << "\"OPEN\" " << yytext << '\n';  return  OPEN; }
+"internal"      { cout << "\"INTERNAL\" " << yytext << '\n';  return  INTERNAL; }
+"public"        { cout << "\"PUBLIC\" " << yytext << '\n';  return  PUBLIC; }
+"private"       { cout << "\"PRIVATE\" " << yytext << '\n';  return  PRIVATE; }
+"fileprivate"   { cout << "\"FILE_PRIVATE\" " << yytext << '\n';  return  FILE_PRIVATE; }
+"true"			{ cout << "\"TRUE\" " << yytext << '\n'; yylval.boolVal = true;  return  TRUE;}
+"false"			{ cout << "\"FALSE\" "<< yytext << '\n'; yylval.boolVal = false;  return  FALSE;}
+"nil"			{ cout << "\"NIL\" "  << yytext << '\n';  return  NIL;}
+"in"            { cout << "\"in\" "  << yytext << '\n';  return  IN;}
+"_"             { cout << "\"underscore\" "  << yytext << '\n';  return  UNDERSCORE;}
+"..."           { cout << "\"closed range\" "  << yytext << '\n';  return  CLOSED_RANGE;}
+"..<"           { cout << "\"opened range\" "  << yytext << '\n';  return  OPENED_RANGE;}
 
-"Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n'; return BOOL_KW; }
-"String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n'; return STRING_KW; }
-"Int"			{ cout << "\"TYPE_INT\" "       << yytext << '\n'; return INT_KW; }
-"UInt"			{ cout << "\"TYPE_UINT\" "      << yytext << '\n'; return UINT_KW; }
-"Float"			{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n'; return FLOAT_KW; }
-"Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n'; return DOUBLE_KW; }
+"Bool"			{ cout << "\"TYPE_BOOL\" "      << yytext << '\n';  return  BOOL_KW; }
+"String"		{ cout << "\"TYPE_STRING\" "    << yytext << '\n';  return  STRING_KW; }
+"Int"			{ cout << "\"TYPE_INT\" "       << yytext << '\n';  return  INT_KW; }
+"UInt"			{ cout << "\"TYPE_UINT\" "      << yytext << '\n';  return  UINT_KW; }
+"Float"			{ cout << "\"TYPE_FLOAT\" "     << yytext << '\n';  return  FLOAT_KW; }
+"Double"		{ cout << "\"TYPE_DOUBLE\" "    << yytext << '\n';  return  DOUBLE_KW; }
 
-"INIT"          {cout << "\"INIT\" "   << yytext << '\n'; yylval.Id = new std::string(yytext); return INIT;}
-"DEINIT"        {cout << "\"DEINIT\" " << yytext << '\n'; yylval.Id = new std::string(yytext); return DEINIT;}
+"INIT"          {cout << "\"INIT\" "   << yytext << '\n'; yylval.Id = new std::string(yytext);  return  INIT;}
+"DEINIT"        {cout << "\"DEINIT\" " << yytext << '\n'; yylval.Id = new std::string(yytext);  return  DEINIT;}
 
 {ID_START}{ID_CONT}* { 
     yylval.Id = new std::string(yytext);
     cout << "\"IDENTIFIER\" " << yytext << '\n';
-    return ID;
+    return  ID;
 }
 
 {FLOAT_HEX} {
@@ -108,7 +109,7 @@ static string stripUnderscores(const char* txt) {
     double val = strtod(clean.c_str(), nullptr);
     yylval.Float = val;
     cout << "\"LITERAL_FLOAT_HEX\" " << val << '\n';
-    return FLOAT_DEC;
+    return  FLOAT_DEC;
 }
 
 {FLOAT_DEC} {
@@ -116,7 +117,7 @@ static string stripUnderscores(const char* txt) {
     double val = strtod(clean.c_str(), nullptr);
     yylval.Float = val;
     cout << "\"LITERAL_FLOAT_DEC\" " << val << '\n';
-    return FLOAT_DEC;
+    return  FLOAT_DEC;
 }
 
 {INT_BINARY} {
@@ -124,7 +125,7 @@ static string stripUnderscores(const char* txt) {
     unsigned long long val = strtoull(clean.c_str(), nullptr, 2);
     yylval.Int = val;
     cout << "\"LITERAL_INT_BINARY\" " << val << '\n';
-    return INT_DEC;
+    return  INT_DEC;
 }
 
 {INT_OCTAL} {
@@ -132,7 +133,7 @@ static string stripUnderscores(const char* txt) {
     unsigned long long val = strtoull(clean.c_str(), nullptr, 8);
     yylval.Int = val;
     cout << "\"LITERAL_INT_OCTAL\" " << val << '\n';
-    return INT_DEC;
+    return  INT_DEC;
 }
 
 {INT_HEXADECIMAL} {
@@ -140,7 +141,7 @@ static string stripUnderscores(const char* txt) {
     unsigned long long val = strtoull(clean.c_str(), nullptr, 16);
     yylval.Int = val;
     cout << "\"LITERAL_INT_HEX\" " << val << '\n';
-    return INT_DEC;
+    return  INT_DEC;
 }
 
 {INT_DECIMAL} {
@@ -148,14 +149,14 @@ static string stripUnderscores(const char* txt) {
     long long val = strtoll(clean.c_str(), nullptr, 10);
     yylval.Int = val;
     cout << "\"LITERAL_INT_DEC\" " << val << '\n';
-    return INT_DEC;
+    return  INT_DEC;
 }
 
 \" { strBuf.clear(); BEGIN(STRING); } 
 <STRING>[^\\\"\n]+ { 
                      strBuf += yytext;
                      yylval.Id = new std::string(strBuf);
-                     return STRING_C;
+                     return  STRING_C;
                    }
 <STRING>\\\\       { strBuf += "\\"; }
 <STRING>\\n        { strBuf += "\n"; }
@@ -187,38 +188,37 @@ static string stripUnderscores(const char* txt) {
 "*=" { cout << "\"MUL_ASSIGN\" " << yytext << '\n'; }
 "%=" { cout << "\"MOD_ASSIGN\" " << yytext << '\n'; }
 
-"==" { cout << "\"EQ\" " << yytext << '\n';  return EQ;  }
-"!=" { cout << "\"NEQ\" " << yytext << '\n'; return NE;  }
-"<=" { cout << "\"LTE\" " << yytext << '\n'; return LE;  }
-">=" { cout << "\"GTE\" " << yytext << '\n'; return GE;  }
-"||" { cout << "\"OR\" " << yytext << '\n';  return OR;  }
-"&&" { cout << "\"AND\" " << yytext << '\n'; return AND; }
+"==" { cout << "\"EQ\" " << yytext << '\n';   return  EQ;  }
+"!=" { cout << "\"NEQ\" " << yytext << '\n';  return  NE;  }
+"<=" { cout << "\"LTE\" " << yytext << '\n';  return  LE;  }
+">=" { cout << "\"GTE\" " << yytext << '\n';  return  GE;  }
+"||" { cout << "\"OR\" " << yytext << '\n';   return  OR;  }
+"&&" { cout << "\"AND\" " << yytext << '\n';  return  AND; }
 
 "="  { 
         cout << "\"ASSIGN\" " << yytext << '\n';
-        return '='; 
+        return  '='; 
      }
-"<"  { cout << "\"LT\" " << yytext << '\n';        return '<';   }
-">"  { cout << "\"GT\" " << yytext << '\n';        return '>';   }
-"\." { cout << "\"DOT\" " << yytext << '\n';       return '.';   }
-","  { cout << "\"COMMA\" " << yytext << '\n';     return ',';   }
-";"  { cout << "\"SEMICOLON\" " << yytext << '\n'; return ';';   }
-":"  { cout << "\"COLON\" " << yytext << '\n';     return ':';   }
-"->" { cout << "\"ARROW\" " << yytext << '\n';     return ARROW; }
+"<"  { cout << "\"LT\" " << yytext << '\n';         return  '<';   }
+">"  { cout << "\"GT\" " << yytext << '\n';         return  '>';   }
+"\." { cout << "\"DOT\" " << yytext << '\n';        return  '.';   }
+","  { cout << "\"COMMA\" " << yytext << '\n';      return  ',';   }
+":"  { cout << "\"COLON\" " << yytext << '\n';      return  ':';   }
+"->" { cout << "\"ARROW\" " << yytext << '\n';      return  ARROW; }
 
-"+" { cout << "\"PLUS\" " << yytext << '\n';  return '+'; }
-"-" { cout << "\"MINUS\" " << yytext << '\n'; return '-'; }
-"*" { cout << "\"MUL\" " << yytext << '\n';   return '*'; }
-"/" { cout << "\"DIV\" " << yytext << '\n';   return '/'; }
-"%" { cout << "\"MOD\" " << yytext << '\n';   return '%'; }
-"!"  { cout << "\"NOT\" " << yytext << '\n';  return NOT; }
+"+" { cout << "\"PLUS\" " << yytext << '\n';   return  '+'; }
+"-" { cout << "\"MINUS\" " << yytext << '\n';  return  '-'; }
+"*" { cout << "\"MUL\" " << yytext << '\n';    return  '*'; }
+"/" { cout << "\"DIV\" " << yytext << '\n';    return  '/'; }
+"%" { cout << "\"MOD\" " << yytext << '\n';    return  '%'; }
+"!"  { cout << "\"NOT\" " << yytext << '\n';   return  NOT; }
 
-"(" { cout << "\"LPAREN\" " << yytext << '\n';   return '('; }
-")" { cout << "\"RPAREN\" " << yytext << '\n';   return ')'; }
-"[" { cout << "\"LBRACKET\" " << yytext << '\n'; return '['; }
-"]" { cout << "\"RBRACKET\" " << yytext << '\n'; return ']'; }
-"{" { cout << "\"LBRACE\" " << yytext << '\n';   return '{'; }
-"}" { cout << "\"RBRACE\" " << yytext << '\n';   return '}'; }
+"(" { cout << "\"LPAREN\" " << yytext << '\n';    return  '('; }
+")" { cout << "\"RPAREN\" " << yytext << '\n';    return  ')'; }
+"[" { cout << "\"LBRACKET\" " << yytext << '\n';  return  '['; }
+"]" { cout << "\"RBRACKET\" " << yytext << '\n';  return  ']'; }
+"{" { cout << "\"LBRACE\" " << yytext << '\n';    return  '{'; }
+"}" { cout << "\"RBRACE\" " << yytext << '\n';    return  '}'; }
 
 
 \"\"\" { strBuf = "\"\"\""; BEGIN(STRING_MULTILINE); }
@@ -236,20 +236,30 @@ static string stripUnderscores(const char* txt) {
 
 "//".* { cout << "\"INLINE_COMMENT\" " << yytext << '\n'; }
 
-"/*" { commentDepth = 1; strBuf.clear(); BEGIN(COMMENT_MULTILINE); }
-<COMMENT_MULTILINE>"/*" { commentDepth++; strBuf += yytext; }
-<COMMENT_MULTILINE>"*/" {
-    commentDepth--;
-    if (commentDepth == 0) {
-        cout << "\"MULTILINE_COMMENT\" " << strBuf << '\n';
-        BEGIN(INITIAL);
-    } else strBuf += yytext;
+"/*" {
+    commentDepth = 1;
+    strBuf.clear();
+    BEGIN(COMMENT_MULTILINE);
 }
-<COMMENT_MULTILINE>[^\n]+  { strBuf += yytext; }
-<COMMENT_MULTILINE>\n      { strBuf += "\n"; lineNumber++; }
-<COMMENT_MULTILINE><<EOF>> {
-    cout << "ERROR: unterminated multiline comment\n";
-    BEGIN(INITIAL);
+
+<COMMENT_MULTILINE>{
+    "/*" { commentDepth++; strBuf += yytext;}
+    "*/" {
+        commentDepth--;
+        if (commentDepth == 0) {
+            cout << "\"MULTILINE_COMMENT\" " << strBuf << '\n';
+            BEGIN(INITIAL);
+        } else {
+            strBuf += yytext;
+        }
+    }
+    \n { strBuf += "\n"; lineNumber++; cout << "\"NEW LINE\" " << yytext << '\n'; }
+    \* { strBuf += "*";}
+    [^*\n]+ { strBuf += yytext; }
+    <<EOF>> {
+        cout << "ERROR: unterminated multiline comment\n";
+        BEGIN(INITIAL);
+    }
 }
 
 [ \t\v\f\r]+ { /* skip */ }

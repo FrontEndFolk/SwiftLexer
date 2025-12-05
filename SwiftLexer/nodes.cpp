@@ -252,7 +252,7 @@ Program::Program(std::vector<StmtNode*>* sl) {
 }
 
 void Program::print() {
-
+    std::cout << "==================== DOT ====================" << std::endl;
     std::cout << getSupportNodeLabel("StmtList", 1000/*êîñòûëü ïîòîìó ÷òî ó Program íåò id*/);
 
     for (auto stmt : *root)
