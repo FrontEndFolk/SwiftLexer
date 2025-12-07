@@ -47,7 +47,7 @@ Program* root = nullptr;
 %token <Float> FLOAT_HEX FLOAT_DEC
 
 %type <program> program
-%type <SL> stmt_list top_stmt_list class_decl_list switch_case_list block class_decl_list_e
+%type <SL> stmt_list stmt_list_opt top_stmt_list top_stmt_list_opt class_decl_list switch_case_list block class_block class_decl_list_e
 %type <EL> expr_list decl_items func_param_list func_param_list_e func_arg_list func_arg_list_nonempty expr_list_e
 %type <stmtNode> stmt top_stmt func_decl class_decl var_decl if_stmt switch_stmt for_stmt while_stmt class_member  switch_case
 %type <exprNode> expr decl_item func_param func_arg  
@@ -72,36 +72,64 @@ Program* root = nullptr;
 
 // ---- Grammar rules ----
 
-program : top_stmt_list {root = new Program($1); $$ = root; root->print();}
+program : opt_newlines top_stmt_list_opt opt_newlines {root = new Program($2); $$ = root; root->print();}
 ;
 
+separator:
+      ';' {  std::cerr << "parser:semicolon" << std::endl; }
+    | new_line_list
+    | ';' new_line_list
+    | YYEOF
+    ;
+
+new_line_list:
+      NEW_LINE
+    | new_line_list NEW_LINE
+    ;
+
+opt_newlines:
+      /* empty */
+    | new_line_list
+    ;
+
+top_stmt_list_opt:
+      /* empty */
+    | top_stmt_list
+    ;
+
 top_stmt_list:
-      top_stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | top_stmt_list top_stmt { $$ = $1; $$->push_back($2); }      
+      top_stmt           { $$ = new std::vector<StmtNode*>({$1}); std::cerr << "parser:stmt" << std::endl; }
+    | top_stmt_list  top_stmt { $$ = $1; $$->push_back($2); }      
     ;
 
 top_stmt:
     stmt             { $$ = $1; }
-    | func_decl      { $$ = $1; }
-    | class_decl     { $$ = $1; }
+    | func_decl separator     { $$ = $1; }
+    | class_decl separator       { $$ = $1; }
+    ;
+
+
+stmt_list_opt:
+    /*empty*/
+    | stmt_list
     ;
 
 stmt_list:
       stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | stmt_list stmt { $$ = $1; $$->push_back($2); }
+    | stmt_list  stmt { $$ = $1; $$->push_back($2); }
     ;
 
 stmt: 
-      expr ';'         { $$ = StmtNode::createExprAsStmt($1); }
-    | var_decl ';'     { $$ = $1;}
-    | if_stmt          { $$ = $1; }
-    | switch_stmt      { $$ = $1; }
-    | for_stmt         { $$ = $1; }
-    | while_stmt       { $$ = $1; }
-    | RETURN ';'       { $$ = StmtNode::createReturnStmt(nullptr); }
-    | RETURN expr ';'  { $$ = StmtNode::createReturnStmt($2); }
-    | BREAK ';'        { $$ = StmtNode::createBreakStmt(); }
-    | CONTINUE ';'     { $$ = StmtNode::createContinueStmt(); }
+      expr separator         { $$ = StmtNode::createExprAsStmt($1); }
+    | var_decl separator      { $$ = $1;}
+    | if_stmt  separator      { $$ = $1; }
+    | switch_stmt separator   { $$ = $1; }
+    | for_stmt separator      { $$ = $1; }
+    | while_stmt separator    { $$ = $1; }
+    | RETURN    separator    { $$ = StmtNode::createReturnStmt(nullptr); }
+    | RETURN expr separator  { $$ = StmtNode::createReturnStmt($2); }
+    | BREAK    separator     { $$ = StmtNode::createBreakStmt(); }
+    | CONTINUE   separator  { $$ = StmtNode::createContinueStmt(); }
     ;
 
 expr:
@@ -167,8 +195,8 @@ decl_item:
     ;
 
 var_decl: 
-    LET_KW decl_items   { $$ = StmtNode::createDeclStmt($2, StmtType::letDecl); }
-    | VAR_KW decl_items { $$ = StmtNode::createDeclStmt($2, StmtType::varDecl); }
+    LET_KW decl_items      { $$ = StmtNode::createDeclStmt($2, StmtType::letDecl); }
+    | VAR_KW decl_items    { $$ = StmtNode::createDeclStmt($2, StmtType::varDecl); }
     ;
 
 func_decl:
@@ -225,11 +253,11 @@ class_decl_list:
     ;
 
 class_member:
-    access_modifier var_decl ';'                               { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberVar);}
-    | access_modifier func_decl                            { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberFunc);}
-    | access_modifier STATIC var_decl ';'                      { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberVar);}
+    access_modifier var_decl separator                     { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberVar);}
+    | access_modifier func_decl separator                  { $$ = StmtNode::createClassMember($2,$1,false,StmtType::classMemberFunc);}
+    | access_modifier STATIC var_decl separator            { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberVar);}
     | access_modifier STATIC func_decl                     { $$ = StmtNode::createClassMember($3,$1,true,StmtType::classMemberFunc);}
-    | access_modifier INIT '(' func_param_list_e ')' block { StmtNode* f = StmtNode::createFuncDecl($2,$4,nullptr,$6);
+    | access_modifier INIT '(' func_param_list_e ')' block separator  { StmtNode* f = StmtNode::createFuncDecl($2,$4,nullptr,$6);
                                                              $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberInit);  
                                                            }
     | DEINIT block                                         { StmtNode* f = StmtNode::createFuncDecl($1,nullptr,nullptr,$2); 
@@ -271,8 +299,8 @@ while_stmt:
     WHILE expr block { $$ = StmtNode::createLoopStmt($2,nullptr,$3,StmtType::While); }
     ;
 
-block: 
-    '{' stmt_list '}' ';' { $$ = $2;}
+block:
+     opt_newlines '{' opt_newlines stmt_list_opt opt_newlines '}' { $$ = $4; }
     ;
 	
 %%
