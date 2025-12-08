@@ -526,6 +526,7 @@ void StmtNode::print()
 
     case StmtType::For:
 
+        suportNodeName.clear();
         suportNodeName << "ForLoop iterable id: " << *iterable;
 
         std::cout << getSupportNodeLabel(suportNodeName.str(), id) << std::endl;
@@ -541,7 +542,7 @@ void StmtNode::print()
             std::cout << getSupportNode("StmtList", id) << " -> " << stmt->id << std::endl;
         }
 
-        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"iterable\"]" << std::endl;
+        std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << Expr->id << "[label=\"range\"]" << std::endl;
         std::cout << getSupportNode(suportNodeName.str(), id) << " -> " << getSupportNode("StmtList", id) << "[label=\"body\"]" << std::endl;
 
         break;
@@ -571,7 +572,7 @@ void StmtNode::print()
 
     case StmtType::If:
         // Print condition with label on edge
-        std::cout << id << " -> " << Expr->id << " [label=\"condition if true\"]" << std::endl;
+        std::cout << id << " -> " << Expr->id << " [label=\"condition\"]" << std::endl;
         Expr->print();
 
         // Print true block with StmtList
@@ -923,7 +924,15 @@ StmtNode* StmtNode::createLoopStmt(ExprNode* cond, std::string* i, std::vector<S
     stmt->id = getNewId();
     stmt->stmtType = type;
     stmt->Expr = cond;
+
+    if (i == nullptr) 
+    {
+        i = new std::string("no iterable");
+    }
     stmt->iterable = i;
+    
+   
+    
     stmt->Block = body;
 
     std::cout << "Called StmtNode::createLoopStmt()" << std::endl;

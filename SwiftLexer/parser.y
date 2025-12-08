@@ -93,8 +93,8 @@ opt_newlines:
     ;
 
 top_stmt_list_opt:
-      /* empty */
-    | top_stmt_list
+      /* empty */ { $$ = new std::vector<StmtNode*>(); }
+    | top_stmt_list { $$ = $1;}
     ;
 
 top_stmt_list:
@@ -110,8 +110,8 @@ top_stmt:
 
 
 stmt_list_opt:
-    /*empty*/
-    | stmt_list
+    /*empty*/  { $$ = new std::vector<StmtNode*>(); }
+    | stmt_list {$$ = $1;}
     ;
 
 stmt_list:
@@ -160,6 +160,8 @@ expr:
     | ID                                { $$ = ExprNode::createId($1);}
     | ID '(' func_arg_list ')'          { $$ = ExprNode::createFuncCall($3,$1,nullptr);}
     | '(' expr ')'                      { $$ = $2;}
+    | expr CLOSED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::ClosedRange);}
+    | expr OPENED_RANGE expr            { $$ = ExprNode::createLoopRange($1,$3,ExprType::OpenedRange);}
     ;
 
 
@@ -205,8 +207,8 @@ func_decl:
     ;
 
 class_decl:
-    CLASS ID ':' ID '{' class_decl_list_e '}' ';'{ $$ = StmtNode::createClassDecl($2,$4,$6);} 
-    | CLASS ID '{' class_decl_list_e '}' ';'     { $$ = StmtNode::createClassDecl($2,nullptr,$4);} 
+    CLASS ID ':' ID opt_newlines '{' opt_newlines class_decl_list_e opt_newlines '}' separator { $$ = StmtNode::createClassDecl($2,$4,$8);} 
+    | CLASS ID opt_newlines '{' opt_newlines class_decl_list_e opt_newlines '}' separator     { $$ = StmtNode::createClassDecl($2,nullptr,$6);} 
     ;
 
 func_param: 
@@ -248,7 +250,7 @@ access_modifier:
     ;
 
 class_decl_list:
-    class_decl_list class_member { $$ = $1; $$->push_back($2); }
+    class_decl_list opt_newlines class_member opt_newlines { $$ = $1; $$->push_back($3); }
     | class_member { $$ = new std::vector<StmtNode*>({$1}); }
     ;
 
@@ -260,7 +262,7 @@ class_member:
     | access_modifier INIT '(' func_param_list_e ')' block separator  { StmtNode* f = StmtNode::createFuncDecl($2,$4,nullptr,$6);
                                                              $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberInit);  
                                                            }
-    | DEINIT block                                         { StmtNode* f = StmtNode::createFuncDecl($1,nullptr,nullptr,$2); 
+    | DEINIT block separator                               { StmtNode* f = StmtNode::createFuncDecl($1,nullptr,nullptr,$2); 
                                                              $$ =  StmtNode::createClassMember(f,$1,false,StmtType::classMemberDeinit);
                                                            }
     ;
@@ -272,22 +274,22 @@ class_decl_list_e:
 			
 if_stmt:
     IF expr block { $$ = StmtNode::createIfStmt($2,$3,nullptr); }
-    | IF expr block ELSE if_stmt { $$ = StmtNode::createElseIfStmt($2,$3,$5);}
-    | IF expr block ELSE block { $$ = StmtNode::createIfStmt($2,$3,$5);  }
+    | IF expr block opt_newlines ELSE if_stmt { $$ = StmtNode::createElseIfStmt($2,$3,$6);}
+    | IF expr block opt_newlines ELSE block { $$ = StmtNode::createIfStmt($2,$3,$6);  }
     ;
 
 switch_stmt:
-    SWITCH expr '{' switch_case_list '}' { $$ = StmtNode::createSwitchStmt($2,$4);}
+    SWITCH expr opt_newlines '{' opt_newlines switch_case_list  '}' { $$ = StmtNode::createSwitchStmt($2,$6);}
     ;
 	
 switch_case_list:
     switch_case                     { $$ = new std::vector<StmtNode*>({$1}); }
-    | switch_case_list switch_case  { $$ = $1; $$->push_back($2); }
+    | switch_case_list opt_newlines switch_case opt_newlines  { $$ = $1; $$->push_back($3); }
     ;
 	
 switch_case:
-    CASE expr_list ':' block { $$ = StmtNode::createCaseStmt($2,$4);}
-    | DEFAULT ':' block      { $$ = StmtNode::createCaseStmt(nullptr,$3);}
+      CASE expr_list ':' opt_newlines stmt_list_opt  { $$ = StmtNode::createCaseStmt($2,$5); }
+    | DEFAULT ':' opt_newlines stmt_list_opt       { $$ = StmtNode::createCaseStmt(nullptr,$4);}
     ;
 	
 for_stmt: 
