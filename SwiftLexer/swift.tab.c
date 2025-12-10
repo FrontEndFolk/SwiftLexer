@@ -551,7 +551,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   531
+#define YYLAST   566
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  76
@@ -560,7 +560,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  121
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  248
+#define YYNSTATES  249
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   312
@@ -671,7 +671,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-159)
+#define YYPACT_NINF (-172)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -685,31 +685,31 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     -19,  -159,    20,    46,   309,  -159,  -159,    89,    89,    90,
-     105,    17,    67,   301,   301,   301,     3,     3,  -159,  -159,
-    -159,    12,  -159,  -159,   301,   301,   301,   301,   -19,   309,
-    -159,  -159,    69,     3,     3,     3,     3,     3,     3,     3,
-      26,   100,  -159,   100,    41,   -35,  -159,   -19,  -159,    46,
-      69,   141,   144,   390,   390,   390,  -159,  -159,   356,   -25,
-     -25,   419,   103,    87,   212,  -159,  -159,   301,   301,   301,
-     301,   301,   301,   301,   301,   301,   301,   301,   301,   301,
-     301,   301,   117,   301,  -159,  -159,  -159,  -159,  -159,  -159,
-    -159,  -159,   301,   118,    89,    75,   122,    93,    46,  -159,
-     301,   301,    94,  -159,    57,    95,     7,   419,  -159,   101,
-     114,   301,  -159,  -159,   419,   419,   419,   448,   463,   371,
-     371,   371,   371,   371,   371,    40,    40,   -25,   -25,   112,
-     120,   419,  -159,  -159,  -159,  -159,  -159,  -159,   118,   134,
-    -159,   145,   -36,  -159,   142,   124,   -19,   -19,   390,   390,
-     -19,   187,   -19,   301,  -159,   356,   419,   356,  -159,   127,
-     301,   128,   129,   118,    75,    51,   130,    63,  -159,  -159,
-     348,    -3,    83,   419,  -159,   138,  -159,   419,   118,   118,
-    -159,  -159,   118,  -159,   -19,  -159,  -159,  -159,   -19,   111,
-     -30,  -159,   -19,   -19,   348,  -159,  -159,  -159,   301,   135,
-      -5,  -159,  -159,  -159,  -159,   -19,    63,     3,   143,   137,
-       3,     3,   -14,   136,   139,  -159,   -38,   -19,  -159,    83,
-    -159,   -19,  -159,     3,  -159,    75,  -159,  -159,   -19,     3,
-    -159,   -19,   348,   -19,   140,  -159,   147,  -159,  -159,   348,
-    -159,  -159,     3,   -19,  -159,  -159,     3,  -159
+     -21,  -172,    29,    33,   290,  -172,  -172,    63,    63,    67,
+      70,   136,   -13,   383,   383,   383,     2,     2,  -172,  -172,
+    -172,    50,  -172,  -172,   383,   383,   383,   383,   -21,   290,
+    -172,  -172,   222,     2,     2,     2,     2,     2,     2,     2,
+      40,    -4,  -172,    -4,    69,   -25,  -172,   -21,  -172,  -172,
+     222,   129,   132,   425,   425,   425,  -172,  -172,   391,    38,
+      38,   454,    94,    72,   357,  -172,  -172,   383,   383,   383,
+     383,   383,   383,   383,   383,   383,   383,   383,   383,   383,
+     383,   383,   101,   383,  -172,  -172,  -172,  -172,  -172,  -172,
+    -172,  -172,   383,   -17,    63,    93,   107,    79,  -172,  -172,
+     383,   383,    80,  -172,    -5,    83,    53,   454,  -172,    87,
+     108,   383,  -172,  -172,   454,   454,   454,   483,   498,   151,
+     151,   151,   151,   151,   151,    61,    61,    38,    38,    89,
+     328,   454,  -172,  -172,  -172,  -172,  -172,  -172,   -17,   109,
+    -172,   115,   -35,  -172,   113,    98,   -21,   -21,   425,   425,
+     -21,   160,   -21,   383,  -172,   391,   454,   391,  -172,    99,
+     383,   104,   105,   -17,    93,    82,   121,    65,  -172,  -172,
+     304,     7,   119,   454,  -172,   103,  -172,   454,   -17,   -17,
+    -172,  -172,   -17,  -172,   -21,  -172,  -172,  -172,   -21,    10,
+     -26,  -172,   -21,   -21,   304,  -172,  -172,  -172,   383,   106,
+      -7,  -172,  -172,  -172,  -172,   -21,    65,     2,   127,   110,
+       2,     2,    88,   114,   123,  -172,   -33,   -21,  -172,   119,
+    -172,   -21,  -172,     2,  -172,    93,  -172,  -172,   -21,     2,
+     -21,   -21,   304,   -21,   124,  -172,   133,  -172,  -172,  -172,
+     304,  -172,  -172,     2,   -21,  -172,  -172,     2,  -172
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -718,11 +718,11 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        9,     7,     0,    10,    11,     1,     8,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    35,    36,
+       0,     9,     0,     0,     0,     0,     9,     9,    35,    36,
       32,    56,    34,    33,     0,     0,    63,     0,     9,    12,
-      13,    15,     0,     0,     0,     0,     0,     0,     0,     0,
+      13,    15,     9,     9,     9,     9,     9,     9,     9,     9,
        0,    77,    72,    78,     0,     9,     6,     3,    28,     4,
-       0,     0,     0,     9,     9,     9,    30,    31,    92,    50,
+       9,     0,     0,     9,     9,     9,    30,    31,    92,    50,
       51,    61,    64,     0,     0,     2,    14,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,    22,    23,    16,    17,    24,    25,
@@ -737,26 +737,26 @@ static const yytype_int8 yydefact[] =
       18,     9,     0,    90,    95,     0,    70,    76,     0,     0,
       83,    87,     0,    80,     9,    97,    99,    98,     9,     0,
        9,   101,     9,     9,    19,    20,   111,   112,     0,     0,
-       9,   114,    54,    85,    84,     9,    96,     0,     0,     0,
-       0,     0,    96,     0,     0,    21,     0,     9,   113,     0,
-      79,     9,   107,     0,   105,    88,   102,   103,     9,     0,
-     121,     9,    18,     9,     0,   104,     0,   100,    82,    18,
-     117,   115,     0,     9,   116,    81,     0,   106
+       9,   114,    54,    85,    84,     9,    96,     9,     0,     0,
+       9,     9,    96,     0,     0,    21,     0,     9,   113,     0,
+      79,     9,   107,     9,   105,    88,   102,   103,     9,     9,
+       9,     9,    18,     9,     0,   104,     0,   100,    82,   121,
+      18,   117,   115,     9,     9,   116,    81,     9,   106
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -159,  -159,    14,   -11,    13,  -159,  -159,   181,  -158,  -159,
-       0,   225,    19,  -159,  -119,   211,   126,  -122,  -118,  -159,
-      58,  -159,    -2,    71,    70,  -159,  -159,  -159,    16,    23,
-      61,  -159,  -159,    34,  -159,  -159,   -53
+    -172,  -172,    25,  -172,     0,  -172,  -172,   154,  -132,  -172,
+      -3,     9,    -2,  -172,  -113,   195,   116,  -171,  -137,  -172,
+      45,  -172,   -10,    68,    59,  -172,  -172,  -172,     8,    18,
+      54,  -172,  -172,    15,  -172,  -172,   -50
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_uint8 yydefgoto[] =
 {
-       0,     2,    48,     3,   102,    28,    29,    30,   193,   194,
+       0,     2,    48,     3,    49,    28,    29,    30,   193,   194,
      195,    32,    62,    63,   139,    41,    42,    33,    34,    35,
      143,   144,   145,   108,   109,   110,   189,   190,   191,   192,
       36,    37,   200,   201,    38,    39,   103
@@ -767,118 +767,124 @@ static const yytype_uint8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
-      49,   104,     1,    46,    31,    49,    49,     1,   162,    14,
-      67,    68,   111,     4,   185,   186,   187,    46,     1,   159,
-       5,    49,    49,    49,    49,    49,    49,    49,    49,    31,
-      56,    57,     1,   188,     1,   231,    98,   163,    96,    49,
-       1,    65,    82,    83,   180,  -109,    84,    85,    86,    87,
-      88,    89,    90,    91,     1,    18,    19,    20,    97,   203,
-     204,    21,    22,   205,    99,    -9,    23,   210,   105,    46,
-     218,   211,   182,    47,   240,    67,    68,    92,    24,    58,
-     153,   244,    25,     6,    58,    26,   223,    47,     1,    27,
-     224,   185,   186,   187,     1,   168,   169,   198,   199,    93,
-    -108,    51,    80,    81,    67,    68,     1,    82,    83,   141,
-     188,    52,   183,    95,     7,     8,     9,   151,   197,   142,
-      69,    70,    71,    72,    73,    74,    75,    76,    77,    78,
-      79,    80,    81,    40,    44,   207,    82,    83,  -108,    47,
-     132,   133,   134,   135,   208,   136,     7,     8,     9,    45,
-      94,   100,   220,   111,   101,    67,    68,   209,   112,   166,
-     167,   129,   137,   170,   155,   172,   146,   147,   150,   152,
-     154,    69,    70,    71,    72,    73,    74,    75,    76,    77,
-      78,    79,    80,    81,   157,   160,   138,    82,    83,   161,
-     246,   158,   164,   165,   215,   171,    49,   206,   176,    49,
-      49,   178,   179,   212,   184,   213,   214,   202,   217,   225,
-      66,   229,    49,   219,   230,   242,   243,   216,    49,    43,
-     140,   222,   181,   236,   226,   227,   174,   175,   228,   221,
-     232,    49,   196,     0,   234,    49,    50,   235,    53,    54,
-      55,   237,     0,   238,   239,     0,   241,    67,    68,    59,
-      60,    61,    64,   233,     0,     0,   245,     0,     0,     0,
-     247,     0,     0,    69,    70,    71,    72,    73,    74,    75,
+       4,    31,    46,    -9,   104,   132,   133,   134,   135,   162,
+     136,     1,     1,     7,     8,     9,     1,   111,   210,    14,
+      50,    51,    53,    54,    55,   159,    31,   137,    65,     5,
+       1,    52,     1,    59,    60,    61,    64,   223,   163,     1,
+     231,    56,    57,   208,     1,    97,    94,    98,    96,  -109,
+     180,   138,   211,   102,   102,   105,   209,    84,    85,    86,
+      87,    88,    89,    90,    91,   203,   204,   107,   218,   205,
+       6,   224,    47,    67,    68,    99,   114,   115,   116,   117,
+     118,   119,   120,   121,   122,   123,   124,   125,   126,   127,
+     128,    92,   130,   185,   186,   187,    67,    68,   168,   169,
+     241,   131,  -108,   182,   151,    82,    83,    40,   245,   148,
+     149,    44,   188,    93,    45,   183,   185,   186,   187,     1,
+     156,   197,    58,    80,    81,    58,   153,   141,    82,    83,
+       7,     8,     9,   198,   199,   188,    46,   142,   207,   100,
+    -108,    95,   101,   112,   111,   129,   166,   167,   102,   102,
+     170,   146,   172,   147,   150,   220,   154,   152,   155,   161,
+     160,   157,   173,   164,   107,   102,   107,   165,   171,   177,
+     176,   102,   202,     1,    18,    19,    20,   178,   179,   217,
+      21,    22,   225,    66,   206,    23,    67,    68,   102,   229,
+     212,   215,   213,   214,   247,   184,   216,    24,   230,   243,
+     219,    25,   244,    43,    26,   102,    47,    61,    27,   181,
+     140,    78,    79,    80,    81,   236,   175,   232,    82,    83,
+     228,   234,    46,   174,   221,   196,     0,     0,   237,     0,
+     239,   240,   222,   242,   233,   226,   227,     0,     0,     0,
+       0,     0,     0,     0,   102,     0,     0,     0,   235,     0,
+       0,     0,     0,     0,   238,     0,     0,    67,    68,     1,
+       0,     0,     0,     0,     0,     0,     0,     0,   246,     0,
+       0,     0,   248,    69,    70,    71,    72,    73,    74,    75,
       76,    77,    78,    79,    80,    81,     0,     0,     0,    82,
-      83,   113,     0,   107,     0,     0,     0,     0,     0,     0,
-       0,     0,   114,   115,   116,   117,   118,   119,   120,   121,
-     122,   123,   124,   125,   126,   127,   128,     0,   130,     0,
-       0,     0,     7,     8,     9,    10,    11,   131,    12,     0,
-      13,    14,    15,     0,     0,   148,   149,     0,    16,    17,
-       0,     0,     0,     0,     0,     0,   156,     0,     0,    18,
-      19,    20,     0,     0,     0,    21,    22,    18,    19,    20,
-      23,     7,     8,    21,    22,    11,     0,    12,    23,    13,
-      14,    15,    24,     0,     0,     0,    25,    16,    17,    26,
-      24,     0,     0,    27,    25,     0,     0,    26,   173,     0,
-     107,    27,   107,     0,     0,   177,    18,    19,    20,     0,
-       0,     0,    21,    22,    18,    19,    20,    23,     0,     0,
-     106,    22,     0,     0,     0,    23,    67,    68,     0,    24,
-       0,     0,     0,    25,     0,     0,    26,    24,     0,     0,
-      27,    25,     0,    61,    26,    67,    68,     1,    27,     0,
-       0,    78,    79,    80,    81,     0,     0,     0,    82,    83,
-       0,    69,    70,    71,    72,    73,    74,    75,    76,    77,
-      78,    79,    80,    81,    67,    68,     0,    82,    83,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      69,    70,    71,    72,    73,    74,    75,    76,    77,    78,
-      79,    80,    81,    67,    68,     0,    82,    83,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    67,    68,
-       0,    71,    72,    73,    74,    75,    76,    77,    78,    79,
-      80,    81,     0,     0,     0,    82,    83,    72,    73,    74,
+      83,     0,    47,     7,     8,     9,    10,    11,     0,    12,
+       0,    13,    14,    15,     0,     0,     0,     7,     8,    16,
+      17,    11,     0,    12,     0,    13,    14,    15,     0,     0,
+       0,     0,     0,    16,    17,     0,     0,     0,    18,    19,
+      20,     0,     0,     0,    21,    22,     0,     0,     0,    23,
+       0,     0,    18,    19,    20,     0,     0,     0,    21,    22,
+       0,    24,     0,    23,     0,    25,     0,     0,    26,     0,
+       0,     0,    27,    67,    68,    24,     0,     0,     0,    25,
+       0,     0,    26,     0,     0,     0,    27,     0,     0,    69,
+      70,    71,    72,    73,    74,    75,    76,    77,    78,    79,
+      80,    81,    67,    68,     0,    82,    83,     0,     0,   158,
+       0,     0,     0,     0,     0,     0,     0,     0,    69,    70,
+      71,    72,    73,    74,    75,    76,    77,    78,    79,    80,
+      81,    18,    19,    20,    82,    83,   113,    21,    22,    18,
+      19,    20,    23,     0,     0,   106,    22,     0,     0,     0,
+      23,     0,     0,     0,    24,     0,     0,     0,    25,     0,
+       0,    26,    24,     0,     0,    27,    25,     0,     0,    26,
+      67,    68,     1,    27,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,    69,    70,    71,    72,
+      73,    74,    75,    76,    77,    78,    79,    80,    81,    67,
+      68,     0,    82,    83,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    69,    70,    71,    72,    73,
+      74,    75,    76,    77,    78,    79,    80,    81,    67,    68,
+       0,    82,    83,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,    67,    68,     0,    71,    72,    73,    74,
       75,    76,    77,    78,    79,    80,    81,     0,     0,     0,
-      82,    83
+      82,    83,    72,    73,    74,    75,    76,    77,    78,    79,
+      80,    81,     0,     0,     0,    82,    83
 };
 
 static const yytype_int16 yycheck[] =
 {
-      11,    54,    37,     0,     4,    16,    17,    37,    44,    12,
-      35,    36,    50,     0,    28,    29,    30,     0,    37,   138,
-       0,    32,    33,    34,    35,    36,    37,    38,    39,    29,
-      16,    17,    37,    47,    37,    73,    47,    73,    73,    50,
-      37,    28,    67,    68,   163,    75,    32,    33,    34,    35,
-      36,    37,    38,    39,    37,    38,    39,    40,    45,   178,
-     179,    44,    45,   182,    50,     8,    49,   189,    55,     0,
-      75,   189,    21,    70,   232,    35,    36,    51,    61,    72,
-      73,   239,    65,    37,    72,    68,   208,    70,    37,    72,
-     208,    28,    29,    30,    37,   148,   149,    14,    15,    73,
-      37,    34,    62,    63,    35,    36,    37,    67,    68,    34,
-      47,    44,   165,    72,     3,     4,     5,   104,   171,    44,
-      51,    52,    53,    54,    55,    56,    57,    58,    59,    60,
-      61,    62,    63,    44,    44,   188,    67,    68,    75,    70,
-      22,    23,    24,    25,    33,    27,     3,     4,     5,    44,
-      50,    10,   205,    50,    10,    35,    36,    46,    71,   146,
-     147,    44,    44,   150,    50,   152,    44,    74,    74,    74,
-      69,    51,    52,    53,    54,    55,    56,    57,    58,    59,
-      60,    61,    62,    63,    72,    51,    68,    67,    68,    44,
-     243,    71,    50,    69,   194,     8,   207,   184,    71,   210,
-     211,    73,    73,   190,    74,   192,   193,    69,    73,    72,
-      29,    75,   223,   200,    75,    75,    69,   198,   229,     8,
-      94,   207,   164,   225,   210,   211,   155,   157,   212,   206,
-     217,   242,   171,    -1,   221,   246,    11,   223,    13,    14,
-      15,   228,    -1,   229,   231,    -1,   233,    35,    36,    24,
-      25,    26,    27,   219,    -1,    -1,   242,    -1,    -1,    -1,
-     246,    -1,    -1,    51,    52,    53,    54,    55,    56,    57,
+       0,     4,     0,     8,    54,    22,    23,    24,    25,    44,
+      27,    37,    37,     3,     4,     5,    37,    50,   189,    12,
+      11,    34,    13,    14,    15,   138,    29,    44,    28,     0,
+      37,    44,    37,    24,    25,    26,    27,   208,    73,    37,
+      73,    16,    17,    33,    37,    45,    50,    47,    73,    75,
+     163,    68,   189,    53,    54,    55,    46,    32,    33,    34,
+      35,    36,    37,    38,    39,   178,   179,    58,    75,   182,
+      37,   208,    70,    35,    36,    50,    67,    68,    69,    70,
+      71,    72,    73,    74,    75,    76,    77,    78,    79,    80,
+      81,    51,    83,    28,    29,    30,    35,    36,   148,   149,
+     232,    92,    37,    21,   104,    67,    68,    44,   240,   100,
+     101,    44,    47,    73,    44,   165,    28,    29,    30,    37,
+     111,   171,    72,    62,    63,    72,    73,    34,    67,    68,
+       3,     4,     5,    14,    15,    47,     0,    44,   188,    10,
+      75,    72,    10,    71,    50,    44,   146,   147,   148,   149,
+     150,    44,   152,    74,    74,   205,    69,    74,    50,    44,
+      51,    72,   153,    50,   155,   165,   157,    69,     8,   160,
+      71,   171,    69,    37,    38,    39,    40,    73,    73,    73,
+      44,    45,    72,    29,   184,    49,    35,    36,   188,    75,
+     190,   194,   192,   193,   244,    74,   198,    61,    75,    75,
+     200,    65,    69,     8,    68,   205,    70,   198,    72,   164,
+      94,    60,    61,    62,    63,   225,   157,   217,    67,    68,
+     212,   221,     0,   155,   206,   171,    -1,    -1,   228,    -1,
+     230,   231,   207,   233,   219,   210,   211,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,   244,    -1,    -1,    -1,   223,    -1,
+      -1,    -1,    -1,    -1,   229,    -1,    -1,    35,    36,    37,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,   243,    -1,
+      -1,    -1,   247,    51,    52,    53,    54,    55,    56,    57,
       58,    59,    60,    61,    62,    63,    -1,    -1,    -1,    67,
-      68,    69,    -1,    58,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    67,    68,    69,    70,    71,    72,    73,    74,
-      75,    76,    77,    78,    79,    80,    81,    -1,    83,    -1,
-      -1,    -1,     3,     4,     5,     6,     7,    92,     9,    -1,
-      11,    12,    13,    -1,    -1,   100,   101,    -1,    19,    20,
-      -1,    -1,    -1,    -1,    -1,    -1,   111,    -1,    -1,    38,
-      39,    40,    -1,    -1,    -1,    44,    45,    38,    39,    40,
-      49,     3,     4,    44,    45,     7,    -1,     9,    49,    11,
-      12,    13,    61,    -1,    -1,    -1,    65,    19,    20,    68,
-      61,    -1,    -1,    72,    65,    -1,    -1,    68,   153,    -1,
-     155,    72,   157,    -1,    -1,   160,    38,    39,    40,    -1,
-      -1,    -1,    44,    45,    38,    39,    40,    49,    -1,    -1,
-      44,    45,    -1,    -1,    -1,    49,    35,    36,    -1,    61,
-      -1,    -1,    -1,    65,    -1,    -1,    68,    61,    -1,    -1,
-      72,    65,    -1,   198,    68,    35,    36,    37,    72,    -1,
-      -1,    60,    61,    62,    63,    -1,    -1,    -1,    67,    68,
-      -1,    51,    52,    53,    54,    55,    56,    57,    58,    59,
-      60,    61,    62,    63,    35,    36,    -1,    67,    68,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      51,    52,    53,    54,    55,    56,    57,    58,    59,    60,
-      61,    62,    63,    35,    36,    -1,    67,    68,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    35,    36,
-      -1,    53,    54,    55,    56,    57,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    -1,    67,    68,    54,    55,    56,
+      68,    -1,    70,     3,     4,     5,     6,     7,    -1,     9,
+      -1,    11,    12,    13,    -1,    -1,    -1,     3,     4,    19,
+      20,     7,    -1,     9,    -1,    11,    12,    13,    -1,    -1,
+      -1,    -1,    -1,    19,    20,    -1,    -1,    -1,    38,    39,
+      40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    49,
+      -1,    -1,    38,    39,    40,    -1,    -1,    -1,    44,    45,
+      -1,    61,    -1,    49,    -1,    65,    -1,    -1,    68,    -1,
+      -1,    -1,    72,    35,    36,    61,    -1,    -1,    -1,    65,
+      -1,    -1,    68,    -1,    -1,    -1,    72,    -1,    -1,    51,
+      52,    53,    54,    55,    56,    57,    58,    59,    60,    61,
+      62,    63,    35,    36,    -1,    67,    68,    -1,    -1,    71,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    51,    52,
+      53,    54,    55,    56,    57,    58,    59,    60,    61,    62,
+      63,    38,    39,    40,    67,    68,    69,    44,    45,    38,
+      39,    40,    49,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      49,    -1,    -1,    -1,    61,    -1,    -1,    -1,    65,    -1,
+      -1,    68,    61,    -1,    -1,    72,    65,    -1,    -1,    68,
+      35,    36,    37,    72,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    51,    52,    53,    54,
+      55,    56,    57,    58,    59,    60,    61,    62,    63,    35,
+      36,    -1,    67,    68,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    51,    52,    53,    54,    55,
+      56,    57,    58,    59,    60,    61,    62,    63,    35,    36,
+      -1,    67,    68,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    35,    36,    -1,    53,    54,    55,    56,
       57,    58,    59,    60,    61,    62,    63,    -1,    -1,    -1,
-      67,    68
+      67,    68,    54,    55,    56,    57,    58,    59,    60,    61,
+      62,    63,    -1,    -1,    -1,    67,    68
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -889,12 +895,12 @@ static const yytype_int8 yystos[] =
        6,     7,     9,    11,    12,    13,    19,    20,    38,    39,
       40,    44,    45,    49,    61,    65,    68,    72,    81,    82,
       83,    86,    87,    93,    94,    95,   106,   107,   110,   111,
-      44,    91,    92,    91,    44,    44,     0,    70,    78,    79,
+      44,    91,    92,    91,    44,    44,     0,    70,    78,    80,
       87,    34,    44,    87,    87,    87,    78,    78,    72,    87,
       87,    87,    88,    89,    87,    80,    83,    35,    36,    51,
       52,    53,    54,    55,    56,    57,    58,    59,    60,    61,
       62,    63,    67,    68,    78,    78,    78,    78,    78,    78,
-      78,    78,    51,    73,    50,    72,    73,    80,    79,    78,
+      78,    78,    51,    73,    50,    72,    73,    80,    80,    78,
       10,    10,    80,   112,   112,    80,    44,    87,    99,   100,
      101,    50,    71,    69,    87,    87,    87,    87,    87,    87,
       87,    87,    87,    87,    87,    87,    87,    87,    87,    44,
@@ -909,7 +915,7 @@ static const yytype_int8 yystos[] =
       93,    94,    80,    80,    80,    86,    88,    73,    75,    80,
      112,   105,    78,    93,    94,    72,    78,    78,   104,    75,
       75,    73,    80,   109,    80,    78,    98,    80,    78,    80,
-      84,    80,    75,    69,    84,    78,   112,    78
+      80,    84,    80,    75,    69,    84,    78,   112,    78
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -945,7 +951,7 @@ static const yytype_int8 yyr2[] =
        3,     1,     0,     1,     1,     3,     0,     1,     1,     1,
        4,     1,     3,     3,     4,     3,     7,     3,     0,     1,
        3,     6,     6,     7,     1,     4,     5,     4,     5,     5,
-       3,     6
+       3,     7
 };
 
 
@@ -1411,583 +1417,583 @@ yyreduce:
   case 2: /* program: opt_newlines top_stmt_list_opt opt_newlines  */
 #line 75 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                       {root = new Program((yyvsp[-1].SL)); (yyval.program) = root; root->print();}
-#line 1415 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1421 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 3: /* separator: ';'  */
 #line 79 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
           {  std::cerr << "parser:semicolon" << std::endl; }
-#line 1421 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1427 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 11: /* top_stmt_list_opt: %empty  */
 #line 96 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                   { (yyval.SL) = new std::vector<StmtNode*>(); }
-#line 1427 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1433 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 12: /* top_stmt_list_opt: top_stmt_list  */
 #line 97 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.SL) = (yyvsp[0].SL);}
-#line 1433 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1439 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 13: /* top_stmt_list: top_stmt  */
 #line 101 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                          { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); std::cerr << "parser:stmt" << std::endl; }
-#line 1439 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1445 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 14: /* top_stmt_list: top_stmt_list top_stmt  */
 #line 102 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
-#line 1445 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1451 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 15: /* top_stmt: stmt  */
 #line 106 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                      { (yyval.stmtNode) = (yyvsp[0].stmtNode); }
-#line 1451 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1457 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 16: /* top_stmt: func_decl separator  */
 #line 107 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1457 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1463 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 17: /* top_stmt: class_decl separator  */
 #line 108 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                  { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1463 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1469 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 18: /* stmt_list_opt: %empty  */
 #line 113 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                { (yyval.SL) = new std::vector<StmtNode*>(); }
-#line 1469 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1475 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 19: /* stmt_list_opt: stmt_list  */
 #line 114 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                 {(yyval.SL) = (yyvsp[0].SL);}
-#line 1475 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1481 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 20: /* stmt_list: stmt  */
 #line 118 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                      { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
-#line 1481 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1487 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 21: /* stmt_list: stmt_list stmt  */
 #line 119 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
-                      { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
-#line 1487 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+                     { (yyval.SL) = (yyvsp[-1].SL); (yyval.SL)->push_back((yyvsp[0].stmtNode)); }
+#line 1493 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 22: /* stmt: expr separator  */
 #line 123 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.stmtNode) = StmtNode::createExprAsStmt((yyvsp[-1].exprNode)); }
-#line 1493 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1499 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 23: /* stmt: var_decl separator  */
 #line 124 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode);}
-#line 1499 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1505 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 24: /* stmt: if_stmt separator  */
 #line 125 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1505 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1511 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 25: /* stmt: switch_stmt separator  */
 #line 126 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1511 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1517 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 26: /* stmt: for_stmt separator  */
 #line 127 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1517 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1523 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 27: /* stmt: while_stmt separator  */
 #line 128 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                               { (yyval.stmtNode) = (yyvsp[-1].stmtNode); }
-#line 1523 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1529 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 28: /* stmt: RETURN separator  */
 #line 129 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.stmtNode) = StmtNode::createReturnStmt(nullptr); }
-#line 1529 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1535 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 29: /* stmt: RETURN expr separator  */
 #line 130 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.stmtNode) = StmtNode::createReturnStmt((yyvsp[-1].exprNode)); }
-#line 1535 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1541 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 30: /* stmt: BREAK separator  */
 #line 131 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.stmtNode) = StmtNode::createBreakStmt(); }
-#line 1541 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1547 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 31: /* stmt: CONTINUE separator  */
 #line 132 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                             { (yyval.stmtNode) = StmtNode::createContinueStmt(); }
-#line 1547 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1553 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 32: /* expr: INT_DEC  */
 #line 136 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createInt((yyvsp[0].Int)); }
-#line 1553 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1559 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 33: /* expr: FLOAT_DEC  */
 #line 137 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createFloat((yyvsp[0].Float)); }
-#line 1559 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1565 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 34: /* expr: STRING_C  */
 #line 138 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createString((yyvsp[0].Id)); }
-#line 1565 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1571 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 35: /* expr: TRUE  */
 #line 139 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBool((yyvsp[0].boolVal)); }
-#line 1571 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1577 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 36: /* expr: FALSE  */
 #line 140 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBool((yyvsp[0].boolVal)); }
-#line 1577 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1583 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 37: /* expr: expr '+' expr  */
 #line 141 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Add); }
-#line 1583 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1589 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 38: /* expr: expr '-' expr  */
 #line 142 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Sub); }
-#line 1589 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1595 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 39: /* expr: expr '*' expr  */
 #line 143 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Mul); }
-#line 1595 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1601 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 40: /* expr: expr '/' expr  */
 #line 144 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Div); }
-#line 1601 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1607 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 41: /* expr: expr EQ expr  */
 #line 145 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Eq); }
-#line 1607 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1613 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 42: /* expr: expr NE expr  */
 #line 146 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Ne); }
-#line 1613 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1619 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 43: /* expr: expr '>' expr  */
 #line 147 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Gt); }
-#line 1619 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1625 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 44: /* expr: expr '<' expr  */
 #line 148 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Lt); }
-#line 1625 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1631 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 45: /* expr: expr GE expr  */
 #line 149 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Ge); }
-#line 1631 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1637 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 46: /* expr: expr LE expr  */
 #line 150 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Le); }
-#line 1637 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1643 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 47: /* expr: expr '=' expr  */
 #line 151 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Eq); }
-#line 1643 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1649 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 48: /* expr: expr AND expr  */
 #line 152 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::And); }
-#line 1649 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1655 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 49: /* expr: expr OR expr  */
 #line 153 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createBinOperation((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::Or); }
-#line 1655 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1661 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 50: /* expr: '-' expr  */
 #line 154 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createUnOperation((yyvsp[0].exprNode),ExprType::UMinus); }
-#line 1661 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1667 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 51: /* expr: NOT expr  */
 #line 155 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createUnOperation((yyvsp[0].exprNode),ExprType::Not); }
-#line 1667 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1673 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 52: /* expr: expr '[' expr ']'  */
 #line 156 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createSubscriptNode((yyvsp[-3].exprNode),(yyvsp[-1].exprNode)); }
-#line 1673 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1679 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 53: /* expr: expr '.' ID  */
 #line 157 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createFieldAccessNode((yyvsp[-2].exprNode),(yyvsp[0].Id)); }
-#line 1679 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1685 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 54: /* expr: expr '.' ID '(' func_arg_list ')'  */
 #line 158 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { ExprNode* access = ExprNode::createFieldAccessNode((yyvsp[-5].exprNode), (yyvsp[-3].Id)); (yyval.exprNode) = ExprNode::createFieldAccessCall(access,(yyvsp[-3].Id), (yyvsp[-1].EL));}
-#line 1685 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1691 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 55: /* expr: '[' expr_list_e ']'  */
 #line 159 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createArray((yyvsp[-1].EL));}
-#line 1691 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1697 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 56: /* expr: ID  */
 #line 160 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createId((yyvsp[0].Id));}
-#line 1697 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1703 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 57: /* expr: ID '(' func_arg_list ')'  */
 #line 161 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createFuncCall((yyvsp[-1].EL),(yyvsp[-3].Id),nullptr);}
-#line 1703 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1709 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 58: /* expr: '(' expr ')'  */
 #line 162 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = (yyvsp[-1].exprNode);}
-#line 1709 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1715 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 59: /* expr: expr CLOSED_RANGE expr  */
 #line 163 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createLoopRange((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::ClosedRange);}
-#line 1715 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1721 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 60: /* expr: expr OPENED_RANGE expr  */
 #line 164 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                         { (yyval.exprNode) = ExprNode::createLoopRange((yyvsp[-2].exprNode),(yyvsp[0].exprNode),ExprType::OpenedRange);}
-#line 1721 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1727 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 61: /* expr_list: expr  */
 #line 169 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                           { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
-#line 1727 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1733 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 62: /* expr_list: expr_list ',' expr  */
 #line 170 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                           { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
-#line 1733 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1739 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 63: /* expr_list_e: %empty  */
 #line 174 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                 { (yyval.EL) = nullptr; }
-#line 1739 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1745 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 64: /* expr_list_e: expr_list  */
 #line 175 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                 { (yyval.EL) = (yyvsp[0].EL); }
-#line 1745 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1751 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 65: /* type: INT_KW  */
 #line 179 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string("Int"));           }
-#line 1751 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1757 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 66: /* type: BOOL_KW  */
 #line 180 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string("Bool"));          }
-#line 1757 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1763 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 67: /* type: UINT_KW  */
 #line 181 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string("Uint"));          }
-#line 1763 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1769 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 68: /* type: FLOAT_KW  */
 #line 182 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string("Float"));          }
-#line 1769 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1775 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 69: /* type: STRING_KW  */
 #line 183 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string("String"));        }
-#line 1775 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1781 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 70: /* type: '[' type ']'  */
 #line 184 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyvsp[-1].dataType)->arDimension++; (yyval.dataType) = (yyvsp[-1].dataType); }
-#line 1781 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1787 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 71: /* type: ID  */
 #line 185 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                     { (yyval.dataType) = new DataType(new std::string(*(yyvsp[0].Id)));             }
-#line 1787 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1793 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 72: /* decl_items: decl_item  */
 #line 189 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                 { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
-#line 1793 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1799 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 73: /* decl_items: decl_items ',' decl_item  */
 #line 190 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                 { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
-#line 1799 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1805 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 74: /* decl_item: ID '=' expr  */
 #line 194 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                            { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-2].Id),(yyvsp[0].exprNode),nullptr); }
-#line 1805 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1811 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 75: /* decl_item: ID ':' type  */
 #line 195 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                            { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].dataType)); }
-#line 1811 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1817 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 76: /* decl_item: ID ':' type '=' expr  */
 #line 196 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                            { (yyval.exprNode) = ExprNode::createDeclExpr((yyvsp[-4].Id),(yyvsp[0].exprNode),(yyvsp[-2].dataType));   }
-#line 1817 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1823 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 77: /* var_decl: LET_KW decl_items  */
 #line 200 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                            { (yyval.stmtNode) = StmtNode::createDeclStmt((yyvsp[0].EL), StmtType::letDecl); }
-#line 1823 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1829 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 78: /* var_decl: VAR_KW decl_items  */
 #line 201 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                            { (yyval.stmtNode) = StmtNode::createDeclStmt((yyvsp[0].EL), StmtType::varDecl); }
-#line 1829 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1835 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 79: /* func_decl: FUNC ID '(' func_param_list_e ')' ARROW type block  */
 #line 205 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                        { (yyval.stmtNode) = StmtNode::createFuncDecl((yyvsp[-6].Id),(yyvsp[-4].EL),(yyvsp[-1].dataType),(yyvsp[0].SL)); }
-#line 1835 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1841 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 80: /* func_decl: FUNC ID '(' func_param_list_e ')' block  */
 #line 206 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                          { (yyval.stmtNode) = StmtNode::createFuncDecl((yyvsp[-4].Id),(yyvsp[-2].EL),nullptr,(yyvsp[0].SL)); }
-#line 1841 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1847 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 81: /* class_decl: CLASS ID ':' ID opt_newlines '{' opt_newlines class_decl_list_e opt_newlines '}' separator  */
 #line 210 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                                                                { (yyval.stmtNode) = StmtNode::createClassDecl((yyvsp[-9].Id),(yyvsp[-7].Id),(yyvsp[-3].SL));}
-#line 1847 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1853 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 82: /* class_decl: CLASS ID opt_newlines '{' opt_newlines class_decl_list_e opt_newlines '}' separator  */
 #line 211 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                                                               { (yyval.stmtNode) = StmtNode::createClassDecl((yyvsp[-7].Id),nullptr,(yyvsp[-3].SL));}
-#line 1853 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1859 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 83: /* func_param: ID ':' type  */
 #line 215 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                       { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),nullptr,(yyvsp[0].dataType)); }
-#line 1859 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1865 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 84: /* func_param: ID ID ':' type  */
 #line 216 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                       { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),(yyvsp[-3].Id),(yyvsp[0].dataType)); }
-#line 1865 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1871 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 85: /* func_param: UNDERSCORE ID ':' type  */
 #line 217 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.exprNode) = ExprNode::createFuncParamExpr((yyvsp[-2].Id),new std::string("_"),(yyvsp[0].dataType)); }
-#line 1871 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1877 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 86: /* func_param_list: func_param  */
 #line 221 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                      { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
-#line 1877 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1883 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 87: /* func_param_list: func_param_list ',' func_param  */
 #line 222 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                      { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
-#line 1883 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1889 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 88: /* func_param_list_e: %empty  */
 #line 226 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                       { (yyval.EL) = nullptr; }
-#line 1889 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1895 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 89: /* func_param_list_e: func_param_list  */
 #line 227 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                       { (yyval.EL) = (yyvsp[0].EL); }
-#line 1895 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1901 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 90: /* func_arg: ID ':' expr  */
 #line 231 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                 { (yyval.exprNode) = ExprNode::createFuncArgExpr((yyvsp[-2].Id),(yyvsp[0].exprNode)); }
-#line 1901 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1907 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 91: /* func_arg: expr  */
 #line 232 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                 { (yyval.exprNode) = ExprNode::createFuncArgExpr(nullptr,(yyvsp[0].exprNode)); }
-#line 1907 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1913 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 92: /* func_arg_list: %empty  */
 #line 236 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.EL) = nullptr; }
-#line 1913 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1919 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 93: /* func_arg_list: func_arg_list_nonempty  */
 #line 237 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                              { (yyval.EL) = (yyvsp[0].EL); }
-#line 1919 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1925 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 94: /* func_arg_list_nonempty: func_arg  */
 #line 241 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                            { (yyval.EL) = new std::vector<ExprNode*>({(yyvsp[0].exprNode)}); }
-#line 1925 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1931 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 95: /* func_arg_list_nonempty: func_arg_list_nonempty ',' func_arg  */
 #line 242 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                            { (yyval.EL) = (yyvsp[-2].EL); (yyval.EL)->push_back((yyvsp[0].exprNode)); }
-#line 1931 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1937 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 96: /* access_modifier: %empty  */
 #line 246 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                    { (yyval.Id) = nullptr; }
-#line 1937 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1943 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 97: /* access_modifier: PUBLIC  */
 #line 247 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                    { (yyval.Id) = new std::string("PUBLIC"); }
-#line 1943 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1949 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 98: /* access_modifier: FILE_PRIVATE  */
 #line 248 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                    { (yyval.Id) = new std::string("FILE_PRIVATE"); }
-#line 1949 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1955 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 99: /* access_modifier: PRIVATE  */
 #line 249 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                    { (yyval.Id) = new std::string("PRIVATE"); }
-#line 1955 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1961 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 100: /* class_decl_list: class_decl_list opt_newlines class_member opt_newlines  */
 #line 253 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                            { (yyval.SL) = (yyvsp[-3].SL); (yyval.SL)->push_back((yyvsp[-1].stmtNode)); }
-#line 1961 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1967 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 101: /* class_decl_list: class_member  */
 #line 254 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                    { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
-#line 1967 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1973 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 102: /* class_member: access_modifier var_decl separator  */
 #line 258 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[-1].stmtNode),(yyvsp[-2].Id),false,StmtType::classMemberVar);}
-#line 1973 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1979 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 103: /* class_member: access_modifier func_decl separator  */
 #line 259 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[-1].stmtNode),(yyvsp[-2].Id),false,StmtType::classMemberFunc);}
-#line 1979 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1985 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 104: /* class_member: access_modifier STATIC var_decl separator  */
 #line 260 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[-1].stmtNode),(yyvsp[-3].Id),true,StmtType::classMemberVar);}
-#line 1985 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1991 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 105: /* class_member: access_modifier STATIC func_decl  */
 #line 261 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                            { (yyval.stmtNode) = StmtNode::createClassMember((yyvsp[0].stmtNode),(yyvsp[-2].Id),true,StmtType::classMemberFunc);}
-#line 1991 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 1997 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 106: /* class_member: access_modifier INIT '(' func_param_list_e ')' block separator  */
@@ -1995,7 +2001,7 @@ yyreduce:
                                                                       { StmtNode* f = StmtNode::createFuncDecl((yyvsp[-5].Id),(yyvsp[-3].EL),nullptr,(yyvsp[-1].SL));
                                                              (yyval.stmtNode) =  StmtNode::createClassMember(f,(yyvsp[-6].Id),false,StmtType::classMemberInit);  
                                                            }
-#line 1999 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2005 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 107: /* class_member: DEINIT block separator  */
@@ -2003,95 +2009,95 @@ yyreduce:
                                                            { StmtNode* f = StmtNode::createFuncDecl((yyvsp[-2].Id),nullptr,nullptr,(yyvsp[-1].SL)); 
                                                              (yyval.stmtNode) =  StmtNode::createClassMember(f,(yyvsp[-2].Id),false,StmtType::classMemberDeinit);
                                                            }
-#line 2007 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2013 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 108: /* class_decl_list_e: %empty  */
 #line 271 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
               { (yyval.SL) = nullptr;}
-#line 2013 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2019 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 109: /* class_decl_list_e: class_decl_list  */
 #line 272 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                       { (yyval.SL) = (yyvsp[0].SL);}
-#line 2019 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2025 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 110: /* if_stmt: IF expr block  */
 #line 276 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
-                  { (yyval.stmtNode) = StmtNode::createIfStmt((yyvsp[-1].exprNode),(yyvsp[0].SL),nullptr); }
-#line 2025 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+                   { (yyval.stmtNode) = StmtNode::createIfStmt((yyvsp[-1].exprNode),(yyvsp[0].SL),nullptr);   }
+#line 2031 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 111: /* if_stmt: IF expr block opt_newlines ELSE if_stmt  */
 #line 277 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                               { (yyval.stmtNode) = StmtNode::createElseIfStmt((yyvsp[-4].exprNode),(yyvsp[-3].SL),(yyvsp[0].stmtNode));}
-#line 2031 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2037 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 112: /* if_stmt: IF expr block opt_newlines ELSE block  */
 #line 278 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                             { (yyval.stmtNode) = StmtNode::createIfStmt((yyvsp[-4].exprNode),(yyvsp[-3].SL),(yyvsp[0].SL));  }
-#line 2037 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2043 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 113: /* switch_stmt: SWITCH expr opt_newlines '{' opt_newlines switch_case_list '}'  */
 #line 282 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                                     { (yyval.stmtNode) = StmtNode::createSwitchStmt((yyvsp[-5].exprNode),(yyvsp[-1].SL));}
-#line 2043 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2049 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 114: /* switch_case_list: switch_case  */
 #line 286 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                     { (yyval.SL) = new std::vector<StmtNode*>({(yyvsp[0].stmtNode)}); }
-#line 2049 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2055 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 115: /* switch_case_list: switch_case_list opt_newlines switch_case opt_newlines  */
 #line 287 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                               { (yyval.SL) = (yyvsp[-3].SL); (yyval.SL)->push_back((yyvsp[-1].stmtNode)); }
-#line 2055 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2061 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 116: /* switch_case: CASE expr_list ':' opt_newlines stmt_list_opt  */
 #line 291 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                      { (yyval.stmtNode) = StmtNode::createCaseStmt((yyvsp[-3].EL),(yyvsp[0].SL)); }
-#line 2061 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2067 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 117: /* switch_case: DEFAULT ':' opt_newlines stmt_list_opt  */
 #line 292 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                                    { (yyval.stmtNode) = StmtNode::createCaseStmt(nullptr,(yyvsp[0].SL));}
-#line 2067 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2073 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 118: /* for_stmt: FOR ID IN expr block  */
 #line 296 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
-                         { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),(yyvsp[-3].Id),(yyvsp[0].SL),StmtType::For); }
-#line 2073 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+                         { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),(yyvsp[-3].Id),(yyvsp[0].SL),StmtType::For);}
+#line 2079 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 119: /* for_stmt: FOR UNDERSCORE IN expr block  */
 #line 297 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                                    { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),nullptr,(yyvsp[0].SL),StmtType::For); }
-#line 2079 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+#line 2085 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
   case 120: /* while_stmt: WHILE expr block  */
 #line 301 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
                      { (yyval.stmtNode) = StmtNode::createLoopStmt((yyvsp[-1].exprNode),nullptr,(yyvsp[0].SL),StmtType::While); }
-#line 2085 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
-    break;
-
-  case 121: /* block: opt_newlines '{' opt_newlines stmt_list_opt opt_newlines '}'  */
-#line 305 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
-                                                                  { (yyval.SL) = (yyvsp[-2].SL); }
 #line 2091 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
     break;
 
+  case 121: /* block: opt_newlines '{' opt_newlines stmt_list_opt opt_newlines '}' opt_newlines  */
+#line 305 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\parser.y"
+                                                                                { (yyval.SL) = (yyvsp[-3].SL);  std::cerr << "block" << std::endl;}
+#line 2097 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+    break;
 
-#line 2095 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
+
+#line 2101 "F:\\visualStudioProjects\\SwiftLexer\\SwiftLexer\\swift.tab.c"
 
       default: break;
     }

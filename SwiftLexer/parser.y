@@ -77,8 +77,8 @@ program : opt_newlines top_stmt_list_opt opt_newlines {root = new Program($2); $
 
 separator:
       ';' {  std::cerr << "parser:semicolon" << std::endl; }
-    | new_line_list
-    | ';' new_line_list
+    | opt_newlines
+    | ';' opt_newlines
     | YYEOF
     ;
 
@@ -116,7 +116,7 @@ stmt_list_opt:
 
 stmt_list:
       stmt           { $$ = new std::vector<StmtNode*>({$1}); }
-    | stmt_list  stmt { $$ = $1; $$->push_back($2); }
+    | stmt_list stmt { $$ = $1; $$->push_back($2); }
     ;
 
 stmt: 
@@ -273,7 +273,7 @@ class_decl_list_e:
     ;
 			
 if_stmt:
-    IF expr block { $$ = StmtNode::createIfStmt($2,$3,nullptr); }
+    IF expr block  { $$ = StmtNode::createIfStmt($2,$3,nullptr);   }
     | IF expr block opt_newlines ELSE if_stmt { $$ = StmtNode::createElseIfStmt($2,$3,$6);}
     | IF expr block opt_newlines ELSE block { $$ = StmtNode::createIfStmt($2,$3,$6);  }
     ;
@@ -293,7 +293,7 @@ switch_case:
     ;
 	
 for_stmt: 
-    FOR ID IN expr block { $$ = StmtNode::createLoopStmt($4,$2,$5,StmtType::For); }
+    FOR ID IN expr block { $$ = StmtNode::createLoopStmt($4,$2,$5,StmtType::For);}
     | FOR UNDERSCORE IN expr block { $$ = StmtNode::createLoopStmt($4,nullptr,$5,StmtType::For); }
     ;
 
@@ -302,7 +302,7 @@ while_stmt:
     ;
 
 block:
-     opt_newlines '{' opt_newlines stmt_list_opt opt_newlines '}' { $$ = $4; }
+     opt_newlines '{' opt_newlines stmt_list_opt opt_newlines '}' opt_newlines  { $$ = $4;  std::cerr << "block" << std::endl;}
     ;
 	
 %%

@@ -35,7 +35,7 @@ enum ExprType {
 	FuncCall,
 	FieldAccessCall,
 	ClosedRange,
-	OpenedRange
+	OpenedRange,
 };
 
 enum StmtType {
@@ -57,7 +57,9 @@ enum StmtType {
 	funcDeclArgList,
 	funcDeclArg,
 	returnStmt,
-	StmtList
+	StmtList,
+	Break,
+	Continue
 };
 
 struct Node

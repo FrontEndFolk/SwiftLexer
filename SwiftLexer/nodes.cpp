@@ -24,6 +24,13 @@ std::string StmtNode::getNodeLabel() {
     case StmtType::While:
         ss << "LoopStmt";
         break;
+    case StmtType::Break:
+        ss << "Break";
+        break;
+    case StmtType::Continue:
+        ss << "Continue";
+        break;
+
     case StmtType::If:
         ss << "IfStmt";
         break;
@@ -165,7 +172,11 @@ std::string ExprNode::getNodeLabel() {
     case ExprType::FieldAccessCall:
         ss << "Expr access call with args: " << (Name ? *Name : "?");
         break;
+    case ExprType::funcArg:
+        ss << "Param:" << *Name;
+    break;
     }
+
     ss << "\"]";
     return ss.str();
 };
@@ -354,7 +365,6 @@ void ExprNode::print()
             std::cout << id << " -> " << dataType->id << " [label=\"type\"];" << std::endl;
         }
         break;
-        break;
 
     case ExprType::ClosedRange:
         std::cout << id << " -> " << LeftExpr->id << std::endl;
@@ -399,13 +409,16 @@ void ExprNode::print()
             std::cout << id << " -> " << getSupportNode("args", id) << " [label=\"args\"];" << std::endl;
             std::cout << getSupportNodeLabel("args", id) << std::endl;
             for (auto arg : *exprList) {
-                if (arg) {
+                if (arg != nullptr) {
                     arg->print();
                     std::cout << getSupportNode("args", id) << " -> " << arg->id << std::endl;
                 }
             }
         }
         break;
+    case ExprType::funcArg:
+        std::cout << id << " -> " << expr->id << std::endl;
+        expr->print();
     }
 }
 // ------------------------------------------------------------
@@ -841,9 +854,18 @@ ExprNode* ExprNode::createFuncParamExpr(std::string* paramName, std::string* lab
 ExprNode* ExprNode::createFuncArgExpr(std::string* argName, ExprNode* expr) {
     ExprNode* funcArgExprNode = new ExprNode();
     funcArgExprNode->id = getNewId();
-    funcArgExprNode->Name = argName;
+
+    if (argName) 
+    {
+        funcArgExprNode->Name = argName;
+    }
+    else 
+    {
+        funcArgExprNode->Name = new std::string("no label");
+    }
+
     funcArgExprNode->expr = expr;
-    funcArgExprNode->exprType = ExprType::decl;
+    funcArgExprNode->exprType = ExprType::funcArg;
 
     std::cout << "Called ExprNode::createFuncArgExpr("
         << "arg=" << (argName ? *argName : "positional") << ")" << std::endl;
@@ -949,13 +971,19 @@ StmtNode* StmtNode::createReturnStmt(ExprNode* expr) {
 }
 
 StmtNode* StmtNode::createBreakStmt() {
+    StmtNode* stmt = new StmtNode();
+    stmt->id = getNewId();
+    stmt->stmtType = StmtType::Break;
     std::cout << "Called StmtNode::createBreakStmt()" << std::endl;
-    return nullptr;
+    return stmt;
 }
 
 StmtNode* StmtNode::createContinueStmt() {
+    StmtNode* stmt = new StmtNode();
+    stmt->id = getNewId();
+    stmt->stmtType = StmtType::Continue;
     std::cout << "Called StmtNode::createContinueStmt()" << std::endl;
-    return nullptr;
+    return stmt;
 }
 
 StmtNode* StmtNode::createFuncDeclStmt(StmtNode* funcDecl) {
